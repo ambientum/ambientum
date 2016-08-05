@@ -1,55 +1,62 @@
 #!/usr/bin/env bash
 
-# Detect base path
-AMBIENTUM_ROOT=$(pwd)
+# resulting images namespace on docker hub
+NAMESPACE=ambientum
 
-# Set the resulting images namespace (docker hub organization or other)
-AMBIENTUM_NAMESPACE=ambientum
+# publish the buit images
+PUBLISH=true
 
-# Set the publishing or not of built images
-PUBLISH_IMAGES=$1
+# enabled repositories for the build
+#REPOSITORIES="mysql postgres redis"
+REPOSITORIES="php"
 
-# Base Funtion that builds the repositories
+# for returning later to the main directory
+ROOT_DIRECTORY=`pwd`
+
+# function for building images
 function build_repository {
-    # Current repository name to build
-    REPOSITORY_NAME=$1
+    # read repository configuration
+    source $ROOT_DIRECTORY/$REPOSITORY/buildvars
 
-    # Enter repository directory
-    cd $AMBIENTUM_ROOT/$REPOSITORY_NAME
+    # build all enabled versions
+    for TAG in $TAGS; do
+      # some verbose
+      echo $'\n\n'"--> Building $NAMESPACE/$REPOSITORY:$TAG"$'\n'
+      cd $ROOT_DIRECTORY/$REPOSITORY/$TAG
+      docker build -t $NAMESPACE/$REPOSITORY:$TAG .
+    done
 
-    # Checkout on master
-    git checkout master
-
-    # Pull latest versions from git
-    git pull --all
-
-    # Build the images
-    bash build.sh
-
-    # If publishing is enabled
-    if [ ! -z "$PUBLISH_IMAGES" ]; then
-        # Return to master
-        git checkout master
-
-        # Publish the images
-        bash publish.sh
-    fi
-
-    # Return to the root directory
-    cd $AMBIENTUM_ROOT
+    # create the latest tag
+    echo $'\n\n'"--> Aliasing $TAG as 'latest'"$'\n'
+    docker tag $NAMESPACE/$REPOSITORY:$LATEST $NAMESPACE/$REPOSITORY:latest
 }
 
-# Initial greatings
-echo "Ambientum auto build, starting..."
+# function for publishing images
+function publish_repository {
+    # read repository configuration
+    source $ROOT_DIRECTORY/$REPOSITORY/buildvars
 
-# Build MySQl
-#build_repository mysql
+    # publish all enabled versions
+    for TAG in $TAGS; do
+      # some verbose
+      echo $'\n\n'"--> Publishing $NAMESPACE/$REPOSITORY:$TAG"$'\n'
+      # publish
+      docker push $NAMESPACE/$REPOSITORY:$TAG
+    done
 
-# Build PostgreSQL
-#build_repository postgres
+    # create the latest tag
+    echo $'\n\n'"--> Publishing $NAMESPACE/$REPOSITORY:latest (from $LATEST)"$'\n'
+    docker push $NAMESPACE/$REPOSITORY:latest
+}
 
-# Build Redis
-#build_repository redis
+# for each enabled repository
+for REPOSITORY in $REPOSITORIES; do
+  # build the repository
+  build_repository $REPOSITORY
 
-# Build PHP Base images
-build_repository php
+  # If publishing is enabled
+  if [ $PUBLISH ]; then
+    # Push the built image
+    publish_repository $REPOSITORY
+  fi
+done
