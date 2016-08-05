@@ -54,7 +54,7 @@ for REPOSITORY in $REPOSITORIES; do
   build_repository $REPOSITORY
 
   # If publishing is enabled
-  if [ $PUBLISH ]; then
+  if [ $PUBLISH == true ]; then
     # Push the built image
     publish_repository $REPOSITORY
   fi
