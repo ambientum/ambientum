@@ -6,10 +6,9 @@ We all love Laravel, but why develop a rockstar code with a kickass framework wi
 ### Documentation / Tutorials
 All you need to know in order to create and maintain your environment is on our Wiki (@todo create wiki and update link here)
 
-### TL;DR
-If you're something like me, you don't have all the patience of reading documentations fully, so here are the supported images and they matching docker-compose entries. Although We highly recommend you to read the whole wiki.
-
 > We expect to release a config generator supporting both docker-compose, docker cloud (formerly Tutum) and Rancher real soon.
+
+
 
 |Repository                | Images/Tags                  | Description                                        |
 |--------------------------|------------------------------|----------------------------------------------------|
@@ -27,3 +26,5 @@ If you're something like me, you don't have all the patience of reading document
 |                          | `3.0`                        | Redis Server v3.0                                  |
 
 
+### TL;DR
+If you're something like me, you don't have all the patience of reading documentations fully, so here are the supported images and they matching docker-compose entries. Although We highly recommend you to read the whole Wiki.
