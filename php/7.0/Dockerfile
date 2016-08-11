@@ -7,8 +7,16 @@ FROM debian:jessie
 # Repository/Image Maintainer
 MAINTAINER Diego Hernandes <diego@hernandev.com>
 
+# Variables for enabling NewRelic
+ENV NR_ENABLED=false \
+    NR_APP_NAME="" \
+    NR_LICENSE_KEY=""
+
+# Add the ENTRYPOINT script
+ADD start.sh /scripts/start.sh
+
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
-RUN echo "---Updating Repository---" && \
+RUN echo "---> Updating Repository" && \
     apt-get update -y && \
     dpkg-reconfigure -f noninteractive tzdata && \
     apt-get upgrade -y && \
@@ -17,7 +25,7 @@ RUN echo "---Updating Repository---" && \
     nano \
     vim \
     sudo && \
-    echo "---Preparing and Installing PHP---" && \
+    echo "---> Preparing and Installing PHP" && \
     echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list && \
     curl -sS https://www.dotdeb.org/dotdeb.gpg | apt-key add - && \
     apt-get update -y && \
@@ -43,20 +51,18 @@ RUN echo "---Updating Repository---" && \
     php7.0-xdebug \
     php7.0-xml \
     php7.0-zip && \
+    echo "---> Installing Composer" && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    echo "---> Cleaning up" && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
-
-# Adds a new user that will match most users environments (id 1000)
-# Make sure project directory exists and it's owned by the recently
-# created user, also, adds that user to the sudoers file
-RUN adduser --disabled-password --gecos "" php-user && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* && \
+    echo "---> Adding the php-user" && \
+    adduser --disabled-password --gecos "" php-user && \
     mkdir -p /var/www/app && \
     chown -R php-user:php-user /var/www && \
-    echo "php-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
-
-# Configure FPM to run properly on docker
-RUN sed -i "/user = .*/c\user = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
+    echo "---> Configuring PHP" && \
+    echo "php-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
+    sed -i "/user = .*/c\user = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i "/group = .*/c\group = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i "/listen-user = .*/c\listen-user = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i "/listen-group = .*/c\listen-group = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
@@ -68,13 +74,31 @@ RUN sed -i "/user = .*/c\user = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i "/;daemonize = .*/c\daemonize = yes" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i "/post_max_size = .*/c\post_max_size = 1000M" /etc/php/7.0/fpm/php.ini && \
-    sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php/7.0/fpm/php.ini
+    sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php/7.0/fpm/php.ini && \
+    echo "---> Adding Support for NewRelic" && \
+    mkdir newrelic && \
+    cd newrelic && \
+    wget -r -l1 -nd -A"linux.tar.gz" https://nr.codecasts.rocks/php_agent/release/ && \
+    gzip -dc newrelic*.tar.gz | tar xf - && \
+    cd newrelic-php5* && \
+    rm -f /usr/lib/php/20151012/newrelic.so && \
+    cp ./agent/x64/newrelic-20151012.so /usr/lib/php/20151012/newrelic.so && \
+    cp ./daemon/newrelic-daemon.x64 /usr/bin/newrelic-daemon && \
+    cp ./scripts/newrelic.ini.template /scripts/newrelic.ini && \
+    cd .. && \
+    rm -rf newrelic && \
+    mkdir /var/log/newrelic && \
+    chown -R php-user:php-user /var/log/newrelic && \
+    chmod +x /scripts/start.sh
 
 # Define the running user
 USER php-user
 
 # Application directory
 WORKDIR "/var/www/app"
+
+# Define the entry point that tries to enable newrelic
+ENTRYPOINT ["/scripts/start.sh"]
 
 # As non daemon and single base image, it may be used as cli container
 CMD ["/bin/bash"]

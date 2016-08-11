@@ -10,6 +10,7 @@ MAINTAINER Diego Hernandes <diego@hernandev.com>
 # Reset user to root to allow software install
 USER root
 
+# Installs Caddy
 RUN curl https://getcaddy.com | bash
 
 # Copy Caddyfile and entry script
