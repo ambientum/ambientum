@@ -24,10 +24,10 @@ All you need to know in order to create and maintain your environment is on our 
 |                          | `9.3`                        | PostgreSQL Server v9.3                             |
 | ambientum/**redis**      | `3.2`, `latest`              | Redis Server v3.2                                  |
 |                          | `3.0`                        | Redis Server v3.0                                  |
-| ambientum/**noje.js**    | `6.0`, `latest`              | Node.js v6.0                                       |
-| ambientum/**vue-cli**    | `2.1.0`, `latest`            | Node.js and vue-cli v2.1.0                         |
-|                          | `2.0.0`                      | Node.js and vue-cli v2.0.0                         |
-|                          | `1.3.0`                      | Node.js and vue-cli v1.3.0                         |
+| ambientum/**noje**       | `6`, `latest`                | Node.js v6.x                                       |
+| ambientum/**vue-cli**    | `2.1.0`, `latest`            | Vue-cli v2.1.0                                     |
+|                          | `2.0.0`                      | Vue-cli v2.0.0                                     |
+|                          | `1.3.0`                      | Vue-cli v1.3.0                                     |
 
 
 ### TL;DR
