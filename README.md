@@ -3,6 +3,9 @@ Achieving a high level of conformity on development, staging and production envi
 
 We all love Laravel, but why develop a rockstar code with a kickass framework without a awesome environment? no more "it worked on my machine"!
 
+### TL;DR
+If you're something like me, you don't have all the patience of reading documentations fully, so here are the supported images and they matching docker-compose entries. Although We highly recommend you to read the whole Wiki.
+
 ### Documentation / Tutorials
 All you need to know in order to create and maintain your environment is on our Wiki (@todo create wiki and update link here)
 
@@ -30,6 +33,3 @@ All you need to know in order to create and maintain your environment is on our 
 |                          | `2.0.0`                       | Vue-cli v2.0.0                                     |
 |                          | `1.3.0`                       | Vue-cli v1.3.0                                     |
 
-
-### TL;DR
-If you're something like me, you don't have all the patience of reading documentations fully, so here are the supported images and they matching docker-compose entries. Although We highly recommend you to read the whole Wiki.
