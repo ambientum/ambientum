@@ -17,8 +17,8 @@ RUN echo "---> Installing GIT for Vue Development" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
-# Install vue-cli 1.3.0
-RUN npm install -g vue-cli@1.3.0
-
 # Switches back to default user
 USER node-user
+
+# Install vue-cli 1.3.0
+RUN bash -c 'npm install -g vue-cli@1.3.0'

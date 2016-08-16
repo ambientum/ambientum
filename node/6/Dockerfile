@@ -37,6 +37,12 @@ RUN adduser --disabled-password --gecos "" node-user && \
 # Define the running user
 USER node-user
 
+# Disable sudo usage, cause sudo usage for dependency management is almost
+# a blasphemy
+ADD nosudo.sh /tmp/nosudo.sh
+RUN bash /tmp/nosudo.sh && \
+    sudo rm -rf /tmp/*
+
 # Application directory
 WORKDIR "/var/www/app"
 

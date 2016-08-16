@@ -4,7 +4,7 @@
 NAMESPACE=ambientum
 
 # publish the buit images
-PUBLISH=true
+PUBLISH=false
 
 # enabled repositories for the build
 REPOSITORIES="mysql postgres redis php node vue-cli"
