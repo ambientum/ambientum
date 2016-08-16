@@ -61,7 +61,7 @@ RUN echo "---> Adding the php-user" && \
     adduser --disabled-password --gecos "" php-user && \
     mkdir -p /var/www/app && \
     chown -R php-user:php-user /var/www
-    
+
 RUN echo "---> Configuring PHP" && \
     echo "php-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
     sed -i "/user = .*/c\user = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
@@ -76,10 +76,11 @@ RUN echo "---> Configuring PHP" && \
     sed -i "/;daemonize = .*/c\daemonize = yes" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i "/post_max_size = .*/c\post_max_size = 1000M" /etc/php/7.0/fpm/php.ini && \
-    sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php/7.0/fpm/php.ini && \
-    echo "---> Adding Support for NewRelic" && \
-    mkdir newrelic && \
-    cd newrelic && \
+    sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php/7.0/fpm/php.ini
+
+RUN echo "---> Adding Support for NewRelic" && \
+    mkdir /tmp/newrelic && \
+    cd /tmp/newrelic && \
     wget -r -l1 -nd -A"linux.tar.gz" https://download.newrelic.com/php_agent/release/ && \
     gzip -dc newrelic*.tar.gz | tar xf - && \
     cd newrelic-php5* && \
@@ -87,11 +88,10 @@ RUN echo "---> Configuring PHP" && \
     cp ./agent/x64/newrelic-20151012.so /usr/lib/php/20151012/newrelic.so && \
     cp ./daemon/newrelic-daemon.x64 /usr/bin/newrelic-daemon && \
     cp ./scripts/newrelic.ini.template /scripts/newrelic.ini && \
-    cd .. && \
-    rm -rf newrelic && \
     mkdir /var/log/newrelic && \
     chown -R php-user:php-user /var/log/newrelic && \
-    chmod +x /scripts/start.sh
+    chmod +x /scripts/start.sh && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 # Define the running user
 USER php-user
