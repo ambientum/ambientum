@@ -16,7 +16,8 @@ RUN echo "---> Updating Repository and Installing Utils" && \
     wget \
     nano \
     vim \
-    sudo && \
+    sudo \
+    git && \
     echo "---> Enabling DotDeb and Node Repository" && \
     echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list && \
     curl -sS https://www.dotdeb.org/dotdeb.gpg | apt-key add - && \
@@ -32,16 +33,21 @@ RUN echo "---> Updating Repository and Installing Utils" && \
 RUN adduser --disabled-password --gecos "" node-user && \
     mkdir -p /var/www/app && \
     chown -R node-user:node-user /var/www && \
-    echo "node-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
+    echo "node-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
+    mkdir -p /home/node-user/.npm-packages && \
+    chown -R node-user:node-user /home/node-user/.npm-packages
 
 # Define the running user
 USER node-user
 
-# Disable sudo usage, cause sudo usage for dependency management is almost
-# a blasphemy
-ADD nosudo.sh /tmp/nosudo.sh
-RUN bash /tmp/nosudo.sh && \
-    sudo rm -rf /tmp/*
+# Define some NPM jailed environment variables
+ENV NPM_PACKAGES="/home/node-user/.npm-packages" \
+    NODE_PATH="/home/node-user/.npm-packages/lib/node_modules" \
+    MANPATH="/home/node-user/.npm-packages/share/man:/usr/share/man" \
+    PATH="/home/node-user/.npm-packages/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# NPM config for setting the prefix as well
+RUN npm config set prefix /home/node-user/.npm-packages
 
 # Application directory
 WORKDIR "/var/www/app"
