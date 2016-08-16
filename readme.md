@@ -29,7 +29,7 @@ All you need to know in order to create and maintain your environment is on our 
 | ambientum/**redis**      | `3.2`, `latest`               | Redis Server v3.2                                  |
 |                          | `3.0`                         | Redis Server v3.0                                  |
 | ambientum/**node**       | `6`, `latest`                 | Node.js v6.x                                       |
-| ambientum/**vue-cli**    | `2.1.0`, `latest`             | Vue-cli v2.1.0                                     |
-|                          | `2.0.0`                       | Vue-cli v2.0.0                                     |
-|                          | `1.3.0`                       | Vue-cli v1.3.0                                     |
+| ambientum/**vue-cli**    | `2.1`, `latest`               | Vue-cli v2.1.x                                     |
+|                          | `2.0`                         | Vue-cli v2.0.x                                     |
+|                          | `1.3`                         | Vue-cli v1.3.x                                     |
 
