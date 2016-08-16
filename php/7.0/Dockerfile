@@ -55,12 +55,14 @@ RUN echo "---> Updating Repository" && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     echo "---> Cleaning up" && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* && \
-    echo "---> Adding the php-user" && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+RUN echo "---> Adding the php-user" && \
     adduser --disabled-password --gecos "" php-user && \
     mkdir -p /var/www/app && \
-    chown -R php-user:php-user /var/www && \
-    echo "---> Configuring PHP" && \
+    chown -R php-user:php-user /var/www
+    
+RUN echo "---> Configuring PHP" && \
     echo "php-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
     sed -i "/user = .*/c\user = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i "/group = .*/c\group = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
@@ -78,7 +80,7 @@ RUN echo "---> Updating Repository" && \
     echo "---> Adding Support for NewRelic" && \
     mkdir newrelic && \
     cd newrelic && \
-    wget -r -l1 -nd -A"linux.tar.gz" https://nr.codecasts.rocks/php_agent/release/ && \
+    wget -r -l1 -nd -A"linux.tar.gz" https://download.newrelic.com/php_agent/release/ && \
     gzip -dc newrelic*.tar.gz | tar xf - && \
     cd newrelic-php5* && \
     rm -f /usr/lib/php/20151012/newrelic.so && \

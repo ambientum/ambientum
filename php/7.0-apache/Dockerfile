@@ -1,6 +1,6 @@
 #####
 # Ambientum 1.0
-# PHP 7.0 bundled with the Apache2 Httpd webserver
+# PHP 7.0 bundled with the Apache2 Web webserver
 ######
 FROM ambientum/php:7.0
 
@@ -35,7 +35,7 @@ RUN echo "---> Adding contrib and non-free components in source.list" && \
 
 # Copy apache, fastcgi and entry script
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY ports.conf /etc/apache2/ports.conf 
+COPY ports.conf /etc/apache2/ports.conf
 COPY fastcgi.conf /etc/apache2/mods-available/fastcgi.conf
 COPY start.sh  /home/php-user/start.sh
 

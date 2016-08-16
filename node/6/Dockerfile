@@ -8,10 +8,7 @@ FROM debian:jessie
 MAINTAINER Diego Hernandes <diego@hernandev.com>
 
 # Enable DotDeb, install Node 6.x, some utils and cleanup
-RUN echo "---> Preparing and Installing Node" && \
-    echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list && \
-    curl -sS https://www.dotdeb.org/dotdeb.gpg | apt-key add - && \
-    curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+RUN echo "---> Updating Repository and Installing Utils" && \
     apt-get update -y && \
     dpkg-reconfigure -f noninteractive tzdata && \
     apt-get upgrade -y && \
@@ -19,8 +16,13 @@ RUN echo "---> Preparing and Installing Node" && \
     wget \
     nano \
     vim \
-    sudo \
-    nodejs && \
+    sudo && \
+    echo "---> Enabling DotDeb and Node Repository" && \
+    echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list && \
+    curl -sS https://www.dotdeb.org/dotdeb.gpg | apt-key add - && \
+    curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+    dpkg-reconfigure -f noninteractive tzdata && \
+    apt-get install -y nodejs && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
