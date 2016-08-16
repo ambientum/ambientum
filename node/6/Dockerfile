@@ -33,9 +33,7 @@ RUN echo "---> Updating Repository and Installing Utils" && \
 RUN adduser --disabled-password --gecos "" node-user && \
     mkdir -p /var/www/app && \
     chown -R node-user:node-user /var/www && \
-    echo "node-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
-    mkdir -p /home/node-user/.npm-packages && \
-    chown -R node-user:node-user /home/node-user/.npm-packages
+    echo "node-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
 
 # Define the running user
 USER node-user
@@ -47,7 +45,8 @@ ENV NPM_PACKAGES="/home/node-user/.npm-packages" \
     PATH="/home/node-user/.npm-packages/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # NPM config for setting the prefix as well
-RUN npm config set prefix /home/node-user/.npm-packages
+RUN mkdir -p $NPM_PACKAGES && \
+    npm config set prefix $NPM_PACKAGES
 
 # Application directory
 WORKDIR "/var/www/app"
