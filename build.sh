@@ -7,7 +7,12 @@ NAMESPACE=ambientum
 PUBLISH=true
 
 # enabled repositories for the build
-REPOSITORIES="mysql postgres redis php node vue-cli"
+REPOSITORIES=$1
+
+# enable all repositories if any specified
+if [[ -z $REPOSITORIES ]]; then
+    REPOSITORIES="mysql postgres redis php node vue-cli"
+fi
 
 # for returning later to the main directory
 ROOT_DIRECTORY=`pwd`
