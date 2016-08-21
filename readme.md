@@ -22,6 +22,9 @@ All you need to know in order to create and maintain your environment is on our 
 | ambientum/**mysql**      | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
 |                          | `5.6`                         | MySQL Server v5.6                                  |
 |                          | `5.5`                         | MySQL Server v5.5                                  |
+| ambientum/**mariadb**    | `10.1`, `latest`              | MariaDB Server v10.1                               |
+|                          | `10.0`                        | MariaDB Server v10.0                               |
+|                          | `5.5`                         | MariaDB Server v5.5                                |
 | ambientum/**postgresl**  | `9.6`, `latest`               | PostgreSQL Server v9.6                             |
 |                          | `9.5`         `               | PostgreSQL Server v9.5                             |
 |                          | `9.4`         `               | PostgreSQL Server v9.4                             |

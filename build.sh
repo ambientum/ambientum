@@ -11,7 +11,7 @@ REPOSITORIES=$1
 
 # enable all repositories if any specified
 if [[ -z $REPOSITORIES ]]; then
-    REPOSITORIES="mysql postgres redis php node vue-cli"
+    REPOSITORIES="mysql mariadb postgres redis php node vue-cli"
 fi
 
 # for returning later to the main directory
