@@ -5,7 +5,8 @@
 A_CACHE_HOME=$HOME/.cache/ambientum
 
 # Define specific cache directories
-A_NPM_CACHE=$A_CACHE_HOME/npm
+A_NPM_CONFIG=$A_CACHE_HOME/npm-config
+A_NPM_CACHE=$A_CACHE_HOME/npm-cache
 A_COMPOSER_CACHE=$A_CACHE_HOME/composer
 
 # When using private projects, a SSH Key may be needed
@@ -25,12 +26,14 @@ A_SSH_PHP_MOUNT=$A_SSH_HOME:/home/php-user/.ssh
 A_APP_MOUNT=$(pwd):/var/www/app 
 
 # Mount for cache
-A_NPM_MOUNT=$A_NPM_CACHE:/home/node-user/.npm-packages
+A_NPM_CONFIG_MOUNT=$A_NPM_CACHE:/home/node-user/.npm-packages
+A_NPM_CACHE_MOUNT=$A_NPM_CACHE:/home/node-user/.npm
 A_COMPOSER_MOUNT=$A_COMPOSER_CACHE:/home/php-user/.composer
 
 # Create directories
 mkdir -p $A_CACHE_HOME
 mkdir -p $A_NPM_CACHE
+mkdir -p $A_NPM_CONFIG
 mkdir -p $A_COMPOSER_CACHE
 
 ####
