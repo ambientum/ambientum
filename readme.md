@@ -81,5 +81,85 @@ alias npm="docker run -it --rm -v $(pwd):/var/www/app ambientum/node:6 npm"
 ```
 
 #### 4) What about gulp?
-WIP
+
+Here it is!
+```
+alias gulp="docker run -it --rm -v $(pwd):/var/www/app ambientum/node:6 gulp"
+```
+
+### I do have a project, and i want to run it using docker
+Well, that's the whole point of the project, the commands there was designed for quck usage of stand alone commands, so we have a great alternative when we have a project already, we can define a docker-compose.yml file that will expose and run the services we need.
+
+> **Understanding the docker-compose compose tool is appreciated in order to use the following configuration files.
+
+#### Laravel docker-compose.yml
+
+
+```yml
+####
+# ATENTION:
+# Replace all occurences of sandbox with your project's name
+####
+
+# v2 sintax
+version: '2'
+
+# Named volumes
+volumes:
+  # MySQL Data
+  sandbox-mysql-data:
+    driver: local
+
+  # Redis Data
+  sandbox-redis-data:
+    driver: local
+
+services:
+  # MySQL (5.7)
+  mysql:
+    image: ambientum/mysql:5.7
+    container_name: sandbox-mysql
+    volumes:
+      - sandbox-mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=sandbox
+      - MYSQL_DATABASE=sandbox
+      - MYSQL_USER=sandbox
+      - MYSQL_PASSWORD=sandbox
+
+  # Redis
+  cache:
+    image: ambientum/redis:3.2
+    container_name: sandbox-redis
+    command: --appendonly yes
+    volumes:
+      - sandbox-redis-data:/data
+    ports:
+      - "6379:6379"
+
+  # PHP (with Caddy)
+  app:
+    image: ambientum/php:7.0-caddy
+    container_name: sandbox-php
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "80:8080"
+    links:
+      - mysql
+      - cache
+
+  # Laravel Queues
+  queue:
+    image: ambientum/php:7.0
+    container_name: sandbox-queue
+    command: php artisan queue:listen
+    volumes:
+      - .:/var/www/app
+    links:
+      - mysql
+      - cache
+```
 
