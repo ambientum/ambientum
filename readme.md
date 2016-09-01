@@ -1,10 +1,10 @@
 ## ambientum
-Achieving a high level of conformity on development, staging and production environments is often something not easy. On the last years, our buddy Docker has becoming more and more mature and now it's becoming the standard.
+Keeping it uniform between development, staging and production environments is often something not easy. On the last years, our buddy Docker has becoming more and more mature and now it's becoming the standard.
 
-We all love Laravel, but why develop a rockstar code with a kickass framework without a awesome environment? no more "it worked on my machine"!
+We all love Laravel and VueJS, but why develop a rockstar code with a kickass framework without a awesome environment? no more "it worked on my machine"!
 
 ### TL;DR
-If you're something like me, you don't have all the patience of reading documentations fully, so here are the supported images and they matching docker-compose entries. Although We highly recommend you to read the whole Wiki.
+If you're something like me, you don't have all the patience of reading documentations fully, so here are the supported images and they matching docker-compose entries. Although We highly recommend you to read the whole Wiki [WIP].
 
 ### Documentation / Tutorials
 All you need to know in order to create and maintain your environment is on our Wiki (@todo create wiki and update link here)
@@ -36,3 +36,50 @@ All you need to know in order to create and maintain your environment is on our 
 |                          | `2.1`                         | Vue-cli v2.1.x                                     |
 |                          | `2.0`                         | Vue-cli v2.0.x                                     |
 |                          | `1.3`                         | Vue-cli v1.3.x                                     |
+
+## Quick usage guide
+
+### Running stand alone commands:
+Stand alone commands may be necessary for a full dockerized environment, for example, to create Laravel or VueJS projects, you may need composer and/or vue-cli tools available.
+The great news is you don't need to install then locally anymore, ambientum provides you a dockorized way of doing it.
+
+#### 1) Creating a Laravel Project with Composer
+So, you don't have composer installed but you still need to use it to create a Laravel project right? Let's create an alias to a docker command that will take care of that for us
+
+On your terminal, run the following
+```
+alias composer="docker run -it --rm -v $(pwd):/var/www/app ambientum/php:7.0 composer"
+```
+
+That will provide a composer alias that runs the php 7 image and calls the composer command, followed by anything you may type, so we can now do this:
+
+```
+composer create laravel/laravel my_project
+```
+That command instead of calling a locally installed composer, will spin up a docker container and do it inside the container, as we have a mapped volume, the resulting project created will be available on the current directory you specified on composer.
+
+#### 2) Creating a VueJS Project
+Vue-Cli was not left out, you can do the same as composer, by creating a vue alias
+
+```
+alias vue="docker run -it --rm -v $(pwd):/var/www/app ambientum/vue-cli:2.2 vue"
+```
+
+And vue command will be available, so you can use:
+
+```
+vue init webpack my_project
+```
+
+Cool right?
+
+#### 3) I want NPM as well
+Don't worry, we got you covered
+
+```
+alias npm="docker run -it --rm -v $(pwd):/var/www/app ambientum/node:6 npm"
+```
+
+#### 4) What about gulp?
+WIP
+
