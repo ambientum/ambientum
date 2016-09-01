@@ -51,6 +51,7 @@ After sourcing the correct file, the following commands will be available for us
 - composer
 - npm
 - gulp
+- vue
 
 ####For Bash ans ZSH Users:
 ```
