@@ -52,6 +52,11 @@ function gulp
 	docker run -it --rm -v (pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/gulp-cli:1.2 gulp $argv
 end
 
+# Vue
+function vue
+	docker run -it --rm -v (pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/vue-cli:2.2 vue $argv
+end
+
 ####
 # Alias for Composer and other PHP commands
 ####

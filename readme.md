@@ -55,14 +55,14 @@ After sourcing the correct file, the following commands will be available for us
 
 ####For Bash ans ZSH Users:
 ```
-curl -L https://github.com/codecasts/ambientum/raw/master/commands.bash -o ~/.ambientum
-source ~/.ambientum
+curl -L https://github.com/codecasts/ambientum/raw/master/commands.bash -o ~/.ambientum_rc
+source ~/.ambientum_rc
 ```
 
 ####For Fish users:
 ```
-curl -L https://github.com/codecasts/ambientum/raw/master/commands.fish -o ~/.ambientum
-source ~/.ambientum
+curl -L https://github.com/codecasts/ambientum/raw/master/commands.fish -o ~/.ambientum_rc
+source ~/.ambientum_rc
 ```
 
 ### I do have a project, and i want to run it using docker
