@@ -42,53 +42,26 @@ All you need to know in order to create and maintain your environment is on our 
 ## Quick usage guide
 
 ### Running stand alone commands:
-Stand alone commands may be necessary for a full dockerized environment, for example, to create Laravel or VueJS projects, you may need composer and/or vue-cli tools available.
-The great news is you don't need to install then locally anymore, ambientum provides you a dockorized way of doing it.
+For running stand alone commands like NPM and Composer, you may want to set your environment with function based commands, that runs inside docker:
 
-#### 1) Creating a Laravel Project with Composer
-So, you don't have composer installed but you still need to use it to create a Laravel project right? Let's create an alias to a docker command that will take care of that for us
+After sourcing the correct file, the following commands will be available for usage:
 
-On your terminal, run the following
+- node
+- php
+- composer
+- npm
+- gulp
 
-```bash
-alias composer="docker run -it --rm -v $(pwd):/var/www/app ambientum/php:7.0 composer"
+####For Bash ans ZSH Users:
+```
+curl -L https://github.com/codecasts/ambientum/raw/master/commands.bash -o ~/.ambientum
+source ~/.ambientum
 ```
 
-That will provide a composer alias that runs the php 7 image and calls the composer command, followed by anything you may type, so we can now do this:
-
-```bash
-composer create laravel/laravel my_project
+####For Fish users:
 ```
-That command instead of calling a locally installed composer, will spin up a docker container and do it inside the container, as we have a mapped volume, the resulting project created will be available on the current directory you specified on composer.
-
-#### 2) Creating a VueJS Project
-Vue-Cli was not left out, you can do the same as composer, by creating a vue alias
-
-```bash
-alias vue="docker run -it --rm -v $(pwd):/var/www/app ambientum/vue-cli:2.2 vue"
-```
-
-And vue command will be available, so you can use:
-
-```bash
-vue init webpack my_project
-```
-
-Cool right?
-
-#### 3) I want NPM as well
-Don't worry, we got you covered
-
-```bash
-alias npm="docker run -it --rm -v $(pwd):/var/www/app ambientum/node:6 npm"
-```
-
-#### 4) What about gulp?
-
-Here it is!
-
-```bash
-alias gulp="docker run -it --rm -v $(pwd):/var/www/app ambientum/gulp-cli:1.2 gulp"
+curl -L https://github.com/codecasts/ambientum/raw/master/commands.fish -o ~/.ambientum
+source ~/.ambientum
 ```
 
 ### I do have a project, and i want to run it using docker
