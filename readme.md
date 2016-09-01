@@ -36,6 +36,8 @@ All you need to know in order to create and maintain your environment is on our 
 |                          | `2.1`                         | Vue-cli v2.1.x                                     |
 |                          | `2.0`                         | Vue-cli v2.0.x                                     |
 |                          | `1.3`                         | Vue-cli v1.3.x                                     |
+| ambientum/**gulp-cli**   | `1.2`, `latest`               | Gulp-cli v1.2.x                                    |
+|                          | `2.1`                         | Gulp-cli v1.1.x                                    |
 
 ## Quick usage guide
 
@@ -86,7 +88,7 @@ alias npm="docker run -it --rm -v $(pwd):/var/www/app ambientum/node:6 npm"
 Here it is!
 
 ```bash
-alias gulp="docker run -it --rm -v $(pwd):/var/www/app ambientum/node:6 gulp"
+alias gulp="docker run -it --rm -v $(pwd):/var/www/app ambientum/gulp-cli:1.2 gulp"
 ```
 
 ### I do have a project, and i want to run it using docker
