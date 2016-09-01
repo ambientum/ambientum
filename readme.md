@@ -47,13 +47,14 @@ The great news is you don't need to install then locally anymore, ambientum prov
 So, you don't have composer installed but you still need to use it to create a Laravel project right? Let's create an alias to a docker command that will take care of that for us
 
 On your terminal, run the following
-```
+
+```bash
 alias composer="docker run -it --rm -v $(pwd):/var/www/app ambientum/php:7.0 composer"
 ```
 
 That will provide a composer alias that runs the php 7 image and calls the composer command, followed by anything you may type, so we can now do this:
 
-```
+```bash
 composer create laravel/laravel my_project
 ```
 That command instead of calling a locally installed composer, will spin up a docker container and do it inside the container, as we have a mapped volume, the resulting project created will be available on the current directory you specified on composer.
@@ -61,13 +62,13 @@ That command instead of calling a locally installed composer, will spin up a doc
 #### 2) Creating a VueJS Project
 Vue-Cli was not left out, you can do the same as composer, by creating a vue alias
 
-```
+```bash
 alias vue="docker run -it --rm -v $(pwd):/var/www/app ambientum/vue-cli:2.2 vue"
 ```
 
 And vue command will be available, so you can use:
 
-```
+```bash
 vue init webpack my_project
 ```
 
@@ -76,21 +77,22 @@ Cool right?
 #### 3) I want NPM as well
 Don't worry, we got you covered
 
-```
+```bash
 alias npm="docker run -it --rm -v $(pwd):/var/www/app ambientum/node:6 npm"
 ```
 
 #### 4) What about gulp?
 
 Here it is!
-```
+
+```bash
 alias gulp="docker run -it --rm -v $(pwd):/var/www/app ambientum/node:6 gulp"
 ```
 
 ### I do have a project, and i want to run it using docker
 Well, that's the whole point of the project, the commands there was designed for quck usage of stand alone commands, so we have a great alternative when we have a project already, we can define a docker-compose.yml file that will expose and run the services we need.
 
-> **Understanding the docker-compose compose tool is appreciated in order to use the following configuration files.
+> **Understanding the docker-compose compose tool is appreciated in order to use the following configuration files.**
 
 #### Laravel docker-compose.yml
 
@@ -163,3 +165,31 @@ services:
       - cache
 ```
 
+### VueJS docker-compose.yml
+Developing with VueJS? we got you covered, here is the docker-compose file:
+
+```yml
+version: '2'
+
+services:
+  # Web server - For live reload and development
+  # This environment can be used to run npm and node
+  # commands as well
+  dev:
+    image: ambientum/node:6
+    container_name: sandbox-vue-dev
+    command: node build/dev-server.js
+    volumes:
+      - .:/var/www/app
+    ports:
+      - 8080:8080
+
+  # Testing dist on a "real" webserver
+  production-server:
+    image: nginx:stable-alpine
+    container_name: sandbox-preview-server
+    volumes:
+      - ./dist:/usr/share/nginx/html
+    ports:
+      - 9090:80
+```
