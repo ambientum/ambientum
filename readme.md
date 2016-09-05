@@ -1,4 +1,4 @@
-## ambientum
+## Ambientum
 Keeping it uniform between development, staging and production environments is often something not easy. On the last years, our buddy Docker has becoming more and more mature and now it's becoming the standard.
 
 We all love Laravel and VueJS, but why develop a rockstar code with a kickass framework without a awesome environment? no more "it worked on my machine"!
@@ -120,7 +120,7 @@ services:
   # PHP (with Caddy)
   app:
     image: ambientum/php:7.0-caddy
-    container_name: sandbox-php
+    container_name: sandbox-app
     volumes:
       - .:/var/www/app
     ports:
@@ -154,7 +154,7 @@ services:
   dev:
     image: ambientum/node:6
     container_name: sandbox-vue-dev
-    command: node build/dev-server.js
+    command: npm run dev
     volumes:
       - .:/var/www/app
     ports:
