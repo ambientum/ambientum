@@ -1,10 +1,10 @@
 ## Ambientum
-Keeping it uniform between development, staging and production environments is often something not easy. On the last years, our buddy Docker has becoming more and more mature and now it's becoming the standard.
+Keeping it uniform between development, staging and production environments is often something not easy. On the last years, our buddy Docker has become more and more mature and now it's becoming the standard.
 
 We all love Laravel and Vue.js, but why develop a rockstar code with a kickass framework without a awesome environment? no more "it worked on my machine"!
 
 ### TL;DR
-If you're something like me, you don't have all the patience of reading documentations fully, so here are the supported images and they matching docker-compose entries. Although We highly recommend you to read the whole Wiki [WIP].
+If you're something like me, you don't have all the patience of reading documentations fully, so here are the supported images and the matching docker-compose entries. Although we highly recommend you to read the whole Wiki [WIP].
 
 ### Documentation / Tutorials
 All you need to know in order to create and maintain your environment is on our Wiki (@todo create wiki and update link here)
@@ -53,7 +53,7 @@ After sourcing the correct file, the following commands will be available for us
 - gulp
 - vue
 
-####For Bash ans ZSH Users:
+####For Bash and ZSH Users:
 ```
 curl -L https://github.com/codecasts/ambientum/raw/master/commands.bash -o ~/.ambientum_rc
 source ~/.ambientum_rc
@@ -65,8 +65,8 @@ curl -L https://github.com/codecasts/ambientum/raw/master/commands.fish -o ~/.am
 source ~/.ambientum_rc
 ```
 
-### I do have a project, and i want to run it using docker
-Well, that's the whole point of the project, the commands there was designed for quck usage of stand alone commands, so we have a great alternative when we have a project already, we can define a docker-compose.yml file that will expose and run the services we need.
+### I do have a project, and I want to run it using docker
+Well, that's the whole point of the project, the commands there was designed for quick usage of stand alone commands, so we have a great alternative when we have a project already, we can define a docker-compose.yml file that will expose and run the services we need.
 
 > **Understanding the docker-compose compose tool is appreciated in order to use the following configuration files.**
 
@@ -142,7 +142,7 @@ services:
 ```
 
 ### Vue.js docker-compose.yml
-Developing with Vue.js? we got you covered, here is the docker-compose file:
+Developing with Vue.js? We got you covered! Here is the docker-compose file:
 
 ```yml
 version: '2'
