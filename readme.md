@@ -25,7 +25,7 @@ All you need to know in order to create and maintain your environment is on our 
 | ambientum/**mariadb**    | `10.1`, `latest`              | MariaDB Server v10.1                               |
 |                          | `10.0`                        | MariaDB Server v10.0                               |
 |                          | `5.5`                         | MariaDB Server v5.5                                |
-| ambientum/**postgresl**  | `9.6`, `latest`               | PostgreSQL Server v9.6                             |
+| ambientum/**postgres**  | `9.6`, `latest`               | PostgreSQL Server v9.6                             |
 |                          | `9.5`         `               | PostgreSQL Server v9.5                             |
 |                          | `9.4`         `               | PostgreSQL Server v9.4                             |
 |                          | `9.3`                         | PostgreSQL Server v9.3                             |
