@@ -84,6 +84,10 @@ version: '2'
 
 # Named volumes
 volumes:
+  # Postgres Data
+  sandbox-postgres-data:
+    driver: local
+
   # MySQL Data
   sandbox-mysql-data:
     driver: local
@@ -93,6 +97,19 @@ volumes:
     driver: local
 
 services:
+  # Postgres (9.5)
+  postgres:
+    image: ambientum/postgres:9.6
+    container_name: sandbox-postgres
+    volumes:
+      - sandbox-postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=sandbox
+      - POSTGRES_DB=sandbox
+      - POSTGRES_USER=sandbox
+
   # MySQL (5.7)
   mysql:
     image: ambientum/mysql:5.7
@@ -126,6 +143,7 @@ services:
     ports:
       - "80:8080"
     links:
+      - postgres
       - mysql
       - cache
 
