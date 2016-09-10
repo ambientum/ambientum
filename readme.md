@@ -24,7 +24,6 @@ not useful inside a `docker-compose` environment.
 |                          | `1.3`                         | Vue-cli v1.3.x                                     |
 | ambientum/**gulp-cli**   | `1.2`, `latest`               | Gulp-cli v1.2.x                                    |
 |                          | `2.1`                         | Gulp-cli v1.1.x                                    |
-|
 
 ### Command Line Or Compose Images
 
