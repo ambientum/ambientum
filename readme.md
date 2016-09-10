@@ -12,6 +12,24 @@ All you need to know in order to create and maintain your environment is on our 
 > We expect to release a config generator supporting both docker-compose, docker cloud (formerly Tutum) and Rancher real soon.
 
 
+### Command Line Tools
+Those images are intented only for cli usage and are
+not useful inside a `docker-compose` environment.
+
+|Repository                | Images/Tags                   | Description                                        |
+|--------------------------|-------------------------------|----------------------------------------------------|
+| ambientum/**vue-cli**    | `2.2`, `latest`               | Vue-cli v2.2.x                                     |
+|                          | `2.1`                         | Vue-cli v2.1.x                                     |
+|                          | `2.0`                         | Vue-cli v2.0.x                                     |
+|                          | `1.3`                         | Vue-cli v1.3.x                                     |
+| ambientum/**gulp-cli**   | `1.2`, `latest`               | Gulp-cli v1.2.x                                    |
+|                          | `2.1`                         | Gulp-cli v1.1.x                                    |
+|
+
+### Command Line Or Compose Images
+
+The following image can be used for stand alone commands or
+inside a docker-compose.yml file, examples on each one to come...
 
 |Repository                | Images/Tags                   | Description                                        |
 |--------------------------|-------------------------------|----------------------------------------------------|
@@ -19,25 +37,28 @@ All you need to know in order to create and maintain your environment is on our 
 |                          | `7.0-apache`, `latest-apache` | PHP v7.0 with Apache webserver                     |
 |                          | `7.0-caddy`, `latest-caddy`   | PHP v7.0 with Caddy webserver                      |
 |                          | `7.0-nginx`, `latest-nginx`   | PHP v7.0 with Nginx webserver                      |
-| ambientum/**mysql**      | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
-|                          | `5.6`                         | MySQL Server v5.6                                  |
-|                          | `5.5`                         | MySQL Server v5.5                                  |
-| ambientum/**mariadb**    | `10.1`, `latest`              | MariaDB Server v10.1                               |
-|                          | `10.0`                        | MariaDB Server v10.0                               |
-|                          | `5.5`                         | MariaDB Server v5.5                                |
-| ambientum/**postgres**  | `9.6`, `latest`               | PostgreSQL Server v9.6                             |
-|                          | `9.5`         `               | PostgreSQL Server v9.5                             |
-|                          | `9.4`         `               | PostgreSQL Server v9.4                             |
-|                          | `9.3`                         | PostgreSQL Server v9.3                             |
-| ambientum/**redis**      | `3.2`, `latest`               | Redis Server v3.2                                  |
-|                          | `3.0`                         | Redis Server v3.0                                  |
 | ambientum/**node**       | `6`, `latest`                 | Node.js v6.x                                       |
-| ambientum/**vue-cli**    | `2.2`, `latest`               | Vue-cli v2.2.x                                     |
-|                          | `2.1`                         | Vue-cli v2.1.x                                     |
-|                          | `2.0`                         | Vue-cli v2.0.x                                     |
-|                          | `1.3`                         | Vue-cli v1.3.x                                     |
-| ambientum/**gulp-cli**   | `1.2`, `latest`               | Gulp-cli v1.2.x                                    |
-|                          | `2.1`                         | Gulp-cli v1.1.x                                    |
+
+### Compose only images
+
+The following images are useless to run commands, but great for running
+as services inside a `docker-compose` environemnt
+
+|Repository                 | Images/Tags                   | Description                                        |
+|---------------------------|-------------------------------|----------------------------------------------------|
+| ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
+|                           | `5.6`                         | MySQL Server v5.6                                  |
+|                           | `5.5`                         | MySQL Server v5.5                                  |
+| ambientum/**mariadb**     | `10.1`, `latest`              | MariaDB Server v10.1                               |
+|                           | `10.0`                        | MariaDB Server v10.0                               |
+|                           | `5.5`                         | MariaDB Server v5.5                                |
+| ambientum/**postgres**    | `9.6`, `latest`               | PostgreSQL Server v9.6                             |
+|                           | `9.5`                         | PostgreSQL Server v9.5                             |
+|                           | `9.4`                         | PostgreSQL Server v9.4                             |
+|                           | `9.3`                         | PostgreSQL Server v9.3                             |
+| ambientum/**redis**       | `3.2`, `latest`               | Redis Server v3.2                                  |
+|                           | `3.0`                         | Redis Server v3.0                                  |
+| ambientum/**mailcatcher** | `latest`                      | MailCatcher is a hosted alternative to MailTrap.io |
 
 ## Quick usage guide
 
