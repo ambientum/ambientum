@@ -57,6 +57,8 @@ as services inside a `docker-compose` environemnt
 |                           | `9.3`                         | PostgreSQL Server v9.3                             |
 | ambientum/**redis**       | `3.2`, `latest`               | Redis Server v3.2                                  |
 |                           | `3.0`                         | Redis Server v3.0                                  |
+| ambientum/**beanstalkd**  | `1.10`, `latest`              | Beanstalkd Server v1.10                            |
+|                           | `1.9`                         | Beanstalkd Server v1.9                             |
 | ambientum/**mailcatcher** | `latest`                      | MailCatcher is a hosted alternative to MailTrap.io |
 
 ## Quick usage guide
