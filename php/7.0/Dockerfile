@@ -51,7 +51,8 @@ RUN echo "---> Updating Repository" && \
     php7.0-sqlite3 \
     php7.0-xdebug \
     php7.0-xml \
-    php7.0-zip && \
+    php7.0-zip \
+    php7.0-phpdbg && \
     echo "---> Installing Composer" && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     echo "---> Cleaning up" && \
@@ -77,7 +78,8 @@ RUN echo "---> Configuring PHP" && \
     sed -i "/;daemonize = .*/c\daemonize = yes" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i "/post_max_size = .*/c\post_max_size = 1000M" /etc/php/7.0/fpm/php.ini && \
-    sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php/7.0/fpm/php.ini
+    sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php/7.0/fpm/php.ini && \
+    sed -i "/zend_extension=xdebug.so/c\;zend_extension=xdebug.so" /etc/php/7.0/mods-available/xdebug.ini
 
 RUN echo "---> Adding Support for NewRelic" && \
     mkdir /tmp/newrelic && \
