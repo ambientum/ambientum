@@ -35,6 +35,10 @@ RUN adduser --disabled-password --gecos "" node-user && \
     chown -R node-user:node-user /var/www && \
     echo "node-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
 
+# tini to trap signals and allow cancelling execution of cli commands
+ADD https://github.com/krallin/tini/releases/download/v0.10.0/tini /tini
+RUN chmod +x /tini
+
 # Define the running user
 USER node-user
 
@@ -50,6 +54,9 @@ RUN mkdir -p $NPM_PACKAGES && \
 
 # Application directory
 WORKDIR "/var/www/app"
+
+# Entrypoint
+ENTRYPOINT ["/tini", "--"]
 
 # As non daemon and single base image, it may be used as cli container
 CMD ["/bin/bash"]

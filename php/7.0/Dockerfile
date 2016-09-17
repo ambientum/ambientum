@@ -96,14 +96,20 @@ RUN echo "---> Adding Support for NewRelic" && \
     chmod +x /scripts/start.sh && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
+# Dumb Init
+ADD https://github.com/krallin/tini/releases/download/v0.10.0/tini /tini
+RUN chmod +x /tini
+
 # Define the running user
 USER php-user
 
 # Application directory
 WORKDIR "/var/www/app"
 
+ENV PATH=/home/php-user/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
 # Define the entry point that tries to enable newrelic
-ENTRYPOINT ["/scripts/start.sh"]
+ENTRYPOINT ["/tini", "--", "/scripts/start.sh"]
 
 # As non daemon and single base image, it may be used as cli container
 CMD ["/bin/bash"]

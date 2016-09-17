@@ -37,6 +37,16 @@ mkdir -p $A_COMPOSER_CACHE
 # Alias for NPM And other node commands
 ####
 
+# Node Env
+function ane
+	docker run -it --rm -v (pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 $argv
+end
+
+# PHP Env
+function ape
+	docker run -it --rm -v (pwd):/var/www/app -v $A_COMPOSER_MOUNT -v $A_SSH_PHP_MOUNT ambientum/php:7.0 $argv
+end
+
 # Node
 function node
 	docker run -it --rm -v (pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 node $argv

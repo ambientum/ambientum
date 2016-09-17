@@ -26,7 +26,7 @@ A_SSH_PHP_MOUNT=$A_SSH_HOME:/home/php-user/.ssh
 A_APP_MOUNT=$(pwd):/var/www/app 
 
 # Mount for cache
-A_NPM_CONFIG_MOUNT=$A_NPM_CACHE:/home/node-user/.npm-packages
+A_NPM_CONFIG_MOUNT=$A_NPM_CONFIG:/home/node-user/.npm-packages
 A_NPM_CACHE_MOUNT=$A_NPM_CACHE:/home/node-user/.npm
 A_COMPOSER_MOUNT=$A_COMPOSER_CACHE:/home/php-user/.composer
 
@@ -39,6 +39,16 @@ mkdir -p $A_COMPOSER_CACHE
 ####
 # Alias for NPM And other node commands
 ####
+
+function ane() {
+	docker run -it --rm -v $(pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 "$@"
+}
+alias ane=ane
+
+function ape() {
+	docker run -it --rm -v $(pwd):/var/www/app -v $A_COMPOSER_MOUNT -v $A_SSH_PHP_MOUNT ambientum/php:7.0 "$@"
+}
+alias ape=ape
 
 # Node
 function node() {
