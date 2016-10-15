@@ -1,7 +1,7 @@
 ## Ambientum
 Keeping it uniform between development, staging and production environments is often something not easy. On the last years, our buddy Docker has become more and more mature and now it's becoming the standard.
 
-We all love Laravel and Vue.js, but why develop a rockstar code with a kickass framework without a awesome environment? no more "it worked on my machine"!
+We all love Laravel and Vue.js, but why develop a rockstar code with a kickass framework without a awesome environment? No more "it worked on my machine"!
 
 ### TL;DR
 If you're something like me, you don't have all the patience of reading documentations fully, so here are the supported images and the matching docker-compose entries. Although we highly recommend you to read the whole Wiki [WIP].
@@ -41,7 +41,7 @@ inside a docker-compose.yml file, examples on each one to come...
 ### Compose only images
 
 The following images are useless to run commands, but great for running
-as services inside a `docker-compose` environemnt
+as services inside a `docker-compose` environment
 
 |Repository                 | Images/Tags                   | Description                                        |
 |---------------------------|-------------------------------|----------------------------------------------------|
