@@ -14,7 +14,7 @@ set	A_COMPOSER_CACHE	$A_CACHE_HOME/composer
 set A_SSH_HOME			$HOME/.ssh
 
 ###########################################
-#### DO NOT EDIT BELOW THIS LINE UNLES    #
+#### DO NOT EDIT BELOW THIS LINE UNLESS   #
 #### YOU KNOW WHAT YOU'RE DOING           #
 ###########################################
 
