@@ -18,6 +18,9 @@ A_SSH_HOME=$HOME/.ssh
 #### YOU KNOW WHAT YOU'RE DOING           #
 ###########################################
 
+# For Windows users using Git Bash, add / at the beginning of the variables MOUNT
+# Example: A_APP_MOUNT=/$(pwd):/var/www/app
+
 # Mount for SSH Directories
 A_SSH_NODE_MOUNT=$A_SSH_HOME:/home/node-user/.ssh
 A_SSH_PHP_MOUNT=$A_SSH_HOME:/home/php-user/.ssh
