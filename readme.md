@@ -18,12 +18,15 @@ not useful inside a `docker-compose` environment.
 
 |Repository                | Images/Tags                   | Description                                        |
 |--------------------------|-------------------------------|----------------------------------------------------|
-| ambientum/**vue-cli**    | `2.2`, `latest`               | Vue-cli v2.2.x                                     |
+| ambientum/**vue-cli**    | `2.5`, `latest`               | Vue-cli v2.5.x                                     |
+|                          | `2.4`                         | Vue-cli v2.4.x                                     |
+|                          | `2.3`                         | Vue-cli v2.3.x                                     |
+|                          | `2.2`                         | Vue-cli v2.2.x                                     |
 |                          | `2.1`                         | Vue-cli v2.1.x                                     |
 |                          | `2.0`                         | Vue-cli v2.0.x                                     |
 |                          | `1.3`                         | Vue-cli v1.3.x                                     |
 | ambientum/**gulp-cli**   | `1.2`, `latest`               | Gulp-cli v1.2.x                                    |
-|                          | `2.1`                         | Gulp-cli v1.1.x                                    |
+|                          | `1.1`                         | Gulp-cli v1.1.x                                    |
 
 ### Command Line Or Compose Images
 
