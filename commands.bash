@@ -70,7 +70,7 @@ alias gulp=gulp
 
 # Vue
 function vue() {
-	docker run -it --rm -v $(pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_SSH_NODE_MOUNT ambientum/vue-cli:2.2 vue "$@"
+	docker run -it --rm -v $(pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_SSH_NODE_MOUNT ambientum/vue-cli:2.5 vue "$@"
 }
 alias vue=vue
 
