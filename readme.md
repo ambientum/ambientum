@@ -1,4 +1,7 @@
 # Ambientum
+
+![Readme Art](https://raw.githubusercontent.com/codecasts/ambientum/master/readme-art.png)
+
 Keeping it uniform between development, staging and production environments is often something not easy.
 On the last years, our buddy Docker has become more and more mature and now it's becoming the standard.
 
