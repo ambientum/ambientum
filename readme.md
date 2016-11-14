@@ -1,7 +1,29 @@
-## Ambientum
-Keeping it uniform between development, staging and production environments is often something not easy. On the last years, our buddy Docker has become more and more mature and now it's becoming the standard.
+# Ambientum
+Keeping it uniform between development, staging and production environments is often something not easy.
+On the last years, our buddy Docker has become more and more mature and now it's becoming the standard.
 
-We all love Laravel and Vue.js, but why develop a rockstar code with a kickass framework without a awesome environment? No more "it worked on my machine"!
+We all love Laravel and Vue.JS, but why develop a Rock Star code with a Kick-Ass framework 
+without a awesome environment? 
+
+No more "it worked on my machine"!
+
+## What is does?
+Ambientum can help you doing some amazing things, the 3 main scenarios are listed above:
+
+- Run Laravel and/or Vue.JS in Development
+- Run Laravel and/orf Vue.JS in Production (Continuous Integration included)
+- Replace local dependencies with Docker commands, 
+
+## What do I need to know before getting started?
+
+Before staging with Ambientum, a few pieces of knowledge must be in place:
+
+#### For replacing local commands:
+- The basics of Docker and Containers.
+- Being comfortable around the command line.
+
+#### For running a development Laravel or Vue.JS environment:
+- Know how to operate `docker-compose`
 
 ### TL;DR
 If you're something like me, you don't have all the patience of reading documentations fully, so here are the supported images and the matching docker-compose entries. Although we highly recommend you to read the whole Wiki [WIP].
@@ -12,22 +34,6 @@ All you need to know in order to create and maintain your environment is on our 
 > We expect to release a config generator supporting both docker-compose, docker cloud (formerly Tutum) and Rancher real soon.
 
 
-### Command Line Tools
-Those images are intented only for cli usage and are
-not useful inside a `docker-compose` environment.
-
-|Repository                | Images/Tags                   | Description                                        |
-|--------------------------|-------------------------------|----------------------------------------------------|
-| ambientum/**vue-cli**    | `2.5`, `latest`               | Vue-cli v2.5.x                                     |
-|                          | `2.4`                         | Vue-cli v2.4.x                                     |
-|                          | `2.3`                         | Vue-cli v2.3.x                                     |
-|                          | `2.2`                         | Vue-cli v2.2.x                                     |
-|                          | `2.1`                         | Vue-cli v2.1.x                                     |
-|                          | `2.0`                         | Vue-cli v2.0.x                                     |
-|                          | `1.3`                         | Vue-cli v1.3.x                                     |
-| ambientum/**gulp-cli**   | `1.2`, `latest`               | Gulp-cli v1.2.x                                    |
-|                          | `1.1`                         | Gulp-cli v1.1.x                                    |
-
 ### Command Line Or Compose Images
 
 The following image can be used for stand alone commands or
@@ -35,11 +41,7 @@ inside a docker-compose.yml file, examples on each one to come...
 
 |Repository                | Images/Tags                   | Description                                        |
 |--------------------------|-------------------------------|----------------------------------------------------|
-| ambientum/**php**        | `7.0`, `latest`               | PHP v7.0 for command line and queues               |
-|                          | `7.0-apache`, `latest-apache` | PHP v7.0 with Apache webserver                     |
-|                          | `7.0-caddy`, `latest-caddy`   | PHP v7.0 with Caddy webserver                      |
-|                          | `7.0-nginx`, `latest-nginx`   | PHP v7.0 with Nginx webserver                      |
-| ambientum/**node**       | `6`, `latest`                 | Node.js v6.x                                       |
+
 
 ### Compose only images
 
@@ -48,6 +50,12 @@ as services inside a `docker-compose` environment
 
 |Repository                 | Images/Tags                   | Description                                        |
 |---------------------------|-------------------------------|----------------------------------------------------|
+
+| ambientum/**php**         | `7.0`, `latest`               | PHP v7.0 for command line and queues               |
+|                           | `7.0-apache`, `latest-apache` | PHP v7.0 with Apache webserver                     |
+|                           | `7.0-caddy`, `latest-caddy`   | PHP v7.0 with Caddy webserver                      |
+|                           | `7.0-nginx`, `latest-nginx`   | PHP v7.0 with Nginx webserver                      |
+| ambientum/**node**        | `6`, `latest`                 | Node.js v6.x                                       |
 | ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
 |                           | `5.6`                         | MySQL Server v5.6                                  |
 |                           | `5.5`                         | MySQL Server v5.5                                  |
