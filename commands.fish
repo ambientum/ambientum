@@ -38,23 +38,23 @@ mkdir -p $A_COMPOSER_CACHE
 ####
 
 # Node Env
-function ane
+function n
 	docker run -it --rm -v (pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 $argv
 end
 
 # PHP Env
-function ape
+function p
 	docker run -it --rm -v (pwd):/var/www/app -v $A_COMPOSER_MOUNT -v $A_SSH_PHP_MOUNT ambientum/php:7.0 $argv
 end
 
 # Node
 function node
-	docker run -it --rm -v (pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 node $argv
+	n node $argv
 end
 
 # NPM
 function npm
-	docker run -it --rm -v (pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 npm $argv
+	n npm $argv
 end
 
 # Gulp
@@ -73,11 +73,10 @@ end
 
 # PHP
 function php
-	docker run -it --rm -v (pwd):/var/www/app -v $A_COMPOSER_MOUNT -v $A_SSH_PHP_MOUNT ambientum/php:7.0 php $argv
+	p php $argv
 end
-
 
 # Composer
 function composer
-	docker run -it --rm -v (pwd):/var/www/app -v $A_COMPOSER_MOUNT -v $A_SSH_PHP_MOUNT ambientum/php:7.0 composer $argv
+	p composer $argv
 end
