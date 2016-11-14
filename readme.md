@@ -10,9 +10,9 @@ No more "it worked on my machine"!
 ## What is does?
 Ambientum can help you doing some amazing things, the 3 main scenarios are listed above:
 
-- Run Laravel and/or Vue.JS in Development
-- Run Laravel and/orf Vue.JS in Production (Continuous Integration included)
-- Replace local dependencies with Docker commands, 
+- **Run Laravel and/or Vue.JS in Development.**
+- **Run Laravel and/or Vue.JS in Production (Continuous Integration included).**
+- **Replace local dependencies with Docker commands.**
 
 ## What do I need to know before getting started?
 
@@ -23,10 +23,41 @@ Before staging with Ambientum, a few pieces of knowledge must be in place:
 - Being comfortable around the command line.
 
 #### For running a development Laravel or Vue.JS environment:
-- Know how to operate `docker-compose`
+- Know how to operate `docker-compose`.
 
-### TL;DR
-If you're something like me, you don't have all the patience of reading documentations fully, so here are the supported images and the matching docker-compose entries. Although we highly recommend you to read the whole Wiki [WIP].
+
+## Notice
+Docker compose shipped with Docker is usually very old. 
+Please have the latest version installed from Github at https://github.com/docker/compose/releases.
+
+## Images
+If you are already comfortable with the tools and have played around Ambientum, here are the set of images available for usage, 
+so you can start building your environment with the tools that you may want.
+ 
+|Repository                 | Images/Tags                   | Description                                        |
+|---------------------------|-------------------------------|----------------------------------------------------|
+|---------------------------|-------------------------------|----------------------------------------------------|
+| ambientum/**php**         | `7.0`, `latest`               | PHP v7.0 for command line and queues               |
+|                           | `7.0-apache`, `latest-apache` | PHP v7.0 with Apache webserver                     |
+|                           | `7.0-caddy`, `latest-caddy`   | PHP v7.0 with Caddy webserver                      |
+|                           | `7.0-nginx`, `latest-nginx`   | PHP v7.0 with Nginx webserver                      |
+| ambientum/**node**        | `6`, `latest`                 | Node.js v6.x                                       |
+| ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
+|                           | `5.6`                         | MySQL Server v5.6                                  |
+|                           | `5.5`                         | MySQL Server v5.5                                  |
+| ambientum/**mariadb**     | `10.1`, `latest`              | MariaDB Server v10.1                               |
+|                           | `10.0`                        | MariaDB Server v10.0                               |
+|                           | `5.5`                         | MariaDB Server v5.5                                |
+| ambientum/**postgres**    | `9.6`, `latest`               | PostgreSQL Server v9.6                             |
+|                           | `9.5`                         | PostgreSQL Server v9.5                             |
+|                           | `9.4`                         | PostgreSQL Server v9.4                             |
+|                           | `9.3`                         | PostgreSQL Server v9.3                             |
+| ambientum/**redis**       | `3.2`, `latest`               | Redis Server v3.2                                  |
+|                           | `3.0`                         | Redis Server v3.0                                  |
+| ambientum/**beanstalkd**  | `1.10`, `latest`              | Beanstalkd Server v1.10                            |
+|                           | `1.9`                         | Beanstalkd Server v1.9                             |
+| ambientum/**mailcatcher** | `latest`                      | MailCatcher is a hosted alternative to MailTrap.io |
+
 
 ### Documentation / Tutorials
 All you need to know in order to create and maintain your environment is on our Wiki (@todo create wiki and update link here)
@@ -48,29 +79,7 @@ inside a docker-compose.yml file, examples on each one to come...
 The following images are useless to run commands, but great for running
 as services inside a `docker-compose` environment
 
-|Repository                 | Images/Tags                   | Description                                        |
-|---------------------------|-------------------------------|----------------------------------------------------|
 
-| ambientum/**php**         | `7.0`, `latest`               | PHP v7.0 for command line and queues               |
-|                           | `7.0-apache`, `latest-apache` | PHP v7.0 with Apache webserver                     |
-|                           | `7.0-caddy`, `latest-caddy`   | PHP v7.0 with Caddy webserver                      |
-|                           | `7.0-nginx`, `latest-nginx`   | PHP v7.0 with Nginx webserver                      |
-| ambientum/**node**        | `6`, `latest`                 | Node.js v6.x                                       |
-| ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
-|                           | `5.6`                         | MySQL Server v5.6                                  |
-|                           | `5.5`                         | MySQL Server v5.5                                  |
-| ambientum/**mariadb**     | `10.1`, `latest`              | MariaDB Server v10.1                               |
-|                           | `10.0`                        | MariaDB Server v10.0                               |
-|                           | `5.5`                         | MariaDB Server v5.5                                |
-| ambientum/**postgres**    | `9.6`, `latest`               | PostgreSQL Server v9.6                             |
-|                           | `9.5`                         | PostgreSQL Server v9.5                             |
-|                           | `9.4`                         | PostgreSQL Server v9.4                             |
-|                           | `9.3`                         | PostgreSQL Server v9.3                             |
-| ambientum/**redis**       | `3.2`, `latest`               | Redis Server v3.2                                  |
-|                           | `3.0`                         | Redis Server v3.0                                  |
-| ambientum/**beanstalkd**  | `1.10`, `latest`              | Beanstalkd Server v1.10                            |
-|                           | `1.9`                         | Beanstalkd Server v1.9                             |
-| ambientum/**mailcatcher** | `latest`                      | MailCatcher is a hosted alternative to MailTrap.io |
 
 ## Quick usage guide
 
