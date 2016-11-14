@@ -3,7 +3,7 @@
 # resulting images namespace on docker hub
 NAMESPACE=ambientum
 
-# publish the buit images
+# publish the built images
 PUBLISH=true
 
 # enabled repositories for the build
@@ -11,7 +11,7 @@ REPOSITORIES=$1
 
 # enable all repositories if any specified
 if [[ -z $REPOSITORIES ]]; then
-    REPOSITORIES="mysql mariadb postgres redis php beanstalkd node vue-cli gulp-cli mailcatcher"
+    REPOSITORIES="mysql mariadb postgres redis php beanstalkd node mailcatcher"
 fi
 
 # for returning later to the main directory

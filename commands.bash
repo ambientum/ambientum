@@ -40,39 +40,27 @@ mkdir -p $A_COMPOSER_CACHE
 # Alias for NPM And other node commands
 ####
 
-function ane() {
+function n() {
 	docker run -it --rm -v $(pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 "$@"
 }
-alias ane=ane
+alias n=n
 
-function ape() {
+function p() {
 	docker run -it --rm -v $(pwd):/var/www/app -v $A_COMPOSER_MOUNT -v $A_SSH_PHP_MOUNT ambientum/php:7.0 "$@"
 }
-alias ape=ape
+alias p=p
 
 # Node
 function node() {
-	docker run -it --rm -v $(pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 node "$@"
+	n node "$@"
 }
 alias node=node
 
 # NPM
 function npm() {
-	docker run -it --rm -v $(pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 npm "$@"
+	n npm "$@"
 }
 alias npm=npm
-
-# Gulp
-function gulp() {
-	docker run -it --rm -v $(pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_SSH_NODE_MOUNT ambientum/gulp-cli:1.2 gulp "$@"
-}
-alias gulp=gulp
-
-# Vue
-function vue() {
-	docker run -it --rm -v $(pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_SSH_NODE_MOUNT ambientum/vue-cli:2.5 vue "$@"
-}
-alias vue=vue
 
 ####
 # Alias for Composer and other PHP commands
@@ -80,12 +68,12 @@ alias vue=vue
 
 # PHP
 function php() {
-	docker run -it --rm -v $(pwd):/var/www/app -v $A_COMPOSER_MOUNT -v $A_SSH_PHP_MOUNT ambientum/php:7.0 php "$@"
+	p php "$@"
 }
 alias php=php
 
 # Composer
 function composer() {
-	docker run -it --rm -v $(pwd):/var/www/app -v $A_COMPOSER_MOUNT -v $A_SSH_PHP_MOUNT ambientum/php:7.0 composer "$@"
+	p composer "$@"
 }
 alias composer=composer
