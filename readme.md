@@ -36,7 +36,6 @@ so you can start building your environment with the tools that you may want.
  
 |Repository                 | Images/Tags                   | Description                                        |
 |---------------------------|-------------------------------|----------------------------------------------------|
-|---------------------------|-------------------------------|----------------------------------------------------|
 | ambientum/**php**         | `7.0`, `latest`               | PHP v7.0 for command line and queues               |
 |                           | `7.0-apache`, `latest-apache` | PHP v7.0 with Apache webserver                     |
 |                           | `7.0-caddy`, `latest-caddy`   | PHP v7.0 with Caddy webserver                      |
