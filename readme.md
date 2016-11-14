@@ -61,41 +61,14 @@ so you can start building your environment with the tools that you may want.
 | ambientum/**mailcatcher** | `latest`                      | MailCatcher is a hosted alternative to MailTrap.io |
 
 
-### Documentation / Tutorials
-All you need to know in order to create and maintain your environment is on our Wiki (@todo create wiki and update link here)
-
-> We expect to release a config generator supporting both docker-compose, docker cloud (formerly Tutum) and Rancher real soon.
-
-
-### Command Line Or Compose Images
-
-The following image can be used for stand alone commands or
-inside a docker-compose.yml file, examples on each one to come...
-
-|Repository                | Images/Tags                   | Description                                        |
-|--------------------------|-------------------------------|----------------------------------------------------|
-
-
-### Compose only images
-
-The following images are useless to run commands, but great for running
-as services inside a `docker-compose` environment
-
-
-
 ## Quick usage guide
 
-### Running stand alone commands:
-For running stand alone commands like NPM and Composer, you may want to set your environment with function based commands, that runs inside docker:
+### Replacing local commands:
+One of the features of ambientum is allowing you to replace commands (normally painful to install) with their docker
+based version.
 
-After sourcing the correct file, the following commands will be available for usage:
-
-- node
-- php
-- composer
-- npm
-- gulp
-- vue
+There are a set of aliases that helps you with that task, and before proceeding you will need to install and
+activate those aliases:
 
 ####For Bash and ZSH Users:
 ```
@@ -107,6 +80,33 @@ source ~/.ambientum_rc
 ```
 curl -L https://github.com/codecasts/ambientum/raw/master/commands.fish -o ~/.ambientum_rc
 source ~/.ambientum_rc
+```
+
+Once you have those commands activated, following the instructions above, you can start using them right away.
+
+#### Notice: First execution may take some time since it will download the images
+
+Everything Node.JS related can be executed by prefixing the `n` command. For example, let's say we need to install Gulp
+```
+n npm install -g gulp
+n gulp --version
+```
+
+Everything PHP related can be executed by prefixing the `p` command. For example, lets say we want to run composer:
+
+```
+p composer global require some/package-here
+```
+
+Or even run php against a single file:
+```
+p php test.php
+```
+
+Another example would be starting a new Laravel project:
+
+```
+p composer create laravel/laravel my-project-name-here
 ```
 
 ### I do have a project, and I want to run it using docker
