@@ -46,11 +46,16 @@ USER node-user
 ENV NPM_PACKAGES="/home/node-user/.npm-packages" \
     NODE_PATH="/home/node-user/.npm-packages/lib/node_modules" \
     MANPATH="/home/node-user/.npm-packages/share/man:/usr/share/man" \
-    PATH="/home/node-user/.npm-packages/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    PREFIX='/home/node-user/.local' \
+    PATH="/home/node-user/.local/bin:/home/node-user/.npm-packages/bin:/home/node-user/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # NPM config for setting the prefix as well
 RUN mkdir -p $NPM_PACKAGES && \
     npm config set prefix $NPM_PACKAGES
+
+# Installing Yarn
+RUN echo 'Installing Yarn' && \
+    curl -o- -L https://yarnpkg.com/install.sh | bash
 
 # Application directory
 WORKDIR "/var/www/app"

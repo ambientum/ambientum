@@ -1,6 +1,3 @@
-
-# Versions
-
 # Where the ambientum cache will live
 set	A_CACHE_HOME		$HOME/.cache/ambientum
 
@@ -8,6 +5,18 @@ set	A_CACHE_HOME		$HOME/.cache/ambientum
 set	A_NPM_CONFIG		$A_CACHE_HOME/npm-config
 set	A_NPM_CACHE			$A_CACHE_HOME/npm-cache
 set	A_COMPOSER_CACHE	$A_CACHE_HOME/composer
+set A_YARN_BIN          $A_CACHE_HOME/yarn/bin
+set A_YARN_CONFIG       $A_CACHE_HOME/yarn/config
+set A_YARN_CACHE        $A_CACHE_HOME/yarn/cache
+
+# Create directories
+mkdir -p $A_CACHE_HOME
+mkdir -p $A_NPM_CONFIG
+mkdir -p $A_NPM_CACHE
+mkdir -p $A_COMPOSER_CACHE
+mkdir -p $A_YARN_BIN
+mkdir -p $A_YARN_CONFIG
+mkdir -p $A_YARN_CACHE
 
 # When using private projects, a SSH Key may be needed
 # this line will provide your user ssh key
@@ -26,12 +35,9 @@ set	A_SSH_PHP_MOUNT		$A_SSH_HOME:/home/php-user/.ssh
 set	A_NPM_CONFIG_MOUNT	$A_NPM_CONFIG:/home/node-user/.npm-packages
 set	A_NPM_CACHE_MOUNT	$A_NPM_CACHE:/home/node-user/.npm
 set	A_COMPOSER_MOUNT	$A_COMPOSER_CACHE:/home/php-user/.composer
-
-# Create directories
-mkdir -p $A_CACHE_HOME
-mkdir -p $A_NPM_CACHE
-mkdir -p $A_NPM_CONFIG
-mkdir -p $A_COMPOSER_CACHE
+set A_YARN_BIN_MOUNT    $A_YARN_BIN:/home/node-user/.local/bin
+set A_YARN_CONFIG_MOUNT $A_YARN_CONFIG:/home/node-user/.yarn-config
+set A_YARN_CACHE_MOUNT  $A_YARN_CACHE:/home/node-user/.yarn-cache
 
 ####
 # Alias for NPM And other node commands
@@ -39,34 +45,10 @@ mkdir -p $A_COMPOSER_CACHE
 
 # Node Env
 function n
-	docker run -it --rm -v (pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 $argv
+	docker run -it --rm -v (pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_YARN_BIN_MOUNT -v $A_YARN_CONFIG_MOUNT -v $A_YARN_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 $argv
 end
 
 # PHP Env
 function p
 	docker run -it --rm -v (pwd):/var/www/app -v $A_COMPOSER_MOUNT -v $A_SSH_PHP_MOUNT ambientum/php:7.0 $argv
-end
-
-# Node
-function node
-	n node $argv
-end
-
-# NPM
-function npm
-	n npm $argv
-end
-
-####
-# Alias for Composer and other PHP commands
-####
-
-# PHP
-function php
-	p php $argv
-end
-
-# Composer
-function composer
-	p composer $argv
 end
