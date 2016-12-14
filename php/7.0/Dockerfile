@@ -8,12 +8,10 @@ FROM debian:jessie
 MAINTAINER Diego Hernandes <diego@hernandev.com>
 
 # Variables for enabling NewRelic
-ENV NR_ENABLED=false \
+ENV XDEBUG_ENABLED=false \
+    NR_ENABLED=false \
     NR_APP_NAME="" \
     NR_LICENSE_KEY=""
-
-# Add the ENTRYPOINT script
-ADD start.sh /scripts/start.sh
 
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Updating Repository" && \
@@ -21,6 +19,9 @@ RUN echo "---> Updating Repository" && \
     dpkg-reconfigure -f noninteractive tzdata && \
     apt-get upgrade -y && \
     apt-get install -y curl \
+    libxrender1 \
+    libfontconfig1 \
+    libxext6 \
     wget \
     nano \
     vim \
@@ -63,6 +64,9 @@ RUN echo "---> Adding the php-user" && \
     adduser --disabled-password --gecos "" php-user && \
     mkdir -p /var/www/app && \
     chown -R php-user:php-user /var/www
+
+# Add the ENTRYPOINT script
+ADD start.sh /scripts/start.sh
 
 RUN echo "---> Configuring PHP" && \
     echo "php-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
