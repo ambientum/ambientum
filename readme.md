@@ -123,7 +123,7 @@ Well, that's the whole point of the project, the commands there was designed for
 # Replace all occurences of sandbox with your project's name
 ####
 
-# v2 sintax
+# v2 syntax
 version: '2'
 
 # Named volumes
