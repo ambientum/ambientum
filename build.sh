@@ -4,7 +4,7 @@
 NAMESPACE=ambientum
 
 # publish the built images
-PUBLISH=true
+PUBLISH=false
 
 # enabled repositories for the build
 REPOSITORIES=$1
@@ -31,7 +31,7 @@ function build_repository {
     done
 
     # create the latest tag
-    echo $'\n\n'"--> Aliasing $TAG as 'latest'"$'\n'
+    echo $'\n\n'"--> Aliasing $LATEST as 'latest'"$'\n'
     docker tag $NAMESPACE/$REPOSITORY:$LATEST $NAMESPACE/$REPOSITORY:latest
 }
 
