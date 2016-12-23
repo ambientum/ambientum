@@ -4,7 +4,7 @@
 NAMESPACE=ambientum
 
 # publish the built images
-PUBLISH=false
+PUBLISH=true
 
 # enabled repositories for the build
 REPOSITORIES=$1
