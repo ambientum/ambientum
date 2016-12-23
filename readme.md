@@ -39,10 +39,14 @@ so you can start building your environment with the tools that you may want.
  
 |Repository                 | Images/Tags                   | Description                                        |
 |---------------------------|-------------------------------|----------------------------------------------------|
-| ambientum/**php**         | `7.0`, `latest`               | PHP v7.0 for command line and queues               |
-|                           | `7.0-apache`, `latest-apache` | PHP v7.0 with Apache webserver                     |
-|                           | `7.0-caddy`, `latest-caddy`   | PHP v7.0 with Caddy webserver                      |
-|                           | `7.0-nginx`, `latest-nginx`   | PHP v7.0 with Nginx webserver                      |
+| ambientum/**php**         | `7.1`, `latest`               | PHP v7.1 for command line and queues               |
+|                           | `7.1-nginx`, `latest-nginx`   | PHP v7.1 with Nginx webserver                      |
+|                           | `7.1-caddy`, `latest-caddy`   | PHP v7.1 with Caddy webserver                      |
+|                           | `7.1-apache`, `latest-apache` | PHP v7.1 with Apache webserver                     |
+|                           | `7.0`,                        | PHP v7.0 for command line and queues               |
+|                           | `7.0-nginx`,                  | PHP v7.0 with Nginx webserver                      |
+|                           | `7.0-caddy`,                  | PHP v7.0 with Caddy webserver                      |
+|                           | `7.0-apache`,                 | PHP v7.0 with Apache webserver                     |
 | ambientum/**node**        | `6`, `latest`                 | Node.js v6.x                                       |
 | ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
 |                           | `5.6`                         | MySQL Server v5.6                                  |
