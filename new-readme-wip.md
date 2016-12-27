@@ -5,8 +5,8 @@
 Keeping it uniform between development, staging and production environments is often something not easy.
 On the last years, our buddy Docker has become more and more mature and now it's becoming the standard.
 
-We all love Laravel, but why develop a Rock Star code with a Kick-Ass framework 
-without a awesome environment? 
+We all love Laravel, but why develop a Rock Star code with a Kick-Ass framework
+without an awesome environment?
 
 No more "it worked on my machine"!
 
@@ -15,7 +15,7 @@ No more "it worked on my machine"!
 
 ## Before Starting
 
-Before staging to use it, you should first know that ambientum can be used on 4 distinguish places:
+Before starting to use it, you should first know that ambientum can be used on 4 distinguish places:
 
 - To **replace** local **PHP** command line tools (Composer and global dependencies included)
 - To **replace** local **Node.JS** and node related resources (such as Gulp and NPM/Yarn)
@@ -30,8 +30,7 @@ All you need to run everything, from project creation to production is this:
 
 ## 1) Installing CLI Tools
 
-Instead of installing PHP and/or Node.JS Locally to develop and be able use composer/gulp and other tools.
-All you need to do is enable Ambientum commands.
+To develop and be able use composer/gulp and other tools, instead of installing PHP and/or Node.JS locally, all you need to do is enable Ambientum commands.
 
 There are two different commands available, `p` and `n` where `p` stands for the PHP environment and `n` for the Node.JS environment
 
@@ -49,8 +48,7 @@ curl -L https://github.com/codecasts/ambientum/raw/master/commands.fish -o ~/.am
 ```
 
 ## 2) Enabling the CLI tools
-After installing the Ambientum main script into `~/.ambientum_rc` (section 1), you need to enable them.
-You can do that by running:
+After installing the Ambientum main script into `~/.ambientum_rc` (section 1), you need to enable them. You can achieve that by running:
 
 ```
 source ~/.ambientum_rc
@@ -91,10 +89,12 @@ and after installing it, you can just run it prefixing `p`
 p phpunit --version
 ```
 
-## 4) Working with Node.JS under Ambientum (Mainly for Elixir)
+## 4) Working with Node.JS under Ambientum (mainly for Elixir)
 
-One of the things about Web Development is that impossible to live without Javascript this days.
-Laravel elixir (or any gulp / node related) task can be also done under Ambientum.
+One of the things about Web Development is that it is impossible to live without Javascript these days.
+
+Laravel elixir (or any gulp / node related) task can also run under Ambientum.
+
 You don't need to install Node and Gulp locally, just check the following instructions:
 
 ### 4.1) Using NPM and Yarn
@@ -131,7 +131,7 @@ And then, just run gulp normally (prefixing `n`)
 
 One time compile
 ```
-n gulp 
+n gulp
 ```
 
 Watch
@@ -149,10 +149,11 @@ n gulp --production
 
 ## 5) Running Laravel projects
 
-For running Laravel projects, some experience with Docker-compose may be required. The following is a sample of all possibilities that Ambientum provides
+For running Laravel projects, some experience with Docker-compose may be required. The following is a sample of many possibilities that Ambientum provides
+
 **You will need to remove the resources that your project does not need** and also **replace all occurrences of `sandbox` with your project's name:
 
-For those who are not that familiar with docker-compose. this file, called docker-compose.yml should be placed on the root folder of our application
+For those who are not familiar with docker-compose this file - called docker-compose.yml - should be placed on the root folder of our application:
 
 docker-compose.yml
 ```yml
