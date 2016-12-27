@@ -144,10 +144,10 @@ For production
 n gulp --production
 ```
 
-** You can use global dependencies normally as on your local system, just don't forget to prepend `n`
+** You can use global dependencies normally as on your local system, just don't forget to prepend `n`**
 
 
-#@ 5) Running Laravel projects
+## 5) Running Laravel projects
 
 For running Laravel projects, some experience with Docker-compose may be required. The following is a sample of all possibilities that Ambientum provides
 **You will need to remove the resources that your project does not need** and also **replace all occurrences of `sandbox` with your project's name:
