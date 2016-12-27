@@ -38,7 +38,8 @@ Se você já se sente confortável com as habilidades listadas acima, você pode
 |                           | `7.0-apache`, `latest-apache` | PHP v7.0 with Apache webserver                     |
 |                           | `7.0-caddy`, `latest-caddy`   | PHP v7.0 with Caddy webserver                      |
 |                           | `7.0-nginx`, `latest-nginx`   | PHP v7.0 with Nginx webserver                      |
-| ambientum/**node**        | `6`, `latest`                 | Node.js v6.x                                       |
+| ambientum/**node**        | `7`, `latest`                 | Node.js v7.x                                       |
+|        | `6`                 | Node.js v6.x                                       |
 | ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (com sql-mode='')                |
 |                           | `5.6`                         | MySQL Server v5.6                                  |
 |                           | `5.5`                         | MySQL Server v5.5                                  |
