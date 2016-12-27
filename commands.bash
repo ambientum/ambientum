@@ -27,6 +27,9 @@ A_SSH_HOME=$HOME/.ssh
 #### YOU KNOW WHAT YOU'RE DOING           #
 ###########################################
 
+#reset permissions
+chown -R $(whoami):$(whoami) $A_CACHE_HOME
+
 # Mount for SSH Directories
 A_SSH_NODE_MOUNT=$A_SSH_HOME:/home/node-user/.ssh
 A_SSH_PHP_MOUNT=$A_SSH_HOME:/home/php-user/.ssh
@@ -45,12 +48,12 @@ A_YARN_CACHE_MOUNT=$A_YARN_CACHE:/home/node-user/.yarn-cache
 
 # Node Env
 function n() {
-	docker run -it --rm -v $(pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_YARN_BIN_MOUNT -v $A_YARN_CONFIG_MOUNT -v $A_YARN_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:6 "$@"
+	docker run -it --rm -v $(pwd):/var/www/app -v $A_NPM_CACHE_MOUNT -v $A_YARN_BIN_MOUNT -v $A_YARN_CONFIG_MOUNT -v $A_YARN_CACHE_MOUNT -v $A_NPM_CONFIG_MOUNT -v $A_SSH_NODE_MOUNT ambientum/node:7 "$@"
 }
 alias n=n
 
 # PHP Env
 function p() {
-	docker run -it --rm -v $(pwd):/var/www/app -v $A_COMPOSER_MOUNT -v $A_SSH_PHP_MOUNT ambientum/php:7.0 "$@"
+	docker run -it --rm -v $(pwd):/var/www/app -v $A_COMPOSER_MOUNT -v $A_SSH_PHP_MOUNT ambientum/php:7.1 "$@"
 }
 alias p=p
