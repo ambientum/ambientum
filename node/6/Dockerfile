@@ -43,15 +43,16 @@ RUN chmod +x /tini
 USER node-user
 
 # Define some NPM jailed environment variables
-ENV NPM_PACKAGES="/home/node-user/.npm-packages" \
-    NODE_PATH="/home/node-user/.npm-packages/lib/node_modules" \
-    MANPATH="/home/node-user/.npm-packages/share/man:/usr/share/man" \
+ENV NPM_PACKAGES="/home/node-user/.cache/npm-packages" \
+    NODE_PATH="/home/node-user/.cache/npm-packages/lib/node_modules" \
+    MANPATH="/home/node-user/.cache/npm-packages/share/man:/usr/share/man" \
     PREFIX='/home/node-user/.local' \
-    PATH="/home/node-user/.local/bin:/home/node-user/.npm-packages/bin:/home/node-user/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    PATH="/home/node-user/.local/bin:/home/node-user/.cache/npm-packages/bin:/home/node-user/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # NPM config for setting the prefix as well
 RUN mkdir -p $NPM_PACKAGES && \
-    npm config set prefix $NPM_PACKAGES
+    npm config set prefix $NPM_PACKAGES && \
+    npm config set cache '/home/node-user/.cache/npm'
 
 # Installing Yarn
 RUN echo 'Installing Yarn' && \
