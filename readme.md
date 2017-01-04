@@ -87,18 +87,13 @@ curl -L https://github.com/codecasts/ambientum/raw/master/commands.fish -o ~/.am
 source ~/.ambientum_rc
 ```
 
-#### For Windows users (via PowerShell):
+#### For Windows users (via Git Bash):
 
-Make sure PowerShell is scriptable, open PowerShell as Admin, use the command below and choose "Yes" when asked:
-```
-Set-ExecutionPolicy Unrestricted
-```
-> PS. The command above modifies the execution policy, it helps protect against untrusted scripts. Changing the execution policy may involve exposure to security risks.
+For others Windows consoles (like PowerShell or Cmder), check this [link](https://github.com/julihermes/ambientum-commands-for-windows).
 
-Now run the commands below (do not need to be as Admin):
 ```
-curl https://github.com/codecasts/ambientum/raw/master/commands.ps1 -o $PROFILE
-. $PROFILE
+curl https://github.com/codecasts/ambientum/raw/master/commands.git-bash -o ~/.ambientum_rc
+source ~/.ambientum_rc
 ```
 
 Once you have those commands activated, following the instructions above, you can start using them right away.
