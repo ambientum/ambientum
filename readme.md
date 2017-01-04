@@ -5,8 +5,8 @@
 Keeping it uniform between development, staging and production environments is often something not easy.
 On the last years, our buddy Docker has become more and more mature and now it's becoming the standard.
 
-We all love Laravel and Vue.JS, but why develop a Rock Star code with a Kick-Ass framework 
-without a awesome environment? 
+We all love Laravel and Vue.JS, but why develop a Rock Star code with a Kick-Ass framework
+without a awesome environment?
 
 No more "it worked on my machine"!
 
@@ -30,13 +30,13 @@ Before staging with Ambientum, a few pieces of knowledge must be in place:
 
 
 ## Notice
-Docker compose shipped with Docker is usually very old. 
+Docker compose shipped with Docker is usually very old.
 Please have the latest version installed from Github at https://github.com/docker/compose/releases.
 
 ## Images
-If you are already comfortable with the tools and have played around Ambientum, here are the set of images available for usage, 
+If you are already comfortable with the tools and have played around Ambientum, here are the set of images available for usage,
 so you can start building your environment with the tools that you may want.
- 
+
 |Repository                 | Images/Tags                   | Description                                        |
 |---------------------------|-------------------------------|----------------------------------------------------|
 | ambientum/**php**         | `7.1`, `latest`               | PHP v7.1 for command line and queues               |
@@ -47,7 +47,7 @@ so you can start building your environment with the tools that you may want.
 |                           | `7.0-nginx`,                  | PHP v7.0 with Nginx webserver                      |
 |                           | `7.0-caddy`,                  | PHP v7.0 with Caddy webserver                      |
 |                           | `7.0-apache`,                 | PHP v7.0 with Apache webserver                     |
-| ambientum/**node**        | `7`, `latest`                 | Node.js v7.x                              
+| ambientum/**node**        | `7`, `latest`                 | Node.js v7.x
 |        | `6`                 | Node.js v6.x                                       |
 | ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
 |                           | `5.6`                         | MySQL Server v5.6                                  |
@@ -75,15 +75,24 @@ based version.
 There are a set of aliases that helps you with that task, and before proceeding you will need to install and
 activate those aliases:
 
-####For Bash and ZSH Users:
+#### For Bash and ZSH Users:
 ```
 curl -L https://github.com/codecasts/ambientum/raw/master/commands.bash -o ~/.ambientum_rc
 source ~/.ambientum_rc
 ```
 
-####For Fish users:
+#### For Fish users:
 ```
 curl -L https://github.com/codecasts/ambientum/raw/master/commands.fish -o ~/.ambientum_rc
+source ~/.ambientum_rc
+```
+
+#### For Windows users (via Git Bash):
+
+For others Windows consoles (like PowerShell or Cmder), check this [link](https://github.com/julihermes/ambientum-commands-for-windows).
+
+```
+curl https://github.com/codecasts/ambientum/raw/master/commands.git-bash -o ~/.ambientum_rc
 source ~/.ambientum_rc
 ```
 

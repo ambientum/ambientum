@@ -1,11 +1,11 @@
 # Ambientum
 
-![Readme Art](https://raw.githubusercontent.com/codecasts/ambientum/master/readme-art.png)
+![Readme Art](https://raw.githubusercontent.com/codecasts/ambientum/master/new-readme-art.png)
 
 Manter um ambiente de desenvolvimento uniforme entre desenvolvimento, staging and produção geralmente não é uma tarefa fácil.
 Nos últimos anos, nosso amigo Docker tem se tornado uma solução madura para resolver esse tipo de problema.
 
-Todos nós amamos Laravel e Vue.JS, mas porquê desenvolver um código Rock Star sem um ambiente do mesmo nível? 
+Todos nós amamos Laravel e Vue.JS, mas porquê desenvolver um código Rock Star sem um ambiente do mesmo nível?
 
 Nunca mais ouça: "na minha máquina funcionou"!
 
@@ -26,12 +26,12 @@ Antes de começar com Ambientum, alguns conhecimentos são necessários:
 
 
 ## Aviso
-O **Docker Compose** que vem por padrão com o docker geralmente é antigo. 
+O **Docker Compose** que vem por padrão com o docker geralmente é antigo.
 Por favor instale a versão estável mais recente disponível em https://github.com/docker/compose/releases.
 
 ## Imagens
 Se você já se sente confortável com as habilidades listadas acima, você pode usar as seguintes imagens pra montar seu próprio ambiente:
- 
+
 |Repository                 | Images/Tags                   | Description                                        |
 |---------------------------|-------------------------------|----------------------------------------------------|
 | ambientum/**php**         | `7.0`, `latest`               | PHP v7.0 para linha de comando e queues            |
@@ -75,8 +75,18 @@ source ~/.ambientum_rc
 ```
 
 #### Para usuários do Fish:
+
 ```
 curl -L https://github.com/codecasts/ambientum/raw/master/commands.fish -o ~/.ambientum_rc
+source ~/.ambientum_rc
+```
+
+#### Para usuários do Windows (via Git Bash):
+
+Para Outros consoles do Windows (como PowerShell ou Cmder), acesse esse [link](https://github.com/julihermes/ambientum-commands-for-windows).
+
+```
+curl https://github.com/codecasts/ambientum/raw/master/commands.git-bash -o ~/.ambientum_rc
 source ~/.ambientum_rc
 ```
 
@@ -84,7 +94,7 @@ Uma vez que os comandos foram declarados, podemos começar a usá-los imediatame
 
 #### Importante: A primeira execução pode demorar algum tempo, desde que as imagens serão baixadas.
 
-Tudo relacionado ao Node.JS pode ser executado utilizando-se o prefixo `n`. 
+Tudo relacionado ao Node.JS pode ser executado utilizando-se o prefixo `n`.
 Por exemplo, digamos que você precisa utilizar o gulp, que é uma dependência global:
 
 ```
@@ -105,7 +115,7 @@ Precisa do NPM apenas?
 n npm install
 ```
 
-Tudo relacionado ao PHP pode ser executao utilizando-se o prefixo `p` command. 
+Tudo relacionado ao PHP pode ser executao utilizando-se o prefixo `p` command.
 Por exemplo, se você precisar do `composer`:
 
 ```
