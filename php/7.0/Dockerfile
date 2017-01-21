@@ -85,14 +85,15 @@ RUN echo "---> Configuring PHP" && \
     sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php/7.0/fpm/php.ini && \
     sed -i "/zend_extension=xdebug.so/c\;zend_extension=xdebug.so" /etc/php/7.0/mods-available/xdebug.ini
 
+
 RUN echo "---> Adding Support for NewRelic" && \
     mkdir /tmp/newrelic && \
     cd /tmp/newrelic && \
     wget -r -l1 -nd -A"linux.tar.gz" https://download.newrelic.com/php_agent/release/ && \
     gzip -dc newrelic*.tar.gz | tar xf - && \
     cd newrelic-php5* && \
-    rm -f /usr/lib/php/20160303/newrelic.so && \
-    cp ./agent/x64/newrelic-20160303.so /usr/lib/php/20160303/newrelic.so && \
+    rm -f /usr/lib/php/20161012/newrelic.so && \
+    cp ./agent/x64/newrelic-20151012.so /usr/lib/php/20151012/newrelic.so && \
     cp ./daemon/newrelic-daemon.x64 /usr/bin/newrelic-daemon && \
     cp ./scripts/newrelic.ini.template /scripts/newrelic.ini && \
     mkdir /var/log/newrelic && \
