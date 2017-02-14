@@ -32,6 +32,7 @@ RUN echo "---> Updating Repository" && \
     apt-get update -y && \
     apt-get -y install \
     php7.0-apcu \
+    php7.0-bcmath \
     php7.0-bz2 \
     php7.0-cli \
     php7.0-curl \
