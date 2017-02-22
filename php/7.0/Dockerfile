@@ -72,9 +72,9 @@ ADD start.sh /scripts/start.sh
 RUN echo "---> Configuring PHP" && \
     echo "php-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
     sed -i "/user = .*/c\user = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i "/group = .*/c\group = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i "/listen-user = .*/c\listen-user = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i "/listen-group = .*/c\listen-group = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
+    sed -i "/^group = .*/c\group = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
+    sed -i "/listen.owner = .*/c\listen.owner = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
+    sed -i "/listen.group = .*/c\listen.group = php-user" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i "/listen = .*/c\listen = [::]:9000" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i "/;access.log = .*/c\access.log = /proc/self/fd/2" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i "/;clear_env = .*/c\clear_env = no" /etc/php/7.0/fpm/pool.d/www.conf && \
