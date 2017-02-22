@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # set a default on the terminal name
 SELECTED_TERMINAL=false
 
