@@ -9,6 +9,9 @@ PUBLISH=true
 # enabled repositories for the build
 REPOSITORIES=$1
 
+# use build cache
+USE_CACHE=true
+
 # enable all repositories if any specified
 if [[ -z $REPOSITORIES ]]; then
     REPOSITORIES="mysql mariadb postgres redis php beanstalkd node mailcatcher"
@@ -27,7 +30,15 @@ function build_repository {
       # some verbose
       echo $'\n\n'"--> Building $NAMESPACE/$REPOSITORY:$TAG"$'\n'
       cd $ROOT_DIRECTORY/$REPOSITORY/$TAG
-      docker build -t $NAMESPACE/$REPOSITORY:$TAG .
+
+      if [ $USE_CACHE == true ]; then
+        # build using cache
+        docker build -t $NAMESPACE/$REPOSITORY:$TAG .
+      fi
+
+      if [ $USE_CACHE == false ]; then
+        docker build --no-cache -t $NAMESPACE/$REPOSITORY:$TAG .
+      fi
     done
 
     # create the latest tag
