@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+######
+## To automatically set ambientum on your terminal, plase use
+##
+## curl -sSL https://goo.gl/KhJecM | bash
+##
+######
+
 # mode
 set -e
 
