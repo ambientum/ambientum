@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ######
-## To automatically set ambientum on your terminal, plase use
+## To automatically set ambientum on your terminal, please use
 ##
 ## curl -sSL https://goo.gl/KhJecM | bash
 ##
