@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# resulting images namespace on docker hub
-NAMESPACE=ambientum
-
-# publish the built images
-PUBLISH=true
+# if there is a env file, source it
+if [ -f "./.env" ]; then
+   source ./.env
+# source example else
+else
+   source ./.env.example
+fi
 
 # enabled repositories for the build
 REPOSITORIES=$1
 
-# use build cache
-USE_CACHE=true
 
 # enable all repositories if any specified
 if [[ -z $REPOSITORIES ]]; then
