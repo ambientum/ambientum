@@ -16,12 +16,17 @@ FROM alpine:3.4
 ENV PHP_INI_BASE_DIR=/etc/php/7.1 \
     PHP_VERSION=7.1.2 \
     PHP_SOURCE_URL=https://secure.php.net/get/php-7.1.2.tar.xz/from/this/mirror \
+    XDEBUG_ENABLED=false \
+    NR_ENABLED=false \
+    NR_APP_NAME="" \
+    NR_LICENSE_KEY="" \
     PHP_ADD_EXT="bcmath bz2 calendar curl gd gettext gmp \
                             imap intl mbstring mcrypt opcache pcntl pdo_mysql \
                             pdo_pgsql pgsql soap xmlrpc zip"
 
 # copy php example configuration files
 COPY conf /etc/php/7.1
+ADD start.sh /scripts/start.sh
 
 # build in one big step
 RUN echo "--------> Installing Image Utils <--------" && \
@@ -30,6 +35,10 @@ RUN echo "--------> Installing Image Utils <--------" && \
         ca-certificates \
         curl \
         git \
+        libxrender \
+        fontconfig \
+        nano \
+        sudo \
         openssl \
         tar \
         xz \
@@ -61,6 +70,8 @@ RUN echo "--------> Installing Image Utils <--------" && \
         LDFLAGS="-Wl,-O1 -Wl,--hash-style=both -pie" && \
     echo "--------> Configuring and Building PHP-CLI <--------" && \
     adduser -D -u 1000 ambientum && \
+    mkdir -p /var/www/app && \
+    chown -R ambientum:ambientum /var/www && \
     cd /tmp/php-src-cli && \
     ./configure \
         --prefix=/usr \
@@ -111,6 +122,25 @@ RUN echo "--------> Installing Image Utils <--------" && \
     ./configure || exit 1 && \
     make && \
     make install; done && \
+    echo "--------> Installing Composer <--------" && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    echo "--------> Adding Support for <--------" && \
+    mkdir /tmp/newrelic && \
+    cd /tmp/newrelic && \
+    wget -r -l1 -nd -A"linux.tar.gz" https://download.newrelic.com/php_agent/release/ && \
+    gzip -dc newrelic*.tar.gz | tar xf - && \
+    cd newrelic-php5* && \
+    rm -f /usr/lib/php/20160303/newrelic.so && \
+    cp ./agent/x64/newrelic-20160303.so /usr/lib/php/extensions/no-debug-non-zts-20160303/newrelic.so && \
+    cp ./daemon/newrelic-daemon.x64 /usr/bin/newrelic-daemon && \
+    cp ./scripts/newrelic.ini.template /scripts/newrelic.ini && \
+    mkdir /var/log/newrelic && \
+    chown -R ambientum:ambientum /var/log/newrelic && \
+    chmod +x /scripts/start.sh && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* && \
+    echo "--------> Installing Additional Extensions (PECL) <--------" && \
+    pecl install xdebug && \
+    pecl install redis && \
     echo "--------> Cleaning UP <--------" && \
     cd / && \
     runDeps="$( \
@@ -125,4 +155,20 @@ RUN echo "--------> Installing Image Utils <--------" && \
         libxml2 && \
     rm -rf /tmp/* && \
     apk del .ext-build-deps && \
-    apk del .build-deps
+    apk del .build-deps && \
+    echo "--------> Making ambientum user a Super User <--------" && \
+    echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
+
+# Define the running user
+USER ambientum
+
+# Application directory
+WORKDIR "/var/www/app"
+
+ENV PATH=/home/ambientum/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Define the entry point that tries to enable newrelic
+ENTRYPOINT ["/scripts/start.sh"]
+
+# As non daemon and single base image, it may be used as cli container
+CMD ["/bin/bash"]
