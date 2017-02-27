@@ -127,7 +127,7 @@ RUN echo "--------> Installing Image Utils <--------" && \
     echo "--------> Adding Support for <--------" && \
     mkdir /tmp/newrelic && \
     cd /tmp/newrelic && \
-    wget -r -l1 -nd -A"linux.tar.gz" https://download.newrelic.com/php_agent/release/ && \
+    wget -r -l1 -nd -A"linux-musl.tar.gz" https://download.newrelic.com/php_agent/release/ && \
     gzip -dc newrelic*.tar.gz | tar xf - && \
     cd newrelic-php5* && \
     rm -f /usr/lib/php/20160303/newrelic.so && \
@@ -161,7 +161,10 @@ RUN echo "--------> Installing Image Utils <--------" && \
 
 # fix fpm permissions for PHP
 RUN mkdir /run/php && \
-    chown -R ambientum:ambientum /run/php
+    chown -R ambientum:ambientum /run/php && \
+    echo 'export PS1="\u@\h [\W] \\$ "' >> /root/.bashrc && \
+    echo 'export PS1="\u@\h [\W] \\$ "' >> /home/ambientum/.bashrc && \
+    chown ambientum:ambientum /home/ambientum/.bashrc
 
 # Define the running user
 USER ambientum
