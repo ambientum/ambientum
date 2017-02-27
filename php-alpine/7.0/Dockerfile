@@ -2,7 +2,7 @@
 # Ambientum
 #
 # Repository:    PHP
-# Version:       7.1.x
+# Version:       7.0.x
 # Strategy:      Build from source
 # Base distro:   Alpine 3.4
 #
@@ -13,19 +13,20 @@
 FROM alpine:3.4
 
 # define environment variables
-ENV PHP_INI_BASE_DIR=/etc/php/7.1 \
-    PHP_VERSION=7.1.2 \
-    PHP_SOURCE_URL=http://br2.php.net/get/php-7.1.2.tar.xz/from/this/mirror \
+ENV PHP_INI_BASE_DIR=/etc/php/7.0 \
+    PHP_VERSION=7.0.16 \
+    PHP_SOURCE_URL=http://br2.php.net/get/php-7.0.16.tar.xz/from/this/mirror \
     XDEBUG_ENABLED=false \
     NR_ENABLED=false \
     NR_APP_NAME="" \
     NR_LICENSE_KEY="" \
     PHP_ADD_EXT="bcmath bz2 calendar curl gd gettext gmp \
                             imap intl mbstring mcrypt opcache pcntl pdo_mysql \
-                            pdo_pgsql pgsql soap xmlrpc zip"
+                            pdo_pgsql pgsql soap xmlrpc zip" \
+    PHP_EXTRA_VERSION="ambientum"
 
 # copy php example configuration files
-COPY conf /etc/php/7.1
+COPY conf /etc/php/7.0
 ADD start.sh /scripts/start.sh
 
 # build in one big step
@@ -142,8 +143,8 @@ RUN echo "--------> Installing Image Utils <--------" && \
     wget -r -l1 -nd -A"linux-musl.tar.gz" https://download.newrelic.com/php_agent/release/ && \
     gzip -dc newrelic*.tar.gz | tar xf - && \
     cd newrelic-php5* && \
-    rm -f /usr/lib/php/20160303/newrelic.so && \
-    cp ./agent/x64/newrelic-20160303.so /usr/lib/php/extensions/no-debug-non-zts-20160303/newrelic.so && \
+    rm -f /usr/lib/php/20151012/newrelic.so && \
+    cp ./agent/x64/newrelic-20151012.so /usr/lib/php/extensions/no-debug-non-zts-20151012/newrelic.so && \
     cp ./daemon/newrelic-daemon.x64 /usr/bin/newrelic-daemon && \
     cp ./scripts/newrelic.ini.template /scripts/newrelic.ini && \
     mkdir /var/log/newrelic && \
@@ -171,6 +172,12 @@ RUN echo "--------> Installing Image Utils <--------" && \
     echo "--------> Making ambientum user a Super User <--------" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
 
+# fix fpm permissions for PHP
+RUN mkdir /run/php && \
+    chown -R ambientum:ambientum /run/php && \
+    echo 'export PS1="\u@\h [\W] \\$ "' >> /root/.bashrc && \
+    echo 'export PS1="\u@\h [\W] \\$ "' >> /home/ambientum/.bashrc && \
+    chown ambientum:ambientum /home/ambientum/.bashrc
 
 # Add Tini (Dumb) Init
 ADD https://github.com/krallin/tini/releases/download/v0.14.0/tini-static /tini
