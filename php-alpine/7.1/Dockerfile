@@ -20,6 +20,10 @@ ENV PHP_INI_BASE_DIR=/etc/php/7.1 \
                             imap intl mbstring mcrypt opcache pcntl pdo_mysql \
                             pdo_pgsql pgsql soap xmlrpc zip"
 
+# copy php example configuration files
+COPY conf /etc/php/7.1
+
+# build in one big step
 RUN echo "--------> Installing Image Utils <--------" && \
     apk add --no-cache --virtual .persistent-deps \
         bash \
@@ -29,27 +33,16 @@ RUN echo "--------> Installing Image Utils <--------" && \
         openssl \
         tar \
         xz \
-        wget
-
-COPY files/tmp /tmp
-
-RUN mkdir /tmp/php-src-cli && \
+        wget && \
+    echo "--------> Downloading PHP Source <--------" && \
+    wget -O /tmp/php.tar.xz $PHP_SOURCE_URL && \
+    mkdir /tmp/php-src-cli && \
     mkdir /tmp/php-src-fpm && \
     mkdir /tmp/php-src-ext && \
     tar -Jxf /tmp/php.tar.xz -C /tmp/php-src-cli --strip-components=1 && \
     tar -Jxf /tmp/php.tar.xz -C /tmp/php-src-fpm --strip-components=1 && \
-    tar -Jxf /tmp/php.tar.xz -C /tmp/php-src-ext --strip-components=1
-
-#RUN echo "--------> Downloading PHP Source <--------" && \
-#    wget -O /tmp/php.tar.xz $PHP_SOURCE_URL && \
-#    mkdir /tmp/php-src-cli && \
-#    mkdir /tmp/php-src-fpm && \
-#    mkdir /tmp/php-src-ext && \
-#    tar -Jxf /tmp/php.tar.xz -C /tmp/php-src-cli --strip-components=1 && \
-#    tar -Jxf /tmp/php.tar.xz -C /tmp/php-src-fpm --strip-components=1 && \
-#    tar -Jxf /tmp/php.tar.xz -C /tmp/php-src-ext --strip-components=1
-
-RUN echo "--------> Downloading Build Dependencies & Preparing Build <--------" && \
+    tar -Jxf /tmp/php.tar.xz -C /tmp/php-src-ext --strip-components=1 && \
+    echo "--------> Downloading Build Dependencies & Preparing Build <--------" && \
     apk add --no-cache --virtual .build-deps \
         autoconf \
         file \
@@ -65,11 +58,8 @@ RUN echo "--------> Downloading Build Dependencies & Preparing Build <--------" 
         sqlite-dev && \
         export CFLAGS="-fstack-protector-strong -fpic -fpie -O2" \
         CPPFLAGS="$CFLAGS" \
-        LDFLAGS="-Wl,-O1 -Wl,--hash-style=both -pie"
-
-
-
-RUN echo "--------> Configuring and Building PHP-CLI <--------" && \
+        LDFLAGS="-Wl,-O1 -Wl,--hash-style=both -pie" && \
+    echo "--------> Configuring and Building PHP-CLI <--------" && \
     adduser -D -u 1000 ambientum && \
     cd /tmp/php-src-cli && \
     ./configure \
@@ -83,9 +73,8 @@ RUN echo "--------> Configuring and Building PHP-CLI <--------" && \
         --with-zlib && \
     make -j "$(getconf _NPROCESSORS_ONLN)" && \
     make install && \
-    make clean
-
-RUN echo "--------> Configuring and Building PHP-FPM <--------" && \
+    make clean && \
+    echo "--------> Configuring and Building PHP-FPM <--------" && \
     cd /tmp/php-src-fpm && \
     ./configure \
         --prefix=/usr \
@@ -103,9 +92,8 @@ RUN echo "--------> Configuring and Building PHP-FPM <--------" && \
         --with-zlib && \
     make -j "$(getconf _NPROCESSORS_ONLN)" && \
     make install && \
-    make clean
-
-RUN echo "--------> Building Extensions <--------" && \
+    make clean && \
+    echo "--------> Building Extensions <--------" && \
     apk add --no-cache --virtual .ext-build-deps \
         curl-dev \
         bzip2-dev \
@@ -117,15 +105,13 @@ RUN echo "--------> Building Extensions <--------" && \
         icu-dev \
         libmcrypt-dev \
         libpq \
-        postgresql-dev
-
-RUN for ext_name in $PHP_ADD_EXT; do cd /tmp/php-src-ext/ext/$ext_name && \
+        postgresql-dev && \
+    for ext_name in $PHP_ADD_EXT; do cd /tmp/php-src-ext/ext/$ext_name && \
     phpize && \
     ./configure || exit 1 && \
     make && \
-    make install; done
-
-RUN echo "--------> Cleaning UP <--------" && \
+    make install; done && \
+    echo "--------> Cleaning UP <--------" && \
     cd / && \
     runDeps="$( \
         scanelf --needed --nobanner --recursive /usr \
@@ -140,5 +126,3 @@ RUN echo "--------> Cleaning UP <--------" && \
     rm -rf /tmp/* && \
     apk del .ext-build-deps && \
     apk del .build-deps
-
-ADD files/etc /etc
