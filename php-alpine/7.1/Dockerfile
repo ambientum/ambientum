@@ -159,6 +159,10 @@ RUN echo "--------> Installing Image Utils <--------" && \
     echo "--------> Making ambientum user a Super User <--------" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
 
+# fix fpm permissions for PHP
+RUN mkdir /run/php && \
+    chown -R ambientum:ambientum /run/php
+
 # Define the running user
 USER ambientum
 
