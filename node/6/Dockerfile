@@ -30,29 +30,29 @@ RUN echo "---> Updating Repository and Installing Utils" && \
 # Adds a new user that will match most users environments (id 1000)
 # Make sure project directory exists and it's owned by the recently
 # created user, also, adds that user to the sudoers file
-RUN adduser --disabled-password --gecos "" node-user && \
+RUN adduser --disabled-password --gecos "" ambientum && \
     mkdir -p /var/www/app && \
-    chown -R node-user:node-user /var/www && \
-    echo "node-user  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
+    chown -R ambientum:ambientum /var/www && \
+    echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
 
 # tini to trap signals and allow cancelling execution of cli commands
 ADD https://github.com/krallin/tini/releases/download/v0.10.0/tini /tini
 RUN chmod +x /tini
 
 # Define the running user
-USER node-user
+USER ambientum
 
 # Define some NPM jailed environment variables
-ENV NPM_PACKAGES="/home/node-user/.cache/npm-packages" \
-    NODE_PATH="/home/node-user/.cache/npm-packages/lib/node_modules" \
-    MANPATH="/home/node-user/.cache/npm-packages/share/man:/usr/share/man" \
-    PREFIX='/home/node-user/.local' \
-    PATH="/home/node-user/.local/bin:/home/node-user/.cache/npm-packages/bin:/home/node-user/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ENV NPM_PACKAGES="/home/ambientum/.cache/npm-packages" \
+    NODE_PATH="/home/ambientum/.cache/npm-packages/lib/node_modules" \
+    MANPATH="/home/ambientum/.cache/npm-packages/share/man:/usr/share/man" \
+    PREFIX='/home/ambientum/.local' \
+    PATH="/home/ambientum/.local/bin:/home/ambientum/.cache/npm-packages/bin:/home/ambientum/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # NPM config for setting the prefix as well
 RUN mkdir -p $NPM_PACKAGES && \
     npm config set prefix $NPM_PACKAGES && \
-    npm config set cache '/home/node-user/.cache/npm'
+    npm config set cache '/home/ambientum/.cache/npm'
 
 # Installing Yarn
 RUN echo 'Installing Yarn' && \

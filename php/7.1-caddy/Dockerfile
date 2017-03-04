@@ -10,18 +10,17 @@ MAINTAINER Diego Hernandes <diego@hernandev.com>
 # Reset user to root to allow software install
 USER root
 
-# Installs Caddy
-RUN curl https://getcaddy.com | bash
-
 # Copy Caddyfile and entry script
-COPY Caddyfile /home/php-user/Caddyfile
-COPY start.sh  /home/php-user/start.sh
+COPY Caddyfile /home/ambientum/Caddyfile
+COPY start.sh  /home/ambientum/start.sh
 
-RUN chmod +x /home/php-user/start.sh && \
-    chown -R php-user:php-user /home/php-user
+# Installs Caddy
+RUN curl https://getcaddy.com | bash && \
+    chmod +x /home/ambientum/start.sh && \
+    chown -R ambientum:ambientum /home/ambientum
 
 # Define the running user
-USER php-user
+USER ambientum
 
 # Application directory
 WORKDIR "/var/www/app"
@@ -30,4 +29,4 @@ WORKDIR "/var/www/app"
 EXPOSE 8080
 
 # Starts a single shell script that puts php-fpm as a daemon and caddy on foreground
-CMD ["/home/php-user/start.sh"]
+CMD ["/home/ambientum/start.sh"]

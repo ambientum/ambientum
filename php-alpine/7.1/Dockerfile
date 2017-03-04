@@ -171,18 +171,14 @@ RUN echo "--------> Installing Image Utils <--------" && \
     echo "--------> Making ambientum user a Super User <--------" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
 
-
-# Add Tini (Dumb) Init
-ADD https://github.com/krallin/tini/releases/download/v0.14.0/tini-static /tini
-
 # fix fpm permissions for PHP
-RUN mkdir /run/php && \
+RUN wget -O /tini https://github.com/krallin/tini/releases/download/v0.14.0/tini-static && \
+    mkdir /run/php && \
+    chmod +x /tini && \
     chown -R ambientum:ambientum /run/php && \
     echo 'export PS1="\u@\h [\W] \\$ "' >> /root/.bashrc && \
     echo 'export PS1="\u@\h [\W] \\$ "' >> /home/ambientum/.bashrc && \
-    chown ambientum:ambientum /home/ambientum/.bashrc && \
-    chmod +x /tini
-
+    chown ambientum:ambientum /home/ambientum/.bashrc
 
 # Define the running user
 USER ambientum

@@ -1,9 +1,9 @@
 #####
 # Ambientum 1.0
-# Uses the default/official MySQl 5.7 image with some little tricks
+# Uses the default/official MySQl 8.0 image with some little tricks
 # on the configuration to work with Laravel/Lumen
 #####
-FROM mysql:5.7
+FROM mysql:8.0
 
 # Repository/Image Maintainer
 MAINTAINER Diego Hernandes <diego@hernandev.com>
