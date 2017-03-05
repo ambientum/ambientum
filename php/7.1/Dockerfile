@@ -18,7 +18,8 @@ ENV XDEBUG_ENABLED=false \
     NR_APP_NAME="" \
     NR_LICENSE_KEY="" \
     TERM=xterm-256color \
-    COLORTERM=truecolor
+    COLORTERM=truecolor \
+    COMPOSER_PROCESS_TIMEOUT=1200
 
 # Add the ENTRYPOINT script
 ADD start.sh /scripts/start.sh
@@ -37,6 +38,8 @@ RUN echo "---> Enabling PHP-Alpine" && \
     libxext \
     nano \
     vim \
+    git \
+    unzip \
     wget \
     sudo && \
     echo "---> Preparing and Installing PHP" && \
