@@ -50,6 +50,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-bz2 \
     php7-curl \
     php7-ctype \
+    php7-exif \
     php7-fpm \
     php7-gd \
     php7-imagick \
