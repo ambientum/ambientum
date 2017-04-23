@@ -27,8 +27,8 @@ ADD bashrc /home/ambientum/.bashrc
 
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Enabling PHP-Alpine" && \
-    wget -O /etc/apk/keys/diego@hernandev.com-58b4c2e0.rsa.pub \
-    http://php.codecasts.rocks/php-alpine.pub && \
+    wget -O /etc/apk/keys/php-alpine.rsa.pub \
+    http://php.codecasts.rocks/php-alpine.rsa.pub && \
     echo "http://php.codecasts.rocks/7.0" >> /etc/apk/repositories && \
     apk add --update \
     curl \
