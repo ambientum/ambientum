@@ -19,14 +19,16 @@ USER root
 
 # Copy nginx and entry script
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY ssl.conf /etc/nginx/ssl.conf
 COPY start.sh  /home/ambientum/start.sh
 
 # Install nginx from dotdeb (already enabled on base image)
 RUN echo "--> Installing Nginx" && \
-    apk add --update nginx && \
+    apk add --update nginx openssl && \
     rm -rf /tmp/* /var/tmp/* /usr/share/doc/* && \
     echo "--> Fixing permissions" && \
     mkdir /var/run/nginx && \
+    mkdir /home/ambientum/ssl && \
     chown -R ambientum:ambientum /var/run/nginx && \
     chown -R ambientum:ambientum /var/log/nginx && \
     chown -R ambientum:ambientum /var/lib/nginx && \
