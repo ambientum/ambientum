@@ -3,13 +3,13 @@
 #
 # Repository:    PHP
 # Image:         PHP-FPM + Nginx
-# Version:       7.1.x
+# Version:       7.0.x
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) + Official Nginx
 # Base distro:   Alpine 3.5
 #
 # Inspired by official PHP images.
 #
-FROM ambientum/php:7.1
+FROM ambientum/php:7.0
 
 # Repository/Image Maintainer
 MAINTAINER Diego Hernandes <diego@hernandev.com>
