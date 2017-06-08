@@ -2,7 +2,7 @@
 # Ambientum 1.0
 # PHP 7.0 bundled with the Awesome Caddy webserver
 ######
-FROM ambientum/php:7.1
+FROM ambientum/php:7.0
 
 # Repository/Image Maintainer
 MAINTAINER Diego Hernandes <diego@hernandev.com>
