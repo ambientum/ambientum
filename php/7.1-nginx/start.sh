@@ -11,7 +11,7 @@ else
    echo "No SSL Certificate found. generating..."
    openssl req -x509 -nodes -days 3650 \
    -newkey rsa:2048 -keyout /home/ambientum/ssl/nginx.key \
-   -out /home/ambientum/ssl/nginx.crt -subj "/C=AM/ST=Ambientum/L=Ambientum/O=Ambientum/CN=*.*"
+   -out /home/ambientum/ssl/nginx.crt -subj "/C=AM/ST=Ambientum/L=Ambientum/O=Ambientum/CN=*.dev"
 fi
 
 # check for DH
