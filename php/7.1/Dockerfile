@@ -48,6 +48,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-apcu \
     php7-bcmath \
     php7-bz2 \
+    php7-calendar \
     php7-curl \
     php7-ctype \
     php7-exif \
