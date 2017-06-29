@@ -41,6 +41,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     git \
     unzip \
     wget \
+    make \
     sudo && \
     echo "---> Preparing and Installing PHP" && \
     apk add --update \

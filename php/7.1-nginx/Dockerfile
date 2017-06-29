@@ -38,6 +38,13 @@ RUN echo "--> Installing Nginx" && \
 # Define the running user
 USER ambientum
 
+# Pre generate some SSL
+# YOU SHOULD REPLACE WITH YOUR OWN CERT.
+RUN openssl req -x509 -nodes -days 3650 \
+   -newkey rsa:2048 -keyout /home/ambientum/ssl/nginx.key \
+   -out /home/ambientum/ssl/nginx.crt -subj "/C=AM/ST=Ambientum/L=Ambientum/O=Ambientum/CN=*.dev" && \
+   openssl dhparam -out /home/ambientum/ssl/dhparam.pem 2048
+
 # Application directory
 WORKDIR "/var/www/app"
 
