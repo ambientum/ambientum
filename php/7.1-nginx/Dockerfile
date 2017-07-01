@@ -20,6 +20,7 @@ USER root
 # Copy nginx and entry script
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY ssl.conf /etc/nginx/ssl.conf
+COPY sites /etc/nginx/sites
 COPY start.sh  /home/ambientum/start.sh
 
 # Install nginx from dotdeb (already enabled on base image)

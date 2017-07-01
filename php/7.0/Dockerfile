@@ -55,6 +55,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-fpm \
     php7-gd \
     php7-imagick \
+    php7-iconv \
     php7-imap \
     php7-intl \
     php7-json \
@@ -66,6 +67,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-opcache \
     php7-pdo_pgsql \
     php7-pgsql \
+    php7-posix \
     php7-redis \
     php7-soap \
     php7-sqlite3 \

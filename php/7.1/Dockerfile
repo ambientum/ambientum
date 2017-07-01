@@ -13,7 +13,8 @@ FROM alpine:3.5
 MAINTAINER Diego Hernandes <diego@hernandev.com>
 
 # Variables for enabling NewRelic
-ENV XDEBUG_ENABLED=false \
+ENV FRAMEWORK=laravel \
+    XDEBUG_ENABLED=false \
     NR_ENABLED=false \
     NR_APP_NAME="" \
     NR_LICENSE_KEY="" \
@@ -55,6 +56,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-exif \
     php7-fpm \
     php7-gd \
+    php7-iconv \
     php7-imagick \
     php7-imap \
     php7-intl \
@@ -67,6 +69,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-opcache \
     php7-pdo_pgsql \
     php7-pgsql \
+    php7-posix \
     php7-redis \
     php7-soap \
     php7-sqlite3 \
