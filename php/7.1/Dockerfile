@@ -73,6 +73,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-redis \
     php7-soap \
     php7-sqlite3 \
+    php7-pdo_sqlite \
     php7-xdebug \
     php7-xml \
     php7-xmlreader \
