@@ -28,8 +28,10 @@ RUN echo "--> Installing Nginx" && \
     apk add --update nginx openssl && \
     rm -rf /tmp/* /var/tmp/* /usr/share/doc/* && \
     echo "--> Fixing permissions" && \
+    mkdir /var/tmp/nginx && \
     mkdir /var/run/nginx && \
     mkdir /home/ambientum/ssl && \
+    chown -R ambientum:ambientum /var/tmp/nginx && \
     chown -R ambientum:ambientum /var/run/nginx && \
     chown -R ambientum:ambientum /var/log/nginx && \
     chown -R ambientum:ambientum /var/lib/nginx && \

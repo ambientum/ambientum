@@ -3,7 +3,7 @@
 #
 # Repository:    PHP
 # Image:         CLI/Base
-# Version:       7.1.x
+# Version:       7.0.x
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://php-alpine.codecasts.rocks)
 # Base distro:   Alpine 3.5
 #
@@ -27,9 +27,9 @@ ADD bashrc /home/ambientum/.bashrc
 
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Enabling PHP-Alpine" && \
-    wget -O /etc/apk/keys/php-alpine.rsa.pub \
-    http://php.codecasts.rocks/php-alpine.rsa.pub && \
-    echo "http://php.codecasts.rocks/7.0" >> /etc/apk/repositories && \
+    apk add --update wget && \
+    wget -O /etc/apk/keys/php-alpine.rsa.pub http://php.codecasts.rocks/php-alpine.rsa.pub && \
+    echo "@php http://php.codecasts.rocks/v3.5/php-7.0" >> /etc/apk/repositories && \
     apk add --update \
     curl \
     bash \
@@ -45,40 +45,40 @@ RUN echo "---> Enabling PHP-Alpine" && \
     sudo && \
     echo "---> Preparing and Installing PHP" && \
     apk add --update \
-    php7 \
-    php7-apcu \
-    php7-bcmath \
-    php7-bz2 \
-    php7-curl \
-    php7-ctype \
-    php7-exif \
-    php7-fpm \
-    php7-gd \
-    php7-imagick \
-    php7-iconv \
-    php7-imap \
-    php7-intl \
-    php7-json \
-    php7-mbstring \
-    php7-mcrypt \
-    php7-mysqlnd \
-    php7-pdo_mysql \
-    php7-mongodb \
-    php7-opcache \
-    php7-pdo_pgsql \
-    php7-pgsql \
-    php7-posix \
-    php7-redis \
-    php7-soap \
-    php7-sqlite3 \
-    php7-xdebug \
-    php7-xml \
-    php7-xmlreader \
-    php7-openssl \
-    php7-phar \
-    php7-zip \
-    php7-zlib \
-    php7-phpdbg && \
+    php7@php \
+    php7-apcu@php \
+    php7-bcmath@php \
+    php7-bz2@php \
+    php7-curl@php \
+    php7-ctype@php \
+    php7-exif@php \
+    php7-fpm@php \
+    php7-gd@php \
+    php7-imagick@php \
+    php7-iconv@php \
+    php7-imap@php \
+    php7-intl@php \
+    php7-json@php \
+    php7-mbstring@php \
+    php7-mcrypt@php \
+    php7-mysqlnd@php \
+    php7-pdo_mysql@php \
+    php7-mongodb@php \
+    php7-opcache@php \
+    php7-pdo_pgsql@php \
+    php7-pgsql@php \
+    php7-posix@php \
+    php7-redis@php \
+    php7-soap@php \
+    php7-sqlite3@php \
+    php7-xdebug@php \
+    php7-xml@php \
+    php7-xmlreader@php \
+    php7-openssl@php \
+    php7-phar@php \
+    php7-zip@php \
+    php7-zlib@php \
+    php7-phpdbg@php && \
     sudo ln -s /usr/bin/php7 /usr/bin/php && \
     echo "---> Installing Composer" && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
