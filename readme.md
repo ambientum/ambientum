@@ -53,7 +53,8 @@ so you can start building your environment with the tools that you may want.
 | ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
 |                           | `5.6`                         | MySQL Server v5.6                                  |
 |                           | `5.5`                         | MySQL Server v5.5                                  |
-| ambientum/**mariadb**     | `10.1`, `latest`              | MariaDB Server v10.1                               |
+| ambientum/**mariadb**     | `10.2`, `latest`              | MariaDB Server v10.2                               |
+|                           | `10.1`                        | MariaDB Server v10.1                               |
 |                           | `10.0`                        | MariaDB Server v10.0                               |
 |                           | `5.5`                         | MariaDB Server v5.5                                |
 | ambientum/**postgres**    | `9.6`, `latest`               | PostgreSQL Server v9.6                             |
