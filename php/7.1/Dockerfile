@@ -80,6 +80,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-phar@php \
     php7-zip@php \
     php7-zlib@php \
+    php7-pcntl@php \
     php7-phpdbg@php && \
     sudo ln -s /usr/bin/php7 /usr/bin/php && \
     echo "---> Installing Composer" && \
