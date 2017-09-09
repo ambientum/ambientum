@@ -20,7 +20,7 @@ mkdir -p $A_COMPOSER
 ###########################################
 
 # reset permissions
-chown -R $(whoami):$(whoami) $A_BASE
+chown -R `id -u`:`id -g` $A_BASE
 
 # home directory
 A_USER_HOME=/home/ambientum
