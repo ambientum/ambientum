@@ -44,7 +44,7 @@ USER ambientum
 
 # Define some NPM jailed environment variables
 ENV NPM_PACKAGES="/home/ambientum/.cache/npm-packages" \
-    NODE_PATH="/home/ambientumr/.cache/npm-packages/lib/node_modules" \
+    NODE_PATH="/home/ambientum/.cache/npm-packages/lib/node_modules" \
     MANPATH="/home/ambientum/.cache/npm-packages/share/man:/usr/share/man" \
     PREFIX='/home/ambientum/.local' \
     PATH="/home/ambientum/.local/bin:/home/ambientum/.cache/npm-packages/bin:/home/ambientum/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
