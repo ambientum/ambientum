@@ -60,7 +60,8 @@ so you can start building your environment with the tools that you may want.
 |                           | `9.5`                         | PostgreSQL Server v9.5                             |
 |                           | `9.4`                         | PostgreSQL Server v9.4                             |
 |                           | `9.3`                         | PostgreSQL Server v9.3                             |
-| ambientum/**redis**       | `3.2`, `latest`               | Redis Server v3.2                                  |
+| ambientum/**redis**       | `4.0`, `latest`               | Redis Server v4.0                                  |
+|                           | `3.2`                         | Redis Server v3.2                                  |
 |                           | `3.0`                         | Redis Server v3.0                                  |
 | ambientum/**beanstalkd**  | `1.10`, `latest`              | Beanstalkd Server v1.10                            |
 |                           | `1.9`                         | Beanstalkd Server v1.9                             |
