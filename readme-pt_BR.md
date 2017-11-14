@@ -32,31 +32,35 @@ Por favor instale a versão estável mais recente disponível em https://github.
 ## Imagens
 Se você já se sente confortável com as habilidades listadas acima, você pode usar as seguintes imagens pra montar seu próprio ambiente:
 
-|Repository                 | Images/Tags                   | Description                                        |
-|---------------------------|-------------------------------|----------------------------------------------------|
-| ambientum/**php**         | `7.0`, `latest`               | PHP v7.0 para linha de comando e queues            |
-|                           | `7.0-apache`, `latest-apache` | PHP v7.0 with Apache webserver                     |
-|                           | `7.0-caddy`, `latest-caddy`   | PHP v7.0 with Caddy webserver                      |
-|                           | `7.0-nginx`, `latest-nginx`   | PHP v7.0 with Nginx webserver                      |
-| ambientum/**node**        | `7`, `latest`                 | Node.js v7.x                                       |
-|        | `6`                 | Node.js v6.x                                       |
-| ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (com sql-mode='')                |
-|                           | `5.6`                         | MySQL Server v5.6                                  |
-|                           | `5.5`                         | MySQL Server v5.5                                  |
-| ambientum/**mariadb**     | `10.1`, `latest`              | MariaDB Server v10.1                               |
-|                           | `10.0`                        | MariaDB Server v10.0                               |
-|                           | `5.5`                         | MariaDB Server v5.5                                |
-| ambientum/**postgres**    | `9.6`, `latest`               | PostgreSQL Server v9.6                             |
-|                           | `9.5`                         | PostgreSQL Server v9.5                             |
-|                           | `9.4`                         | PostgreSQL Server v9.4                             |
-|                           | `9.3`                         | PostgreSQL Server v9.3                             |
-| ambientum/**redis**       | `4.0`, `latest`               | Redis Server v4.0                                  |
-|                           | `3.2`                         | Redis Server v3.2                                  |
-|                           | `3.0`                         | Redis Server v3.0                                  |
-| ambientum/**beanstalkd**  | `1.10`, `latest`              | Beanstalkd Server v1.10                            |
-|                           | `1.9`                         | Beanstalkd Server v1.9                             |
-| ambientum/**mailcatcher** | `latest`                      | MailCatcher alternativa open source ao MailTrap.io |
-
+|Repository                 | Images/Tags                   | Description                                          |
+|---------------------------|-------------------------------|------------------------------------------------------|
+| ambientum/**php**         | `7.1`, `latest`               | PHP v7.1 para linha de comando e queues              |
+|                           | `7.1-nginx`, `latest-nginx`   | PHP v7.1 com Nginx webserver                         |
+|                           | `7.1-caddy`, `latest-caddy`   | PHP v7.1 com Caddy webserver (suporte descontinuado) |
+|                           | `7.1-apache`, `latest-apache` | PHP v7.1 com Apache webserver                        |
+|                           | `7.0`,                        | PHP v7.0 para linha de comando e queues              |
+|                           | `7.0-nginx`,                  | PHP v7.0 com Nginx webserver                         |
+|                           | `7.0-caddy`,                  | PHP v7.0 com Caddy webserver (suporte descontinuado) |
+|                           | `7.0-apache`,                 | PHP v7.0 com Apache webserver                        |
+| ambientum/**node**        | `8`, `latest`                 | Node.js v8.x                                         |
+|                           | `7`                           | Node.js v7.x                                         |
+|                           | `6`                           | Node.js v6.x                                         |
+| ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (com sql-mode='')                  |
+|                           | `5.6`                         | MySQL Server v5.6                                    |
+|                           | `5.5`                         | MySQL Server v5.5                                    |
+| ambientum/**mariadb**     | `10.1`, `latest`              | MariaDB Server v10.1                                 |
+|                           | `10.0`                        | MariaDB Server v10.0                                 |
+|                           | `5.5`                         | MariaDB Server v5.5                                  |
+| ambientum/**postgres**    | `9.6`, `latest`               | PostgreSQL Server v9.6                               |
+|                           | `9.5`                         | PostgreSQL Server v9.5                               |
+|                           | `9.4`                         | PostgreSQL Server v9.4                               |
+|                           | `9.3`                         | PostgreSQL Server v9.3                               |
+| ambientum/**redis**       | `4.0`, `latest`               | Redis Server v4.0                                    |
+|                           | `3.2`                         | Redis Server v3.2                                    |
+|                           | `3.0`                         | Redis Server v3.0                                    |
+| ambientum/**beanstalkd**  | `1.10`, `latest`              | Beanstalkd Server v1.10                              |
+|                           | `1.9`                         | Beanstalkd Server v1.9                               |
+| ambientum/**mailcatcher** | `latest`                      | MailCatcher alternativa open source ao MailTrap.io   |
 
 ## Guia rápido de uso:
 
@@ -207,10 +211,10 @@ services:
     ports:
       - "6379:6379"
 
-  # PHP (com Caddy)
-  # voce pode mudar de caddy para nginx ou apache, basta trocar a sessao 'image'
+  # PHP (com Nginx)
+  # voce pode mudar de nginx para apache ou caddy (suporte descontinuado), basta trocar a sessao 'image'
   app:
-    image: ambientum/php:7.0-caddy
+    image: ambientum/php:7.0-nginx
     container_name: sandbox-app
     volumes:
       - .:/var/www/app

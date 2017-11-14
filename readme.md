@@ -41,11 +41,11 @@ so you can start building your environment with the tools that you may want.
 |---------------------------|-------------------------------|----------------------------------------------------|
 | ambientum/**php**         | `7.1`, `latest`               | PHP v7.1 for command line and queues               |
 |                           | `7.1-nginx`, `latest-nginx`   | PHP v7.1 with Nginx webserver                      |
-|                           | `7.1-caddy`, `latest-caddy`   | PHP v7.1 with Caddy webserver                      |
+|                           | `7.1-caddy`, `latest-caddy`   | PHP v7.1 with Caddy webserver (dropped support)    |
 |                           | `7.1-apache`, `latest-apache` | PHP v7.1 with Apache webserver                     |
 |                           | `7.0`,                        | PHP v7.0 for command line and queues               |
 |                           | `7.0-nginx`,                  | PHP v7.0 with Nginx webserver                      |
-|                           | `7.0-caddy`,                  | PHP v7.0 with Caddy webserver                      |
+|                           | `7.0-caddy`,                  | PHP v7.0 with Caddy webserver (dropped support)    |
 |                           | `7.0-apache`,                 | PHP v7.0 with Apache webserver                     |
 | ambientum/**node**        | `8`, `latest`                 | Node.js v8.x                                       |
 |                           | `7`                           | Node.js v7.x                                       |
@@ -194,9 +194,10 @@ services:
     ports:
       - "6379:6379"
 
-  # PHP (with Caddy)
+  # PHP (with Nginx)
+  # you can change from nginx to apache or caddy (dropped support), just change session 'image'
   app:
-    image: ambientum/php:7.0-caddy
+    image: ambientum/php:7.0-nginx
     container_name: sandbox-app
     volumes:
       - .:/var/www/app
