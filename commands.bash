@@ -19,8 +19,22 @@ mkdir -p $A_COMPOSER
 #### YOU KNOW WHAT YOU'RE DOING           #
 ###########################################
 
+function is_macos {
+    local uname=$(uname)
+
+    if [ "$uname" = "Darwin" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 # reset permissions
-chown -R $(whoami):$(whoami) $A_BASE
+if is_macos ; then
+	chown -R $(whoami):$(groups $(whoami) | cut -d' ' -f1) $A_BASE
+else
+	chown -R $(whoami):$(whoami) $A_BASE
+fi
 
 # home directory
 A_USER_HOME=/home/ambientum
