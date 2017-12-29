@@ -36,11 +36,9 @@ Se você já se sente confortável com as habilidades listadas acima, você pode
 |---------------------------|-------------------------------|------------------------------------------------------|
 | ambientum/**php**         | `7.1`, `latest`               | PHP v7.1 para linha de comando e queues              |
 |                           | `7.1-nginx`, `latest-nginx`   | PHP v7.1 com Nginx webserver                         |
-|                           | `7.1-caddy`, `latest-caddy`   | PHP v7.1 com Caddy webserver (suporte descontinuado) |
 |                           | `7.1-apache`, `latest-apache` | PHP v7.1 com Apache webserver                        |
 |                           | `7.0`,                        | PHP v7.0 para linha de comando e queues              |
 |                           | `7.0-nginx`,                  | PHP v7.0 com Nginx webserver                         |
-|                           | `7.0-caddy`,                  | PHP v7.0 com Caddy webserver (suporte descontinuado) |
 |                           | `7.0-apache`,                 | PHP v7.0 com Apache webserver                        |
 | ambientum/**node**        | `8`, `latest`                 | Node.js v8.x                                         |
 |                           | `7`                           | Node.js v7.x                                         |
@@ -212,7 +210,7 @@ services:
       - "6379:6379"
 
   # PHP (com Nginx)
-  # voce pode mudar de nginx para apache ou caddy (suporte descontinuado), basta trocar a sessao 'image'
+  # voce pode mudar de nginx para apache, basta trocar a sessao 'image'
   app:
     image: ambientum/php:7.0-nginx
     container_name: sandbox-app
