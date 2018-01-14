@@ -43,13 +43,12 @@ so you can start building your environment with the tools that you may want.
 |---------------------------|-------------------------------|----------------------------------------------------|
 | ambientum/**php**         | `7.2`                         | PHP v7.2 for command line and queues               |
 |                           | `7.2-nginx`                   | PHP v7.2 with Nginx webserver                      |
-|                           | `7.1`, `latest`               | PHP v7.1 for command line and queues
+|                           | `7.1`, `latest`               | PHP v7.1 for command line and queues               |
 |                           | `7.1-nginx`, `latest-nginx`   | PHP v7.1 with Nginx webserver                      |
 |                           | `7.0`,                        | PHP v7.0 for command line and queues               |
 |                           | `7.0-nginx`,                  | PHP v7.0 with Nginx webserver                      |
-| ambientum/**node**        | `8`, `latest`                 | Node.js v8.x                                       |
-|                           | `7`                           | Node.js v7.x                                       |
-|                           | `6`                           | Node.js v6.x                                       |
+| ambientum/**node**        | `9`, `latest`                 | Node.js v9.x                                       |
+|                           | `8`, `lts`                    | Node.js v8.x                                       |
 | ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
 |                           | `5.6`                         | MySQL Server v5.6                                  |
 |                           | `5.5`                         | MySQL Server v5.5                                  |
