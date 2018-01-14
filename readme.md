@@ -37,9 +37,13 @@ Please have the latest version installed from Github at https://github.com/docke
 If you are already comfortable with the tools and have played around Ambientum, here are the set of images available for usage,
 so you can start building your environment with the tools that you may want.
 
+> PHP 7.2 is available but yet without xDebug support, considering this, it will not receive the latest tag until xDebug stable is compatible with PHP 7.2
+
 |Repository                 | Images/Tags                   | Description                                        |
 |---------------------------|-------------------------------|----------------------------------------------------|
-| ambientum/**php**         | `7.1`, `latest`               | PHP v7.1 for command line and queues               |
+| ambientum/**php**         | `7.2`                         | PHP v7.2 for command line and queues               |
+|                           | `7.2-nginx`                   | PHP v7.2 with Nginx webserver                      |
+|                           | `7.1`, `latest`               | PHP v7.1 for command line and queues
 |                           | `7.1-nginx`, `latest-nginx`   | PHP v7.1 with Nginx webserver                      |
 |                           | `7.1-caddy`, `latest-caddy`   | PHP v7.1 with Caddy webserver                      |
 |                           | `7.1-apache`, `latest-apache` | PHP v7.1 with Apache webserver                     |
