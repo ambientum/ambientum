@@ -43,7 +43,7 @@ so you can start building your environment with the tools that you may want.
 |---------------------------|-------------------------------|----------------------------------------------------|
 | ambientum/**php**         | `7.2`                         | PHP v7.2 for command line and queues               |
 |                           | `7.2-nginx`                   | PHP v7.2 with Nginx webserver                      |
-|                           | `7.1`, `latest`               | PHP v7.1 for command line and queues
+|                           | `7.1`, `latest`               | PHP v7.1 for command line and queues               |
 |                           | `7.1-nginx`, `latest-nginx`   | PHP v7.1 with Nginx webserver                      |
 |                           | `7.0`,                        | PHP v7.0 for command line and queues               |
 |                           | `7.0-nginx`,                  | PHP v7.0 with Nginx webserver                      |
