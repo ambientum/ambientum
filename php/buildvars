@@ -1,2 +1,2 @@
-TAGS="7.2 7.2-nginx 7.1 7.1-nginx latest-nginx"
+TAGS="7.2 7.2-nginx 7.2-php-pm 7.1 7.1-nginx latest-nginx"
 LATEST="7.1"
