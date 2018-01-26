@@ -7,4 +7,5 @@
  --bootstrap=$FRAMEWORK \
  --cgi-path=/usr/bin/php-cgi7 \
  --static-directory=/var/www/app/public \
+ --debug=1 \
  /var/www/app
