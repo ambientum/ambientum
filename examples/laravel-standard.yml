@@ -1,0 +1,43 @@
+# Ambientum example files.
+
+# Template: Laravel - Standard.
+
+# Intended for: Anyone who wants to use Ambientum for a standard Laravel project (including frontending with Laravel Mix).
+
+# NOTES:
+# Note 1 - Replace "acme" with your cool project's name. This will avoid conflicting names at
+#          any cost.
+# Note 1 - This file must be called: "docker-compose.yml"
+# Note 2 - Any comments on this file can be stripped out, they have no effect and here for 
+#          illustration and documentation purposes.
+# Note 3 - You can safely remove any frontend or caching configuration here, they are intended
+#          only for speedup the process.
+# Note 4 - This example is intended to be a complete reference on a standard install.
+#          "laravel-simple.yml" is a great way to start from scratch.
+# Note 5 - If you are new to Docker and/or Docker Compose, please try some tutorials
+#          on those subjects before jumping into it.
+
+# --> 1 - VERSION: Docker-compose reference syntax version.
+version: "3"
+
+
+# --> 2 - VOLUMES (NAMED): Resources where application and cache data is persisted.
+#                          Think of volumes like virtual storage drivers being mounted on the containers.
+volumes:
+  # MySQL: Stores MySQL data.
+  acme-mysql-data:
+    driver: local
+    
+  # Redis: Stores Redis data.
+  acme-redis-data:
+    
+  # The following volumes are used by caching purposes only, while in development.
+  # ~/.config
+  acme-dot-config:
+  # ~/.local  
+  acme-dot-local:
+  # ~/.cache
+  acme-dot-cache:
+  # ~/.composer (legacy path)
+  acme-dot-composer:
+  
