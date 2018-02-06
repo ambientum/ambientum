@@ -26,7 +26,6 @@ version: "3"
 volumes:
   # MySQL: Stores MySQL data.
   acme-mysql-data:
-    driver: local
     
   # Redis: Stores Redis data.
   acme-redis-data:
