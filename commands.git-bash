@@ -33,12 +33,12 @@ A_PHP_HOME=/home/php-user
 
 # Node Env
 function n() {
-	winpty docker run -it --rm -v /$(pwd):/var/www/app -v /$A_CONFIG:$A_NODE_HOME/.config -v /$A_CACHE:$A_NODE_HOME/.cache -v /$A_LOCAL:$A_NODE_HOME/.local -v /$A_SSH:$A_NODE_HOME/.ssh ambientum/node:7 "$@"
+	winpty docker run -it --rm -v /$(pwd):/var/www/app -v /$A_CONFIG:$A_NODE_HOME/.config -v /$A_CACHE:$A_NODE_HOME/.cache -v /$A_LOCAL:$A_NODE_HOME/.local -v /$A_SSH:$A_NODE_HOME/.ssh ambientum/node:9 "$@"
 }
 alias n=n
 
 # PHP Env
 function p() {
-	winpty docker run -it --rm -v /$(pwd):/var/www/app -v /$A_COMPOSER:$A_PHP_HOME/.composer -v /$A_CONFIG:$A_PHP_HOME/.config -v /$A_CACHE:$A_PHP_HOME/.cache -v /$A_LOCAL:$A_PHP_HOME/.local -v /$A_SSH:$A_PHP_HOME/.ssh ambientum/php:7.1 "$@"
+	winpty docker run -it --rm -v /$(pwd):/var/www/app -v /$A_COMPOSER:$A_PHP_HOME/.composer -v /$A_CONFIG:$A_PHP_HOME/.config -v /$A_CACHE:$A_PHP_HOME/.cache -v /$A_LOCAL:$A_PHP_HOME/.local -v /$A_SSH:$A_PHP_HOME/.ssh ambientum/php:7.2 "$@"
 }
 alias p=p
