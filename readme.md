@@ -45,8 +45,10 @@ so you can start building your environment with the tools that you may want.
 |                           | `7.2-nginx`                   | PHP v7.2 with Nginx webserver                      |
 |                           | `7.1`, `latest`               | PHP v7.1 for command line and queues               |
 |                           | `7.1-nginx`, `latest-nginx`   | PHP v7.1 with Nginx webserver                      |
+|                           | `7.1-apache`, `latest-apache` | PHP v7.1 with Apache webserver                     |
 |                           | `7.0`,                        | PHP v7.0 for command line and queues               |
 |                           | `7.0-nginx`,                  | PHP v7.0 with Nginx webserver                      |
+|                           | `7.0-apache`,                 | PHP v7.0 with Apache webserver                     |
 | ambientum/**node**        | `9`, `latest`                 | Node.js v9.x                                       |
 |                           | `8`, `lts`                    | Node.js v8.x                                       |
 | ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
@@ -193,9 +195,10 @@ services:
     ports:
       - "6379:6379"
 
-  # PHP (with Caddy)
+  # PHP (with Nginx)
+  # you can change from nginx to apache, just change session 'image'
   app:
-    image: ambientum/php:7.0-caddy
+    image: ambientum/php:7.0-nginx
     container_name: sandbox-app
     volumes:
       - .:/var/www/app
