@@ -156,7 +156,7 @@ volumes:
     driver: local
 
 services:
-  # Postgres (9.5)
+  # Postgres (9.6)
   postgres:
     image: ambientum/postgres:9.6
     container_name: sandbox-postgres
