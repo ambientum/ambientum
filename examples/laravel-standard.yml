@@ -101,7 +101,7 @@ services:
     # command: --appendonly yes
     # map the volumes, like on mysql.
     volumes:
-      - kino-redis-data:/data
+      - acme-redis-data:/data
     # map ports for development purposes.  
     ports:
       - 6379:6379
