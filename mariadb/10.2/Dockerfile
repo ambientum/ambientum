@@ -1,1 +1,1 @@
-FROM mariadb:10.2-alpine
+FROM mariadb:10.2
