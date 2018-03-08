@@ -51,13 +51,17 @@ so you can start building your environment with the tools that you may want.
 |                           | `7.0-apache`,                 | PHP v7.0 with Apache webserver                     |
 | ambientum/**node**        | `9`, `latest`                 | Node.js v9.x                                       |
 |                           | `8`, `lts`                    | Node.js v8.x                                       |
-| ambientum/**mysql**       | `5.7`, `latest`               | MySQL Server v5.7 (with sql-mode='')               |
+| ambientum/**mysql**       | `8.0`, `latest`               | MySQL Server v8.0 (with sql-mode='')               |
+|                           | `5.7`                         | MySQL Server v5.7 (with sql-mode='')               |
 |                           | `5.6`                         | MySQL Server v5.6                                  |
 |                           | `5.5`                         | MySQL Server v5.5                                  |
-| ambientum/**mariadb**     | `10.1`, `latest`              | MariaDB Server v10.1                               |
+| ambientum/**mariadb**     | `10.3`, `latest`              | MariaDB Server v10.3                               |
+|                           | `10.2`                        | MariaDB Server v10.2                               |
+|                           | `10.1`                        | MariaDB Server v10.1                               |
 |                           | `10.0`                        | MariaDB Server v10.0                               |
 |                           | `5.5`                         | MariaDB Server v5.5                                |
-| ambientum/**postgres**    | `9.6`, `latest`               | PostgreSQL Server v9.6                             |
+| ambientum/**postgres**    | `10.3`, `latest`              | PostgreSQL Server v10.3                            |
+|                           | `9.5`                         | PostgreSQL Server v9.5                             |
 |                           | `9.5`                         | PostgreSQL Server v9.5                             |
 |                           | `9.4`                         | PostgreSQL Server v9.4                             |
 |                           | `9.3`                         | PostgreSQL Server v9.3                             |
@@ -158,9 +162,9 @@ volumes:
     driver: local
 
 services:
-  # Postgres (9.6)
+  # Postgres (10.3)
   postgres:
-    image: ambientum/postgres:9.6
+    image: ambientum/postgres:10.3
     container_name: sandbox-postgres
     volumes:
       - sandbox-postgres-data:/var/lib/postgresql/data
@@ -187,7 +191,7 @@ services:
 
   # Redis
   cache:
-    image: ambientum/redis:3.2
+    image: ambientum/redis:4.0
     container_name: sandbox-redis
     command: --appendonly yes
     volumes:
@@ -198,7 +202,7 @@ services:
   # PHP (with Nginx)
   # you can change from nginx to apache, just change session 'image'
   app:
-    image: ambientum/php:7.0-nginx
+    image: ambientum/php:7.2-nginx
     container_name: sandbox-app
     volumes:
       - .:/var/www/app
@@ -211,7 +215,7 @@ services:
 
   # Laravel Queues
   queue:
-    image: ambientum/php:7.0
+    image: ambientum/php:7.2
     container_name: sandbox-queue
     command: php artisan queue:listen
     volumes:
