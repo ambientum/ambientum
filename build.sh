@@ -14,7 +14,7 @@ REPOSITORIES=$1
 
 # enable all repositories if any specified
 if [[ -z $REPOSITORIES ]]; then
-    REPOSITORIES="mysql mariadb postgres redis php beanstalkd node mailcatcher"
+    REPOSITORIES="php beanstalkd node"
 fi
 
 # for returning later to the main directory
