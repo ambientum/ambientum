@@ -41,37 +41,12 @@ so you can start building your environment with the tools that you may want.
 
 |Repository                 | Images/Tags                   | Description                                        |
 |---------------------------|-------------------------------|----------------------------------------------------|
-| ambientum/**php**         | `7.2`                         | PHP v7.2 for command line and queues               |
-|                           | `7.2-nginx`                   | PHP v7.2 with Nginx webserver                      |
-|                           | `7.1`, `latest`               | PHP v7.1 for command line and queues               |
+| ambientum/**php**         | `7.2`, `latest`               | PHP v7.2 for command line and queues               |
+|                           | `7.2-nginx`, `latest-nginx`   | PHP v7.2 with Nginx webserver                      |
+|                           | `7.1`                         | PHP v7.1 for command line and queues               |
 |                           | `7.1-nginx`, `latest-nginx`   | PHP v7.1 with Nginx webserver                      |
-|                           | `7.1-apache`, `latest-apache` | PHP v7.1 with Apache webserver                     |
-|                           | `7.0`,                        | PHP v7.0 for command line and queues               |
-|                           | `7.0-nginx`,                  | PHP v7.0 with Nginx webserver                      |
-|                           | `7.0-apache`,                 | PHP v7.0 with Apache webserver                     |
-| ambientum/**node**        | `9`, `latest`                 | Node.js v9.x                                       |
+| ambientum/**node**        | `9`, `latest`, `current`      | Node.js v9.x                                       |
 |                           | `8`, `lts`                    | Node.js v8.x                                       |
-| ambientum/**mysql**       | `8.0`, `latest`               | MySQL Server v8.0 (with sql-mode='')               |
-|                           | `5.7`                         | MySQL Server v5.7 (with sql-mode='')               |
-|                           | `5.6`                         | MySQL Server v5.6                                  |
-|                           | `5.5`                         | MySQL Server v5.5                                  |
-| ambientum/**mariadb**     | `10.3`, `latest`              | MariaDB Server v10.3                               |
-|                           | `10.2`                        | MariaDB Server v10.2                               |
-|                           | `10.1`                        | MariaDB Server v10.1                               |
-|                           | `10.0`                        | MariaDB Server v10.0                               |
-|                           | `5.5`                         | MariaDB Server v5.5                                |
-| ambientum/**postgres**    | `10.3`, `latest`              | PostgreSQL Server v10.3                            |
-|                           | `9.5`                         | PostgreSQL Server v9.5                             |
-|                           | `9.5`                         | PostgreSQL Server v9.5                             |
-|                           | `9.4`                         | PostgreSQL Server v9.4                             |
-|                           | `9.3`                         | PostgreSQL Server v9.3                             |
-| ambientum/**redis**       | `4.0`, `latest`               | Redis Server v4.0                                  |
-|                           | `3.2`                         | Redis Server v3.2                                  |
-|                           | `3.0`                         | Redis Server v3.0                                  |
-| ambientum/**beanstalkd**  | `1.10`, `latest`              | Beanstalkd Server v1.10                            |
-|                           | `1.9`                         | Beanstalkd Server v1.9                             |
-| ambientum/**mailcatcher** | `latest`                      | MailCatcher is a hosted alternative to MailTrap.io |
-
 
 ## Quick usage guide
 
@@ -164,7 +139,7 @@ volumes:
 services:
   # Postgres (10.3)
   postgres:
-    image: ambientum/postgres:10.3
+    image: postgres:10.3
     container_name: sandbox-postgres
     volumes:
       - sandbox-postgres-data:/var/lib/postgresql/data
@@ -177,7 +152,7 @@ services:
 
   # MySQL (5.7)
   mysql:
-    image: ambientum/mysql:5.7
+    image: mysql:5.7
     container_name: sandbox-mysql
     volumes:
       - sandbox-mysql-data:/var/lib/mysql
@@ -191,7 +166,7 @@ services:
 
   # Redis
   cache:
-    image: ambientum/redis:4.0
+    image: redis:4.0
     container_name: sandbox-redis
     command: --appendonly yes
     volumes:
@@ -236,7 +211,7 @@ services:
   # This environment can be used to run npm and node
   # commands as well
   dev:
-    image: ambientum/node:6
+    image: ambientum/node:9
     container_name: sandbox-vue-dev
     command: npm run dev
     volumes:
