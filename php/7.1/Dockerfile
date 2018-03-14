@@ -35,6 +35,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     curl \
     bash \
     fontconfig \
+    imagemagick \
     libxrender \
     libxext \
     nano \
@@ -56,6 +57,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-exif@php \
     php7-fpm@php \
     php7-gd@php \
+    php7-gmp@php \
     php7-iconv@php \
     php7-imagick@php \
     php7-imap@php \

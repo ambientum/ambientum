@@ -14,6 +14,7 @@ MAINTAINER Diego Hernandes <diego@hernandev.com>
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
+    XDEBUG_ENABLED=false \
     NR_ENABLED=false \
     NR_APP_NAME="" \
     NR_LICENSE_KEY="" \
@@ -36,6 +37,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     fontconfig \
     libxrender \
     libxext \
+    imagemagick \
     nano \
     vim \
     git \
@@ -55,6 +57,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-exif@php \
     php7-fpm@php \
     php7-gd@php \
+    php7-gmp@php \
     php7-iconv@php \
     php7-imagick@php \
     php7-imap@php \
@@ -72,6 +75,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-soap@php \
     php7-sodium@php \
     php7-sqlite3@php \
+    php7-xdebug@php \
     php7-xml@php \
     php7-xmlreader@php \
     php7-openssl@php \
@@ -106,6 +110,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php7/php-fpm.conf && \
     sed -i "/post_max_size = .*/c\post_max_size = 1000M" /etc/php7/php.ini && \
     sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php7/php.ini && \
+    sed -i "/zend_extension=xdebug/c\;zend_extension=xdebug" /etc/php7/conf.d/00_xdebug.ini && \
     echo "---> Adding Support for NewRelic" && \
     mkdir /tmp/newrelic && \
     cd /tmp/newrelic && \
