@@ -1,0 +1,109 @@
+# Ambientum example files.
+
+# Template: Laravel - Standard.
+
+# Intended for: Anyone who wants to use Ambientum for a standard Laravel project (including frontending with Laravel Mix).
+
+# NOTES:
+# Note 1 - Replace "acme" with your cool project's name. This will avoid conflicting names at
+#          any cost.
+# Note 1 - This file must be called: "docker-compose.yml"
+# Note 2 - Any comments on this file can be stripped out, they have no effect and here for 
+#          illustration and documentation purposes.
+# Note 3 - You can safely remove any frontend or caching configuration here, they are intended
+#          only for speedup the process.
+# Note 4 - This example is intended to be a complete reference on a standard install.
+#          "laravel-simple.yml" is a great way to start from scratch.
+# Note 5 - If you are new to Docker and/or Docker Compose, please try some tutorials
+#          on those subjects before jumping into it.
+
+# --> 1 - VERSION: Docker-compose reference syntax version.
+version: "3"
+
+
+# --> 2 - VOLUMES (NAMED): Resources where application and cache data is persisted.
+#                          Think of volumes like virtual storage drivers being mounted on the containers.
+volumes:
+  # MySQL: Stores MySQL data.
+  acme-mysql-data:
+    
+  # Redis: Stores Redis data.
+  acme-redis-data:
+    
+  # The following volumes are used by caching purposes only, while in development.
+  # ~/.config
+  acme-dot-config:
+  # ~/.local  
+  acme-dot-local:
+  # ~/.cache
+  acme-dot-cache:
+  # ~/.composer (legacy path)
+  acme-dot-composer:
+  
+# --> 3 - SERVICES: Services are the actual containers, that will run your application.
+#                   Each section, provides a examplation when needed, so read it carefully.
+services:
+
+  # OPTIONAL: MAILHOG
+  #           Mailhog is a simple way of testing email without pretending, so Laravel can send meessages to a real SMTP server.
+  #           I chose to not persist it's data since it's just test emails, reseting them makes sense to me.
+  mailhog:
+    # using default mailhog image from dockerhub.
+    image: mailhog/mailhog:latest
+    # naming your container is optional, it's safe in most cases to remove this line.
+    container_name: acme-mailhog
+    # port maping.
+    ports:
+      # 1025: this port is used for SMTP, You will not need to uncommed this here, unless you have a very
+      #       specific use case.
+      # - 1025:1025
+      # 8025: this port is used for the web interface on mailhog. 
+      #       It's just like a email client. that will list all emails you've sent.
+      - 8025:8025
+
+  # MYSQL: This will come enabled by default, but you could use postgresql and anyother database you may need.
+  #        Other databases will be commented out so you can easily use the one you want.
+  mysql:
+    # image will be the default one.
+    # at the time ambientum was created, there was incompatibilities with default mysql config.
+    # right now is more than safe to use official ones, the custom ones on this project are being deprecated.
+    image: mysql:5.7
+    # also safe to remove if needed
+    container_name: acme-mysql
+    # remember the volumes from earlier, let's use the mysql one to persist data writen by the mysql container.
+    # anything writen on the container path /var/lib/mysql will be persisted on the acme-mysql-data volume.
+    volumes:
+      - acme-mysql-data:/var/lib/mysql
+    # port mappings: 3306 is here mapped so developers can access the database while developing the app.
+    # you can change the left side value to any port you may wnat, but the right side port must remains 3306.
+    ports:
+      - 3306:3306
+    # here are some environemnt variables, they will define which password and database to created when you first
+    # run this.
+    # I'm defaulting it to acme but be free to change as you wish.
+    environment:
+      - MYSQL_ROOT_PASSWORD=acme
+      - MYSQL_DATABASE=acme
+      - MYSQL_USER=acme
+      - MYSQL_PASSWORD=acme
+
+  # REDIS: Redis, you know what it is right? Notice the service name is not called redis but cache.
+  #        There is a reason for that: some variables may conflict with Laravel .env file, so we just use a generic name "cache".
+  cache:
+    # we are using the alpine variant here, the rest of the images are also lightweight based on Alpine.
+    # you may want to downgrade redis back to 3.2.
+    # I'm using for a couple months now 4.0 and no problems with Laravel so far.
+    image: redis:4.0-alpine
+    # container name, also, may be removed.
+    container_name: acme-cache
+    # one thig about this line here, it's commented because when you load much data on redis, it may fail to start with it enabled
+    # read redis docs about enabling disabling it but defaul is usally ok.
+    # command: --appendonly yes
+    # map the volumes, like on mysql.
+    volumes:
+      - acme-redis-data:/data
+    # map ports for development purposes.  
+    ports:
+      - 6379:6379
+
+ 
