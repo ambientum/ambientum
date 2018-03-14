@@ -20,7 +20,7 @@ mkdir -p $A_COMPOSER
 ###########################################
 
 #reset permissions
-chown -R $(whoami):$(id -g $(whoami)) $A_BASE
+chown -R $(whoami):$(id -gn) $A_BASE
 
 
 ## Home directories prefixes
