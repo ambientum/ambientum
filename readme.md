@@ -6,7 +6,7 @@ Keeping it uniform between development, staging and production environments is o
 On the last years, our buddy Docker has become more and more mature and now it's becoming the standard.
 
 We all love Laravel and Vue.JS, but why develop a Rock Star code with a Kick-Ass framework
-without a awesome environment?
+without an awesome environment?
 
 No more "it worked on my machine"!
 
