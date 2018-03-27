@@ -12,7 +12,7 @@
 FROM ambientum/php:7.2
 
 # Repository/Image Maintainer
-MAINTAINER Diego Hernandes <diego@hernandev.com>
+LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
 
 # Reset user to root to allow software install
 USER root

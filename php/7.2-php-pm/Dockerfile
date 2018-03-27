@@ -32,7 +32,7 @@ RUN mkdir -p /home/ambientum/ppm && \
 FROM ambientum/php:7.2
 
 # Repository/Image Maintainer
-MAINTAINER Diego Hernandes <diego@hernandev.com>
+LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
 
 # add start script.
 ADD start.sh  /home/ambientum/start.sh

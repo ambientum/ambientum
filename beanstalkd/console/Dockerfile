@@ -5,7 +5,7 @@
 FROM ambientum/php:7.0-caddy
 
 # Repository/Image Maintainer
-MAINTAINER Diego Hernandes <diego@hernandev.com>
+LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
 
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Updating Repository" && \
