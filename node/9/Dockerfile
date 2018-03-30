@@ -10,7 +10,7 @@
 FROM mhart/alpine-node:9
 
 # Repository/Image Maintainer
-MAINTAINER Diego Hernandes <diego@hernandev.com>
+LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
 
 # Variables for enabling NewRelic
 ENV NPM_PACKAGES="/home/ambientum/.cache/npm-packages" \

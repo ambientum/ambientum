@@ -5,7 +5,7 @@
 FROM debian:jessie
 
 # Repository/Image Maintainer
-MAINTAINER Diego Hernandes <diego@hernandev.com>
+LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
 
 
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup

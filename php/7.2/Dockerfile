@@ -10,7 +10,7 @@
 FROM alpine:3.7
 
 # Repository/Image Maintainer
-MAINTAINER Diego Hernandes <diego@hernandev.com>
+LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
