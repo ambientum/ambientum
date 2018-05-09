@@ -14,6 +14,7 @@ LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
+    OPCACHE_MODE="normal" \
     XDEBUG_ENABLED=false \
     NR_ENABLED=false \
     NR_APP_NAME="" \
@@ -63,6 +64,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-imap@php \
     php7-intl@php \
     php7-json@php \
+    php7-mailparse@php \
     php7-mbstring@php \
     php7-mcrypt@php \
     php7-mysqlnd@php \
