@@ -5,9 +5,9 @@
 # Image:         CLI/Base
 # Version:       7.1.x
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://php-alpine.codecasts.rocks)
-# Base distro:   Alpine 3.6
+# Base distro:   Alpine 3.7
 #
-FROM alpine:3.6
+FROM alpine:3.7
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
@@ -31,7 +31,7 @@ ADD bashrc /home/ambientum/.bashrc
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update wget && \
     wget -O /etc/apk/keys/php-alpine.rsa.pub http://php.codecasts.rocks/php-alpine.rsa.pub && \
-    echo "@php http://php.codecasts.rocks/v3.6/php-7.1" >> /etc/apk/repositories && \
+    echo "@php http://php.codecasts.rocks/v3.7/php-7.1" >> /etc/apk/repositories && \
     apk add --update \
     curl \
     bash \
