@@ -3,11 +3,11 @@
 #
 # Repository:    Node.JS
 # Image:         CLI/Base
-# Version:       9.x.x
+# Version:       10.x.x
 # Strategy:      Based on mhart/alpine-node
 # Base distro:   Alpine 3.7
 #
-FROM mhart/alpine-node:9
+FROM mhart/alpine-node:10
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <diego@hernandev.com>"

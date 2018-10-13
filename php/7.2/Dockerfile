@@ -86,8 +86,11 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-zip@php \
     php7-zlib@php \
     php7-pcntl@php \
+    php7-cgi@php \
     php7-phpdbg@php && \
     sudo ln -s /usr/bin/php7 /usr/bin/php && \
+    sudo ln -s /usr/bin/php-cgi7 /usr/bin/php-cgi && \
+    sudo ln -s /usr/sbin/php-fpm7 /usr/sbin/php-fpm && \
     echo "---> Installing Composer" && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     echo "---> Cleaning up" && \

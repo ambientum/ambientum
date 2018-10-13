@@ -43,6 +43,7 @@ RUN echo "---> Installing base dependencies" && \
     adduser -D -u 1000 ambientum && \
     mkdir -p /var/www/app && \
     chown -R ambientum:ambientum /var/www && \
+    echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
     wget -O /tini https://github.com/krallin/tini/releases/download/v0.16.1/tini-static && \
     chmod +x /tini && \
     chown -R ambientum:ambientum /home/ambientum && \

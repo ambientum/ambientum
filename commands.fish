@@ -37,7 +37,7 @@ function n
 	-v $A_CACHE:$A_USER_HOME/.cache \
 	-v $A_LOCAL:$A_USER_HOME/.local \
 	-v $A_SSH:$A_USER_HOME/.ssh \
-	ambientum/node:9 $argv
+	ambientum/node:10 $argv
 end
 
 # php Env
@@ -50,3 +50,17 @@ function p
 	-v $A_SSH:$A_USER_HOME/.ssh \
 	ambientum/php:7.2 $argv
 end
+
+
+# php Env
+function px
+        docker run -it --rm -v (pwd):/var/www/app \
+        -v $A_COMPOSER:$A_USER_HOME/.composer \
+        -v $A_CONFIG:$A_USER_HOME/.config \
+        -v $A_CACHE:$A_USER_HOME/.cache \
+        -v $A_LOCAL:$A_USER_HOME/.local \
+        -v $A_SSH:$A_USER_HOME/.ssh \
+        -e XDEBUG_ENABLED=true \
+        ambientum/php:7.2 $argv
+end
+
