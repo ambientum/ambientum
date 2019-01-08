@@ -83,6 +83,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-xmlreader@php \
     php7-openssl@php \
     php7-phar@php \
+    php7-xsl@php \
     php7-zip@php \
     php7-zlib@php \
     php7-pcntl@php \
