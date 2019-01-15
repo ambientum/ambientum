@@ -71,24 +71,29 @@ source ~/.ambientum_rc
 
 #### For Windows users (via Git Bash):
 
-For others Windows consoles (like PowerShell or Cmder), check this [link](https://github.com/julihermes/ambientum-commands-for-windows).
-
 ```
 curl https://github.com/codecasts/ambientum/raw/master/commands.git-bash -o ~/.ambientum_rc
 source ~/.ambientum_rc
+```
+
+#### For Windows users (via PowerShell):
+
+```
+curl -URI https://raw.githubusercontent.com/codecasts/ambientum/master/commands.ps1 -OutFile ambientum_rc.ps1
+ambientum_rc.ps1
 ```
 
 Once you have those commands activated, following the instructions above, you can start using them right away.
 
 #### Notice: First execution may take some time since it will download the images
 
-Everything Node.JS related can be executed by prefixing the `n` command. For example, let's say we need to install Gulp
+Everything Node.JS related can be executed by prefixing the `n` command or `nAlias` in Windows PoweShell. For example, let's say we need to install Gulp
 ```
 n npm install -g gulp
 n gulp --version
 ```
 
-Everything PHP related can be executed by prefixing the `p` command. For example, lets say we want to run composer:
+Everything PHP related can be executed by prefixing the `p` command or `pAlias` in Windows PowerShell. For example, lets say we want to run composer:
 
 ```
 p composer global require some/package-here
