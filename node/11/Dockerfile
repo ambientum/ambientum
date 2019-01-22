@@ -3,14 +3,14 @@
 #
 # Repository:    Node.JS
 # Image:         CLI/Base
-# Version:       9.x.x
+# Version:       11.x.x
 # Strategy:      Based on mhart/alpine-node
-# Base distro:   Alpine 3.7
+# Base distro:   Alpine 3.8
 #
-FROM mhart/alpine-node:9
+FROM mhart/alpine-node:11
 
 # Repository/Image Maintainer
-LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
+LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Variables for enabling NewRelic
 ENV NPM_PACKAGES="/home/ambientum/.cache/npm-packages" \
