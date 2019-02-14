@@ -1,0 +1,11 @@
+language: minimal
+
+services:
+  - docker
+
+before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+  - bash build.sh php
+  - bash build.sh node
