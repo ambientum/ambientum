@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
-# if there is a env file, source it
-if [ -f "./.env" ]; then
-   source ./.env
-# source example else
-else
-   source ./.env.example
+# source env only when not on travis-ci.
+if [[ -z $TRAVIS ]]; then
+    # if there is a env file, source it
+    if [ -f "./.env" ]; then
+       source ./.env
+    # source example else
+    else
+       source ./.env.example
+    fi
 fi
+
 
 # enabled repositories for the build
 REPOSITORIES=$1
