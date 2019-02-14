@@ -10,11 +10,12 @@
 FROM alpine:3.7
 
 # Repository/Image Maintainer
-LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
+LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
     OPCACHE_MODE="normal" \
+    PHP_MEMORY_LIMIT=256M \
     XDEBUG_ENABLED=false \
     NR_ENABLED=false \
     NR_APP_NAME="" \

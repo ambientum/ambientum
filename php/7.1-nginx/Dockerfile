@@ -5,14 +5,14 @@
 # Image:         PHP-FPM + Nginx
 # Version:       7.1.x
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) + Official Nginx
-# Base distro:   Alpine 3.5
+# Base distro:   Alpine 3.7
 #
 # Inspired by official PHP images.
 #
 FROM ambientum/php:7.1
 
 # Repository/Image Maintainer
-LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
+LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Reset user to root to allow software install
 USER root
