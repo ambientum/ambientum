@@ -7,7 +7,6 @@ FROM debian:jessie
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <diego@hernandev.com>"
 
-
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Updating Repository" && \
     apt-get update -y && \

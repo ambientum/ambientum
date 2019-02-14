@@ -113,14 +113,14 @@ Well, that's the whole point of the project, the commands there was designed for
 #### Laravel docker-compose.yml
 
 
-```yml
+```yaml
 ####
-# ATENTION:
-# Replace all occurences of sandbox with your project's name
+# ATTENTION:
+# Replace all occurrences of sandbox with your project's name.
 ####
 
-# v2 syntax
-version: '2'
+# v3 syntax
+version: '3'
 
 # Named volumes
 volumes:
@@ -137,9 +137,9 @@ volumes:
     driver: local
 
 services:
-  # Postgres (10.3)
+  # Postgres (11)
   postgres:
-    image: postgres:10.3
+    image: postgres:11
     container_name: sandbox-postgres
     volumes:
       - sandbox-postgres-data:/var/lib/postgresql/data
@@ -175,14 +175,14 @@ services:
       - "6379:6379"
 
   # PHP (with Nginx)
-  # you can change from nginx to apache, just change session 'image'
   app:
-    image: ambientum/php:7.2-nginx
+    image: ambientum/php:7.3-nginx
     container_name: sandbox-app
     volumes:
       - .:/var/www/app
     ports:
-      - "80:8080"
+      - "8080:8080"
+      - "8083:8083"
     links:
       - postgres
       - mysql
@@ -190,7 +190,7 @@ services:
 
   # Laravel Queues
   queue:
-    image: ambientum/php:7.2
+    image: ambientum/php:7.3
     container_name: sandbox-queue
     command: php artisan queue:listen
     volumes:
@@ -200,18 +200,18 @@ services:
       - cache
 ```
 
-### Vue.js docker-compose.yml
-Developing with Vue.js? We got you covered! Here is the docker-compose file:
+### Vue.JS docker-compose.yml
+Developing with Vue.JS? We got you covered! Here is the docker-compose file:
 
-```yml
-version: '2'
+```yaml
+version: '3'
 
 services:
   # Web server - For live reload and development
   # This environment can be used to run npm and node
   # commands as well
   dev:
-    image: ambientum/node:9
+    image: ambientum/node:11
     container_name: sandbox-vue-dev
     command: npm run dev
     volumes:
@@ -219,7 +219,7 @@ services:
     ports:
       - 8080:8080
 
-  # Testing dist on a "real" webserver
+  # Testing dist on a "real" web server
   production-server:
     image: nginx:stable-alpine
     container_name: sandbox-preview-server
