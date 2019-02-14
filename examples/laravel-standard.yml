@@ -2,7 +2,7 @@
 
 # Template: Laravel - Standard.
 
-# Intended for: Anyone who wants to use Ambientum for a standard Laravel project (including frontending with Laravel Mix).
+# Intended for: Anyone who wants to use Ambientum for a standard Laravel project (including frontend-ing with Laravel Mix).
 
 # NOTES:
 # Note 1 - Replace "acme" with your cool project's name. This will avoid conflicting names at
@@ -41,27 +41,27 @@ volumes:
   acme-dot-composer:
   
 # --> 3 - SERVICES: Services are the actual containers, that will run your application.
-#                   Each section, provides a examplation when needed, so read it carefully.
+#                   Each section, provides an example when needed, so read it carefully.
 services:
 
   # OPTIONAL: MAILHOG
-  #           Mailhog is a simple way of testing email without pretending, so Laravel can send meessages to a real SMTP server.
-  #           I chose to not persist it's data since it's just test emails, reseting them makes sense to me.
+  #           Mailhog is a simple way of testing email without pretending, so Laravel can send messages to a real SMTP server.
+  #           I chose to not persist it's data since it's just test emails, resetting them makes sense to me.
   mailhog:
-    # using default mailhog image from dockerhub.
+    # using default mailhog image from DockerHub.
     image: mailhog/mailhog:latest
     # naming your container is optional, it's safe in most cases to remove this line.
     container_name: acme-mailhog
-    # port maping.
+    # port mapping.
     ports:
-      # 1025: this port is used for SMTP, You will not need to uncommed this here, unless you have a very
+      # 1025: this port is used for SMTP, You will not need to uncomment this here, unless you have a very
       #       specific use case.
       # - 1025:1025
       # 8025: this port is used for the web interface on mailhog. 
       #       It's just like a email client. that will list all emails you've sent.
       - 8025:8025
 
-  # MYSQL: This will come enabled by default, but you could use postgresql and anyother database you may need.
+  # MYSQL: This will come enabled by default, but you could use postgres or another database you may need.
   #        Other databases will be commented out so you can easily use the one you want.
   mysql:
     # image will be the default one.
@@ -70,15 +70,15 @@ services:
     image: mysql:5.7
     # also safe to remove if needed
     container_name: acme-mysql
-    # remember the volumes from earlier, let's use the mysql one to persist data writen by the mysql container.
-    # anything writen on the container path /var/lib/mysql will be persisted on the acme-mysql-data volume.
+    # remember the volumes from earlier, let's use the mysql one to persist data written by the mysql container.
+    # anything written on the container path /var/lib/mysql will be persisted on the acme-mysql-data volume.
     volumes:
       - acme-mysql-data:/var/lib/mysql
     # port mappings: 3306 is here mapped so developers can access the database while developing the app.
-    # you can change the left side value to any port you may wnat, but the right side port must remains 3306.
+    # you can change the left side value to any port you may want, but the right side port must remains 3306.
     ports:
       - 3306:3306
-    # here are some environemnt variables, they will define which password and database to created when you first
+    # here are some environment variables, they will define which password and database to created when you first
     # run this.
     # I'm defaulting it to acme but be free to change as you wish.
     environment:
@@ -96,8 +96,8 @@ services:
     image: redis:4.0-alpine
     # container name, also, may be removed.
     container_name: acme-cache
-    # one thig about this line here, it's commented because when you load much data on redis, it may fail to start with it enabled
-    # read redis docs about enabling disabling it but defaul is usally ok.
+    # one thing about this line here, it's commented because when you load much data on redis, it may fail to start with it enabled
+    # read redis docs about enabling disabling it but default is usually ok.
     # command: --appendonly yes
     # map the volumes, like on mysql.
     volumes:
