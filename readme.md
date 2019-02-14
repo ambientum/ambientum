@@ -37,16 +37,16 @@ Please have the latest version installed from Github at https://github.com/docke
 If you are already comfortable with the tools and have played around Ambientum, here are the set of images available for usage,
 so you can start building your environment with the tools that you may want.
 
-> PHP 7.2 is available but yet without xDebug support, considering this, it will not receive the latest tag until xDebug stable is compatible with PHP 7.2
-
 |Repository                 | Images/Tags                   | Description                                        |
 |---------------------------|-------------------------------|----------------------------------------------------|
-| ambientum/**php**         | `7.2`, `latest`               | PHP v7.2 for command line and queues               |
-|                           | `7.2-nginx`, `latest-nginx`   | PHP v7.2 with Nginx webserver                      |
+| ambientum/**php**         | `7.3`, `latest`               | PHP v7.3 for command line and queues               |
+|                           | `7.2-nginx`, `latest-nginx`   | PHP v7.3 with Nginx web server                      |
+|                           | `7.2`                         | PHP v7.2 for command line and queues               |
+|                           | `7.2-nginx`                   | PHP v7.2 with Nginx web server                      |
 |                           | `7.1`                         | PHP v7.1 for command line and queues               |
-|                           | `7.1-nginx`, `latest-nginx`   | PHP v7.1 with Nginx webserver                      |
-| ambientum/**node**        | `9`, `latest`, `current`      | Node.js v9.x                                       |
-|                           | `8`, `lts`                    | Node.js v8.x                                       |
+|                           | `7.2-nginx`                   | PHP v7.1 with Nginx web server                      |
+| ambientum/**node**        | `11`, `latest`, `current`     | Node.js CURRENT (v11.x_                                       |
+|                           | `10`, `lts`                   | Node.js LTS (v10.x)                                       |
 
 ## Quick usage guide
 
