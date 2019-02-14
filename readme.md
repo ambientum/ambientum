@@ -2,6 +2,8 @@
 
 # Ambientum
 
+[![Build Status](https://travis-ci.org/ambientum/ambientum.svg?branch=master)](https://travis-ci.org/ambientum/ambientum)
+
 Keeping it uniform between development, staging and production environments is often something not easy.
 On the last years, our buddy Docker has become more and more mature and now it's becoming the standard.
 
