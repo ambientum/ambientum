@@ -1,4 +1,4 @@
-![Readme Art](https://raw.githubusercontent.com/codecasts/ambientum/master/new-readme-art.png)
+![Readme Art](https://raw.githubusercontent.com/ambientum/ambientum/master/new-readme-art.png)
 
 # Ambientum
 
@@ -59,13 +59,13 @@ activate those aliases:
 
 #### For Bash and ZSH Users:
 ```
-curl -L https://github.com/codecasts/ambientum/raw/master/commands.bash -o ~/.ambientum_rc
+curl -L https://github.com/ambientum/ambientum/raw/master/commands.bash -o ~/.ambientum_rc
 source ~/.ambientum_rc
 ```
 
 #### For Fish users:
 ```
-curl -L https://github.com/codecasts/ambientum/raw/master/commands.fish -o ~/.ambientum_rc
+curl -L https://github.com/ambientum/ambientum/raw/master/commands.fish -o ~/.ambientum_rc
 source ~/.ambientum_rc
 ```
 
@@ -74,7 +74,7 @@ source ~/.ambientum_rc
 For others Windows consoles (like PowerShell or Cmder), check this [link](https://github.com/julihermes/ambientum-commands-for-windows).
 
 ```
-curl https://github.com/codecasts/ambientum/raw/master/commands.git-bash -o ~/.ambientum_rc
+curl https://github.com/ambientum/ambientum/raw/master/commands.git-bash -o ~/.ambientum_rc
 source ~/.ambientum_rc
 ```
 
