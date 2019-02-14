@@ -40,7 +40,7 @@ so you can start building your environment with the tools that you may want.
 |Repository                 | Images/Tags                   | Description                                        |
 |---------------------------|-------------------------------|----------------------------------------------------|
 | ambientum/**php**         | `7.3`, `latest`               | PHP v7.3 for command line and queues               |
-|                           | `7.2-nginx`, `latest-nginx`   | PHP v7.3 with Nginx web server                      |
+|                           | `7.3-nginx`, `latest-nginx`   | PHP v7.3 with Nginx web server                      |
 |                           | `7.2`                         | PHP v7.2 for command line and queues               |
 |                           | `7.2-nginx`                   | PHP v7.2 with Nginx web server                      |
 |                           | `7.1`                         | PHP v7.1 for command line and queues               |
