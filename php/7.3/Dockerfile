@@ -5,9 +5,9 @@
 # Image:         CLI/Base
 # Version:       7.3.x
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://php-alpine.codecasts.rocks)
-# Base distro:   Alpine 3.8
+# Base distro:   Alpine 3.9
 #
-FROM alpine:3.8
+FROM alpine:3.9
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
@@ -31,8 +31,10 @@ ADD bashrc /home/ambientum/.bashrc
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update wget && \
-    wget -O /etc/apk/keys/php-alpine.rsa.pub http://php.codecasts.rocks/php-alpine.rsa.pub && \
-    echo "@php http://php.codecasts.rocks/v3.8/php-7.3" >> /etc/apk/repositories && \
+    wget -O /etc/apk/keys/php-alpine.rsa.pub https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/v3.9/main" > /etc/apk/repositories && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/v3.9/community" >> /etc/apk/repositories && \
+    echo "https://dl.bintray.com/php-alpine/v3.9/php-7.3" >> /etc/apk/repositories && \
     apk add --update \
     curl \
     bash \
@@ -49,46 +51,46 @@ RUN echo "---> Enabling PHP-Alpine" && \
     sudo && \
     echo "---> Preparing and Installing PHP" && \
     apk add --update \
-    php7@php \
-    php7-apcu@php \
-    php7-bcmath@php \
-    php7-bz2@php \
-    php7-calendar@php \
-    php7-curl@php \
-    php7-ctype@php \
-    php7-exif@php \
-    php7-fpm@php \
-    php7-gd@php \
-    php7-gmp@php \
-    php7-iconv@php \
-    php7-imagick@php \
-    php7-imap@php \
-    php7-intl@php \
-    php7-json@php \
-    php7-mbstring@php \
-    php7-mysqlnd@php \
-    php7-pdo_mysql@php \
-    php7-mongodb@php \
-    php7-opcache@php \
-    php7-pdo_pgsql@php \
-    php7-pgsql@php \
-    php7-posix@php \
-    php7-redis@php \
-    php7-soap@php \
-    php7-sodium@php \
-    php7-sqlite3@php \
-    php7-pdo_sqlite@php \
-    php7-xdebug@php \
-    php7-xml@php \
-    php7-xmlreader@php \
-    php7-openssl@php \
-    php7-phar@php \
-    php7-xsl@php \
-    php7-zip@php \
-    php7-zlib@php \
-    php7-pcntl@php \
-    php7-cgi@php \
-    php7-phpdbg@php && \
+    php \
+    php-apcu \
+    php-bcmath \
+    php-bz2 \
+    php-calendar \
+    php-curl \
+    php-ctype \
+    php-exif \
+    php-fpm \
+    php-gd \
+    php-gmp \
+    php-iconv \
+    php-imagick \
+    php-imap \
+    php-intl \
+    php-json \
+    php-mbstring \
+    php-mysqlnd \
+    php-pdo_mysql \
+    php-mongodb \
+    php-opcache \
+    php-pdo_pgsql \
+    php-pgsql \
+    php-posix \
+    php-redis \
+    php-soap \
+    php-sodium \
+    php-sqlite3 \
+    php-pdo_sqlite \
+    php-xdebug \
+    php-xml \
+    php-xmlreader \
+    php-openssl \
+    php-phar \
+    php-xsl \
+    php-zip \
+    php-zlib \
+    php-pcntl \
+    php-cgi \
+    php-phpdbg && \
     sudo ln -s /usr/bin/php7 /usr/bin/php && \
     sudo ln -s /usr/bin/php-cgi7 /usr/bin/php-cgi && \
     sudo ln -s /usr/sbin/php-fpm7 /usr/sbin/php-fpm && \
@@ -100,7 +102,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     adduser -D -u 1000 ambientum && \
     mkdir -p /var/www/app && \
     chown -R ambientum:ambientum /var/www && \
-    wget -O /tini https://github.com/krallin/tini/releases/download/v0.16.1/tini-static && \
+    wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
     chmod +x /tini && \
     echo "---> Configuring PHP" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
