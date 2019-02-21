@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # source env only when not on travis-ci.
 if [[ -z $TRAVIS ]]; then
     # if there is a env file, source it
