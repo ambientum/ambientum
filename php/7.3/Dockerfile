@@ -68,6 +68,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php-intl \
     php-json \
     php-mbstring \
+    php-mysqli \
     php-mysqlnd \
     php-pdo_mysql \
     php-memcached \

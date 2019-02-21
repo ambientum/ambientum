@@ -68,6 +68,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-mailparse@php \
     php7-mbstring@php \
     php7-mcrypt@php \
+    php7-mysqli@php \
     php7-mysqlnd@php \
     php7-pdo_mysql@php \
     php7-memcached \
