@@ -70,6 +70,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php-mbstring \
     php-mysqlnd \
     php-pdo_mysql \
+    php-memcached \
     php-mongodb \
     php-opcache \
     php-pdo_pgsql \
