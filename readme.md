@@ -3,6 +3,8 @@
 # Ambientum
 
 [![Build Status](https://travis-ci.org/ambientum/ambientum.svg?branch=master)](https://travis-ci.org/ambientum/ambientum)
+[![npm version](https://badge.fury.io/js/%40ambientum%2Fcli.svg)](https://badge.fury.io/js/%40ambientum%2Fcli)
+[![Known Vulnerabilities](https://snyk.io/test/github/ambientum/cli/badge.svg?targetFile=package.json)](https://snyk.io/test/github/ambientum/cli?targetFile=package.json)
 
 Keeping it uniform between development, staging and production environments is often something not easy.
 On the last years, our buddy Docker has become more and more mature and now it's becoming the standard.
