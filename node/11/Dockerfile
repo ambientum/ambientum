@@ -21,6 +21,11 @@ ENV NPM_PACKAGES="/home/ambientum/.cache/npm-packages" \
     TERM=xterm-256color \
     COLORTERM=truecolor
 
+# Add the ENTRYPOINT script
+ADD start.sh /scripts/start.sh
+ADD bashrc /home/ambientum/.bashrc
+ADD bashrc /home/bashrc
+
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Installing base dependencies" && \
     apk add --update \
@@ -52,15 +57,14 @@ RUN echo "---> Installing base dependencies" && \
 # Define the running user
 USER ambientum
 
-# Add the ENTRYPOINT script
-ADD bashrc /home/ambientum/.bashrc
-
-
 # Application directory
 WORKDIR "/var/www/app"
 
-# Define the entry point that tries to enable newrelic
-ENTRYPOINT ["/tini", "--"]
+# Define the custom entry point.
+ENTRYPOINT ["/tini", "--", "/scripts/start.sh"]
 
 # As non daemon and single base image, it may be used as cli container
 CMD ["/bin/bash"]
+
+# default caching volumes.
+VOLUME /home/ambientum

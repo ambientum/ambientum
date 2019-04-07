@@ -27,6 +27,7 @@ ENV FRAMEWORK=laravel \
 # Add the ENTRYPOINT script
 ADD start.sh /scripts/start.sh
 ADD bashrc /home/ambientum/.bashrc
+ADD bashrc /home/bashrc
 
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Enabling PHP-Alpine" && \
