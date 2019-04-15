@@ -7,7 +7,7 @@
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://php-alpine.codecasts.rocks)
 # Base distro:   Alpine 3.7
 #
-FROM alpine:3.7
+FROM alpine:3.8
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
