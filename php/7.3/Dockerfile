@@ -22,7 +22,8 @@ ENV FRAMEWORK=laravel \
     NR_LICENSE_KEY="" \
     TERM=xterm-256color \
     COLORTERM=truecolor \
-    COMPOSER_PROCESS_TIMEOUT=1200
+    COMPOSER_PROCESS_TIMEOUT=1200 \
+    PHP_INI_DIR=/etc/php7
 
 # Add the ENTRYPOINT script
 ADD start.sh /scripts/start.sh
@@ -109,20 +110,20 @@ RUN echo "---> Enabling PHP-Alpine" && \
     chmod +x /tini && \
     echo "---> Configuring PHP" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
-    sed -i "/user = .*/c\user = ambientum" /etc/php7/php-fpm.d/www.conf && \
-    sed -i "/^group = .*/c\group = ambientum" /etc/php7/php-fpm.d/www.conf && \
-    sed -i "/listen.owner = .*/c\listen.owner = ambientum" /etc/php7/php-fpm.d/www.conf && \
-    sed -i "/listen.group = .*/c\listen.group = ambientum" /etc/php7/php-fpm.d/www.conf && \
-    sed -i "/listen = .*/c\listen = [::]:9000" /etc/php7/php-fpm.d/www.conf && \
-    sed -i "/;access.log = .*/c\access.log = /proc/self/fd/2" /etc/php7/php-fpm.d/www.conf && \
-    sed -i "/;clear_env = .*/c\clear_env = no" /etc/php7/php-fpm.d/www.conf && \
-    sed -i "/;catch_workers_output = .*/c\catch_workers_output = yes" /etc/php7/php-fpm.d/www.conf && \
-    sed -i "/pid = .*/c\;pid = /run/php/php7.1-fpm.pid" /etc/php7/php-fpm.conf && \
-    sed -i "/;daemonize = .*/c\daemonize = yes" /etc/php7/php-fpm.conf && \
-    sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php7/php-fpm.conf && \
-    sed -i "/post_max_size = .*/c\post_max_size = 1000M" /etc/php7/php.ini && \
-    sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php7/php.ini && \
-    sed -i "/zend_extension=xdebug/c\;zend_extension=xdebug" /etc/php7/conf.d/00_xdebug.ini && \
+    sed -i "/user = .*/c\user = ambientum" $PHP_INI_DIR/php-fpm.d/www.conf && \
+    sed -i "/^group = .*/c\group = ambientum" $PHP_INI_DIR/php-fpm.d/www.conf && \
+    sed -i "/listen.owner = .*/c\listen.owner = ambientum" $PHP_INI_DIR/php-fpm.d/www.conf && \
+    sed -i "/listen.group = .*/c\listen.group = ambientum" $PHP_INI_DIR/php-fpm.d/www.conf && \
+    sed -i "/listen = .*/c\listen = [::]:9000" $PHP_INI_DIR/php-fpm.d/www.conf && \
+    sed -i "/;access.log = .*/c\access.log = /proc/self/fd/2" $PHP_INI_DIR/php-fpm.d/www.conf && \
+    sed -i "/;clear_env = .*/c\clear_env = no" $PHP_INI_DIR/php-fpm.d/www.conf && \
+    sed -i "/;catch_workers_output = .*/c\catch_workers_output = yes" $PHP_INI_DIR/php-fpm.d/www.conf && \
+    sed -i "/pid = .*/c\;pid = /run/php/php7.1-fpm.pid" $PHP_INI_DIR/php-fpm.conf && \
+    sed -i "/;daemonize = .*/c\daemonize = yes" $PHP_INI_DIR/php-fpm.conf && \
+    sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" $PHP_INI_DIR/php-fpm.conf && \
+    sed -i "/post_max_size = .*/c\post_max_size = 1000M" $PHP_INI_DIR/php.ini && \
+    sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" $PHP_INI_DIR/php.ini && \
+    sed -i "/zend_extension=xdebug/c\;zend_extension=xdebug" $PHP_INI_DIR/conf.d/00_xdebug.ini && \
     echo "---> Adding Support for NewRelic" && \
     mkdir /tmp/newrelic && \
     cd /tmp/newrelic && \
