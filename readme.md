@@ -71,7 +71,7 @@ npm -g install @ambientum/cli
 Option 2: Using pre-built binaries at https://github.com/ambientum/cli/releases/tag/0.1.1:
 
 ```
-curl -L https://github.com/ambientum/cli/releases/download/v0.1.1/amb-`uname -s` -o /usr/local/bin/amb
+sudo curl -L "https://github.com/ambientum/cli/releases/download/0.1.1/amb-$(uname -s | tr "[:upper:]" "[:lower:]")" -o /usr/local/bin/amb
 chmod +x /usr/local/bin/amb
 ```
 
