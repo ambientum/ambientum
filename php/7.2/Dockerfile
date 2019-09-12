@@ -12,6 +12,9 @@ FROM alpine:3.8
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
+# Avoid cache use when PHP version changes
+ENV CURRENT_PHP_VERSION=7.2.18
+
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
     OPCACHE_MODE="normal" \
@@ -32,8 +35,10 @@ ADD bashrc /home/bashrc
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update wget && \
-    wget -O /etc/apk/keys/php-alpine.rsa.pub http://php.codecasts.rocks/php-alpine.rsa.pub && \
-    echo "@php http://php.codecasts.rocks/v3.8/php-7.2" >> /etc/apk/repositories && \
+    wget -O /etc/apk/keys/php-alpine.rsa.pub https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/v3.8/main" > /etc/apk/repositories && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/v3.8/community" >> /etc/apk/repositories && \
+    echo "@php https://dl.bintray.com/php-alpine/v3.8/php-7.2" >> /etc/apk/repositories && \
     apk add --update \
     curl \
     bash \
@@ -119,6 +124,8 @@ RUN echo "---> Enabling PHP-Alpine" && \
     sed -i "/pid = .*/c\;pid = /run/php/php7.1-fpm.pid" /etc/php7/php-fpm.conf && \
     sed -i "/;daemonize = .*/c\daemonize = yes" /etc/php7/php-fpm.conf && \
     sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php7/php-fpm.conf && \
+    sed -i "/;rlimit_files = .*/c\rlimit_files = 8192" /etc/php7/php-fpm.conf && \
+    sed -i "/;rlimit_core = .*/c\rlimit_core = unlimited" /etc/php7/php-fpm.conf && \
     sed -i "/post_max_size = .*/c\post_max_size = 1000M" /etc/php7/php.ini && \
     sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php7/php.ini && \
     sed -i "/zend_extension=xdebug/c\;zend_extension=xdebug" /etc/php7/conf.d/00_xdebug.ini && \
@@ -135,6 +142,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     mkdir /var/log/newrelic && \
     chown -R ambientum:ambientum /var/log/newrelic && \
     chown -R ambientum:ambientum /home/ambientum && \
+    chown -R ambientum:ambientum /scripts && \
     chmod +x /scripts/start.sh && \
     rm -rf /tmp/*
 
