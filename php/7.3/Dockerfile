@@ -142,6 +142,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     chown -R ambientum:ambientum /var/log/newrelic && \
     chown -R ambientum:ambientum /home/ambientum && \
     chown -R ambientum:ambientum /scripts && \
+    chown -R ambientum:ambientum /home/bashrc && \
     chmod +x /scripts/start.sh && \
     rm -rf /tmp/*
 

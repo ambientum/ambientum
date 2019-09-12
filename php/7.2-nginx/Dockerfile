@@ -36,8 +36,9 @@ RUN echo "--> Installing Nginx" && \
     chown -R ambientum:ambientum /var/run/nginx && \
     chown -R ambientum:ambientum /var/log/nginx && \
     chown -R ambientum:ambientum /var/lib/nginx && \
-    chmod +x /home/start.sh && \
-    chown -R ambientum:ambientum /home/ambientum
+    chown -R ambientum:ambientum /home/ambientum && \
+    chown -R ambientum:ambientum /home/start.sh && \
+    chmod +x /home/start.sh
 
 # Define the running user
 USER ambientum
