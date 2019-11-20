@@ -52,6 +52,8 @@ RUN echo "---> Installing base dependencies" && \
     wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
     chmod +x /tini && \
     chown -R ambientum:ambientum /home/ambientum && \
+    chown -R ambientum:ambientum /scripts/start.sh && \
+    chmod +x /scripts/start.sh && \
     rm -rf /tmp/*
 
 # Define the running user

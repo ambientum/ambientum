@@ -7,7 +7,7 @@
 # Strategy:      Based on mhart/alpine-node:13
 # Base distro:   Alpine 3.10
 #
-FROM mhart/alpine-node:12
+FROM mhart/alpine-node:13
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
@@ -52,6 +52,8 @@ RUN echo "---> Installing base dependencies" && \
     wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
     chmod +x /tini && \
     chown -R ambientum:ambientum /home/ambientum && \
+    chown -R ambientum:ambientum /scripts/start.sh && \
+    chmod +x /scripts/start.sh && \
     rm -rf /tmp/*
 
 # Define the running user
