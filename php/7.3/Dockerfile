@@ -13,7 +13,7 @@ FROM alpine:3.9
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Avoid cache use when PHP version changes
-ENV CURRENT_PHP_VERSION=7.2.18
+ENV CURRENT_PHP_VERSION=7.3.11
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \

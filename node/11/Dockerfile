@@ -4,7 +4,7 @@
 # Repository:    Node.JS
 # Image:         CLI/Base
 # Version:       11.x.x
-# Strategy:      Based on mhart/alpine-node
+# Strategy:      Based on mhart/alpine-node:11
 # Base distro:   Alpine 3.8
 #
 FROM mhart/alpine-node:11
@@ -49,7 +49,7 @@ RUN echo "---> Installing base dependencies" && \
     mkdir -p /var/www/app && \
     chown -R ambientum:ambientum /var/www && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
-    wget -O /tini https://github.com/krallin/tini/releases/download/v0.16.1/tini-static && \
+    wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
     chmod +x /tini && \
     chown -R ambientum:ambientum /home/ambientum && \
     rm -rf /tmp/*

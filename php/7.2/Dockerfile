@@ -13,7 +13,7 @@ FROM alpine:3.8
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Avoid cache use when PHP version changes
-ENV CURRENT_PHP_VERSION=7.2.18
+ENV CURRENT_PHP_VERSION=7.2.24
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
@@ -109,7 +109,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     adduser -D -u 1000 ambientum && \
     mkdir -p /var/www/app && \
     chown -R ambientum:ambientum /var/www && \
-    wget -O /tini https://github.com/krallin/tini/releases/download/v0.16.1/tini-static && \
+    wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
     chmod +x /tini && \
     echo "---> Configuring PHP" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
