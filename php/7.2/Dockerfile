@@ -41,6 +41,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     echo "@php https://dl.bintray.com/php-alpine/v3.8/php-7.2" >> /etc/apk/repositories && \
     apk add --update \
     curl \
+    openssh \
     bash \
     fontconfig \
     libxrender \

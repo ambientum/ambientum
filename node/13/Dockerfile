@@ -31,6 +31,10 @@ RUN echo "---> Installing base dependencies" && \
     apk add --update \
     wget \
     curl \
+    openssh \
+    alpine-sdk \
+    automake \
+    autoconf \
     bash \
     fontconfig \
     libxrender \
