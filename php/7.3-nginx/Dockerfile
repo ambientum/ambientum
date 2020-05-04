@@ -47,7 +47,7 @@ USER ambientum
 # YOU SHOULD REPLACE WITH YOUR OWN CERT.
 RUN openssl req -x509 -nodes -days 3650 \
    -newkey rsa:2048 -keyout /home/ssl/nginx.key \
-   -out /home/ssl/nginx.crt -subj "/C=AM/ST=Ambientum/L=Ambientum/O=Ambientum/CN=*.dev" && \
+   -out /home/ssl/nginx.crt -subj "/C=AM/ST=Ambientum/L=Ambientum/O=Ambientum/CN=*.test" && \
    openssl dhparam -out /home/ssl/dhparam.pem 2048
 
 # Application directory

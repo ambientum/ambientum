@@ -3,17 +3,17 @@
 #
 # Repository:    PHP
 # Image:         CLI/Base
-# Version:       7.3.x
+# Version:       7.4.x
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://php-alpine.codecasts.rocks)
-# Base distro:   Alpine 3.9
+# Base distro:   Alpine 3.10
 #
-FROM alpine:3.9
+FROM alpine:3.10
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Avoid cache use when PHP version changes
-ENV CURRENT_PHP_VERSION=7.3.11
+ENV CURRENT_PHP_VERSION=7.4.3
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
@@ -36,9 +36,9 @@ ADD bashrc /home/bashrc
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update wget && \
     wget -O /etc/apk/keys/php-alpine.rsa.pub https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v3.9/main" > /etc/apk/repositories && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v3.9/community" >> /etc/apk/repositories && \
-    echo "https://dl.bintray.com/php-alpine/v3.9/php-7.3" >> /etc/apk/repositories && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/v3.10/main" > /etc/apk/repositories && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories && \
+    echo "https://dl.bintray.com/php-alpine/v3.10/php-7.4" >> /etc/apk/repositories && \
     apk add --update \
     curl \
     openssh \
@@ -137,7 +137,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     gzip -dc newrelic*.tar.gz | tar xf - && \
     cd newrelic-php5* && \
     rm -f /usr/lib/php7/modules/newrelic.so && \
-    cp ./agent/x64/newrelic-20180731.so /usr/lib/php7/modules/newrelic.so && \
+    cp ./agent/x64/newrelic-20190902.so /usr/lib/php7/modules/newrelic.so && \
     cp ./daemon/newrelic-daemon.x64 /usr/bin/newrelic-daemon && \
     cp ./scripts/newrelic.ini.template /scripts/newrelic.ini && \
     mkdir /var/log/newrelic && \
