@@ -17,6 +17,8 @@ ENV CURRENT_PHP_VERSION=7.4.3
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
+    CAROOT=/home/ssl \
+    SSL_DOMAIN="ambientum.test" \
     OPCACHE_MODE="normal" \
     PHP_MEMORY_LIMIT=256M \
     XDEBUG_ENABLED=false \
@@ -109,7 +111,9 @@ RUN echo "---> Enabling PHP-Alpine" && \
     echo "---> Adding the ambientum user" && \
     adduser -D -u 1000 ambientum && \
     mkdir -p /var/www/app && \
+    mkdir -p /home/ssl && \
     chown -R ambientum:ambientum /var/www && \
+    chown -R ambientum:ambientum /home/ssl && \
     wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
     chmod +x /tini && \
     echo "---> Configuring PHP" && \
@@ -148,8 +152,14 @@ RUN echo "---> Enabling PHP-Alpine" && \
     chmod +x /scripts/start.sh && \
     rm -rf /tmp/*
 
+# copy mkcert binary from mkcert image.
+COPY --from=ambientum/mkcert:1.4 /bin/mkcert /bin/mkcert
+
 # Define the running user
 USER ambientum
+
+# make cert root available.
+RUN mkcert -install
 
 # Application directory
 WORKDIR "/var/www/app"

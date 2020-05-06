@@ -30,8 +30,6 @@ RUN echo "--> Installing Nginx" && \
     echo "--> Fixing permissions" && \
     mkdir /var/tmp/nginx && \
     mkdir /var/run/nginx && \
-    mkdir /home/ssl && \
-    chown -R ambientum:ambientum /home/ssl && \
     chown -R ambientum:ambientum /var/tmp/nginx && \
     chown -R ambientum:ambientum /var/run/nginx && \
     chown -R ambientum:ambientum /var/log/nginx && \
@@ -45,9 +43,7 @@ USER ambientum
 
 # Pre generate some SSL
 # YOU SHOULD REPLACE WITH YOUR OWN CERT.
-RUN openssl req -x509 -nodes -days 3650 \
-   -newkey rsa:2048 -keyout /home/ssl/nginx.key \
-   -out /home/ssl/nginx.crt -subj "/C=AM/ST=Ambientum/L=Ambientum/O=Ambientum/CN=*.test" && \
+RUN mkcert -cert-file=/home/ssl/nginx.crt -key-file=/home/ssl/nginx.key "${SSL_DOMAIN}" && \
    openssl dhparam -out /home/ssl/dhparam.pem 2048
 
 # Application directory
