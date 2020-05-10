@@ -17,10 +17,8 @@ LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 # Reset user to root to allow software install
 USER root
 
-# Copy nginx and entry script
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY ssl.conf /etc/nginx/ssl.conf
-COPY sites /etc/nginx/sites
+# copy config and start CMD.
+COPY etc /etc
 COPY start.sh  /home/start.sh
 
 # Install nginx from dotdeb (already enabled on base image)
@@ -40,11 +38,6 @@ RUN echo "--> Installing Nginx" && \
 
 # Define the running user
 USER ambientum
-
-# Pre generate some SSL
-# YOU SHOULD REPLACE WITH YOUR OWN CERT.
-RUN mkcert -cert-file=/home/ssl/nginx.crt -key-file=/home/ssl/nginx.key "${SSL_DOMAIN}" && \
-   openssl dhparam -out /home/ssl/dhparam.pem 2048
 
 # Application directory
 WORKDIR "/var/www/app"

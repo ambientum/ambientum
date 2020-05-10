@@ -17,7 +17,7 @@ ENV CURRENT_PHP_VERSION=7.2.24
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
-    CAROOT=/home/ssl \
+    CAROOT=/home/ambientum/.mkcert \
     SSL_DOMAIN="ambientum.test" \
     OPCACHE_MODE="normal" \
     PHP_MEMORY_LIMIT=256M \
@@ -30,18 +30,17 @@ ENV FRAMEWORK=laravel \
     COMPOSER_PROCESS_TIMEOUT=1200
 
 # Add the ENTRYPOINT script
-ADD start.sh /scripts/start.sh
-ADD bashrc /home/ambientum/.bashrc
-ADD bashrc /home/bashrc
+COPY etc /etc
+COPY scripts /scripts
+COPY bashrc /home/bashrc
+
+# copy mkcert binary from mkcert image.
+COPY --from=ambientum/mkcert:1.4 /bin/mkcert /bin/mkcert
 
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Enabling PHP-Alpine" && \
-    apk add --update wget && \
-    wget -O /etc/apk/keys/php-alpine.rsa.pub https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v3.8/main" > /etc/apk/repositories && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v3.8/community" >> /etc/apk/repositories && \
-    echo "@php https://dl.bintray.com/php-alpine/v3.8/php-7.2" >> /etc/apk/repositories && \
     apk add --update \
+    wget \
     curl \
     openssh \
     bash \
@@ -149,26 +148,20 @@ RUN echo "---> Enabling PHP-Alpine" && \
     chown -R ambientum:ambientum /home/ambientum && \
     chown -R ambientum:ambientum /scripts && \
     chown -R ambientum:ambientum /home/bashrc && \
-    chmod +x /scripts/start.sh && \
+    chmod +x /scripts/*.sh && \
     rm -rf /tmp/*
-
-# copy mkcert binary from mkcert image.
-COPY --from=ambientum/mkcert:1.4 /bin/mkcert /bin/mkcert
 
 # Define the running user
 USER ambientum
-
-# make cert root available.
-RUN mkcert -install
 
 # Application directory
 WORKDIR "/var/www/app"
 
 # Environment variables
-ENV PATH=/home/ambientum/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH=/scripts:/home/ambientum/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Define the entry point that tries to enable newrelic
-ENTRYPOINT ["/tini", "--", "/scripts/start.sh"]
+ENTRYPOINT ["/tini", "--", "/scripts/entrypoint.sh"]
 
 # As non daemon and single base image, it may be used as cli container
 CMD ["/bin/bash"]

@@ -6,6 +6,9 @@ sudo chown -R ambientum:ambientum /home/ambientum
 # copy bash config into place.
 cp /home/bashrc /home/ambientum/.bashrc
 
+# run update-cert script.
+bash /scripts/update-cert.sh
+
 # Set PHP memory limit value.
 sudo sed -i "/memory_limit = .*/c\memory_limit = $PHP_MEMORY_LIMIT" /etc/php7/php.ini
 
