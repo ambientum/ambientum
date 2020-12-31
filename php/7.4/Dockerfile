@@ -4,16 +4,16 @@
 # Repository:    PHP
 # Image:         CLI/Base
 # Version:       7.4.x
-# Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://php-alpine.codecasts.rocks)
-# Base distro:   Alpine 3.10
+# Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://github.com/codecasts/php-alpine)
+# Base distro:   Alpine 3.11
 #
-FROM alpine:3.10
+FROM mhart/alpine-node:14
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Avoid cache use when PHP version changes
-ENV CURRENT_PHP_VERSION=7.4.3
+ENV CURRENT_PHP_VERSION=7.4.13
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
@@ -27,7 +27,11 @@ ENV FRAMEWORK=laravel \
     NR_LICENSE_KEY="" \
     TERM=xterm-256color \
     COLORTERM=truecolor \
-    COMPOSER_PROCESS_TIMEOUT=1200
+    COMPOSER_PROCESS_TIMEOUT=1200 \
+    NPM_PACKAGES="/home/ambientum/.cache/npm-packages" \
+    NODE_PATH="/home/ambientum/.cache/npm-packages/lib/node_modules" \
+    MANPATH="/home/ambientum/.cache/npm-packages/share/man:/usr/share/man" \
+    PREFIX='/home/ambientum/.local'
 
 # Add the ENTRYPOINT script
 COPY etc /etc
@@ -100,6 +104,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php-gettext \
     php-cgi \
     php-phpdbg && \
+    echo "Set disable_coredump false" >> /etc/sudo.conf && \
     sudo ln -s /usr/bin/php7 /usr/bin/php && \
     sudo ln -s /usr/bin/php-cgi7 /usr/bin/php-cgi && \
     sudo ln -s /usr/sbin/php-fpm7 /usr/sbin/php-fpm && \
@@ -158,7 +163,7 @@ USER ambientum
 WORKDIR "/var/www/app"
 
 # Environment variables
-ENV PATH=/scripts:/home/ambientum/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH=/scripts:/home/ambientum/.local/bin:/home/ambientum/.cache/npm-packages/bin:/home/ambientum/.yarn/bin:/home/ambientum/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Define the entry point that tries to enable newrelic
 ENTRYPOINT ["/tini", "--", "/scripts/entrypoint.sh"]

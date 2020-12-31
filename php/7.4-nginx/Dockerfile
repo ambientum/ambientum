@@ -5,7 +5,7 @@
 # Image:         PHP-FPM + Nginx
 # Version:       7.4.x
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) + Official Nginx
-# Base distro:   Alpine 3.10
+# Base distro:   Alpine 3.11
 #
 # Inspired by official PHP images.
 #
