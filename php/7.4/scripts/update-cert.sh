@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# create directory and make sure permissions are set.
+mkdir -p "${CAROOT}" && chown -R ambientum:ambientum "${CAROOT}"
+
 # set domain as ambientum.local if not set.
 SSL_DOMAIN=${SSL_DOMAIN:-ambientum.local}
 # set CAROOT if not already.
@@ -8,10 +11,13 @@ CAROOT=${CAROOT:-/home/ambientum/.mkcert}
 # get last issued domain
 SSL_LAST_DOMAIN=$(cat "${CAROOT}/last-domain" 2>/dev/null)
 
+# debug both variables.
+echo -e "${SSL_LAST_DOMAIN}"
+echo -e "${SSL_DOMAIN}"
+
 # Regenerate SSL certificate if different than default one.
 if [[ "${SSL_DOMAIN}" != "${SSL_LAST_DOMAIN}" ]]; then
-  # create directory and make sure permissions are set.
-  mkdir -p "${CAROOT}" && chown -R ambientum:ambientum "${CAROOT}"
+
   # install / trust CA locally.
   mkcert -install
   # generate SSL certificates for $SSL_DOMAIN

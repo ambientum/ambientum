@@ -18,7 +18,7 @@ ENV CURRENT_PHP_VERSION=8.0.0
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
     CAROOT=/home/ambientum/.mkcert \
-    SSL_DOMAIN="ambientum.test" \
+    SSL_DOMAIN="ambientum.localhost" \
     OPCACHE_MODE="normal" \
     PHP_MEMORY_LIMIT=256M \
     XDEBUG_ENABLED=false \
@@ -141,6 +141,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     chown -R ambientum:ambientum /scripts && \
     chown -R ambientum:ambientum /home/bashrc && \
     chmod +x /scripts/*.sh && \
+    /scripts/update-cert.sh && \
     rm -rf /tmp/*
 
 # Define the running user
