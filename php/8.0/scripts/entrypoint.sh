@@ -4,7 +4,7 @@
 sudo chown -R ambientum:ambientum /home/ambientum
 
 # copy bash config into place.
-cp /home/bashrc /home/ambientum/.bashrc
+# cp /home/bashrc /home/ambientum/.bashrc
 
 # run update-cert script.
 bash /scripts/update-cert.sh

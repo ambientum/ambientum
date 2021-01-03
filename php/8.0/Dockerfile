@@ -16,7 +16,8 @@ LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 ENV CURRENT_PHP_VERSION=8.0.0
 
 # Variables for enabling NewRelic
-ENV FRAMEWORK=laravel \
+ENV ENV="/etc/profile" \
+    FRAMEWORK=laravel \
     CAROOT=/home/ambientum/.mkcert \
     SSL_DOMAIN="ambientum.localhost" \
     OPCACHE_MODE="normal" \
@@ -36,7 +37,6 @@ ENV FRAMEWORK=laravel \
 # Add the ENTRYPOINT script
 COPY etc /etc
 COPY scripts /scripts
-COPY bashrc /home/bashrc
 
 # copy mkcert binary from mkcert image.
 COPY --from=ambientum/mkcert:1.4 /bin/mkcert /bin/mkcert
@@ -139,7 +139,6 @@ RUN echo "---> Enabling PHP-Alpine" && \
     sed -i "/zend_extension=xdebug/c\;zend_extension=xdebug" /etc/php8/conf.d/00_xdebug.ini && \
     chown -R ambientum:ambientum /home/ambientum && \
     chown -R ambientum:ambientum /scripts && \
-    chown -R ambientum:ambientum /home/bashrc && \
     chmod +x /scripts/*.sh && \
     /scripts/update-cert.sh && \
     rm -rf /tmp/*
@@ -154,7 +153,7 @@ WORKDIR "/var/www/app"
 ENV PATH=/scripts:/home/ambientum/.local/bin:/home/ambientum/.cache/npm-packages/bin:/home/ambientum/.yarn/bin:/home/ambientum/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Define the entry point that tries to enable newrelic
-ENTRYPOINT ["/tini", "--", "/scripts/entrypoint.sh"]
+ENTRYPOINT ["/scripts/entrypoint.sh"]
 
 # As non daemon and single base image, it may be used as cli container
-CMD ["/bin/bash"]
+CMD ["/usr/bin/env", "ash"]

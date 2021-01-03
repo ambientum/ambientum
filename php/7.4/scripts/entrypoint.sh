@@ -1,10 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ash
 
 # fix home directory permissions.
 sudo chown -R ambientum:ambientum /home/ambientum
-
-# copy bash config into place.
-cp /home/bashrc /home/ambientum/.bashrc
 
 # run update-cert script.
 bash /scripts/update-cert.sh
