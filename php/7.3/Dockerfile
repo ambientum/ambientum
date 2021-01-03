@@ -120,6 +120,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     chmod +x /tini && \
     echo "---> Configuring PHP" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
+    sed -i "/memory_limit = .*/c\memory_limit = $PHP_MEMORY_LIMIT" /etc/php7/php.ini && \
     sed -i "/user = .*/c\user = ambientum" /etc/php7/php-fpm.d/www.conf && \
     sed -i "/^group = .*/c\group = ambientum" /etc/php7/php-fpm.d/www.conf && \
     sed -i "/listen.owner = .*/c\listen.owner = ambientum" /etc/php7/php-fpm.d/www.conf && \
