@@ -101,6 +101,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-gettext@php \
     php7-cgi@php \
     php7-zlib@php \
+    php7-pcov@php \
     php7-phpdbg@php && \
     echo "Set disable_coredump false" >> /etc/sudo.conf && \
     sudo ln -s /usr/bin/php7 /usr/bin/php && \

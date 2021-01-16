@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# source profile always.
+source /etc/profile
+
 # fix home directory permissions.
 sudo chown -R ambientum:ambientum /home/ambientum
 
