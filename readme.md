@@ -43,14 +43,19 @@ so you can start building your environment with the tools that you may want.
 
 |Repository                 | Images/Tags                   | Description                                        |
 |---------------------------|-------------------------------|----------------------------------------------------|
-| ambientum/**php**         | `7.3`, `latest`               | PHP v7.3 for command line and queues               |
-|                           | `7.3-nginx`, `latest-nginx`   | PHP v7.3 with Nginx web server                      |
+| ambientum/**php**         | `8.0`, `latest`               | PHP v8.0 for command line and queues               |
+|                           | `8.0-nginx`, `latest-nginx`   | PHP v8.0 with Nginx web server                     |
+|                           | `7.4`                         | PHP v7.4 for command line and queues               |
+|                           | `7.4-nginx`                   | PHP v7.4 with Nginx web server                     |
+|                           | `7.3`                         | PHP v7.3 for command line and queues               |
+|                           | `7.3-nginx`                   | PHP v7.3 with Nginx web server                     |
 |                           | `7.2`                         | PHP v7.2 for command line and queues               |
-|                           | `7.2-nginx`                   | PHP v7.2 with Nginx web server                      |
+|                           | `7.2-nginx`                   | PHP v7.2 with Nginx web server                     |
 |                           | `7.1`                         | PHP v7.1 for command line and queues               |
-|                           | `7.1-nginx`                   | PHP v7.1 with Nginx web server                      |
-| ambientum/**node**        | `11`, `latest`, `current`     | Node.js CURRENT (v11.x_                                       |
-|                           | `10`, `lts`                   | Node.js LTS (v10.x)                                       |
+|                           | `7.1-nginx`                   | PHP v7.1 with Nginx web server                     |
+| ambientum/**node**        | `15`, `latest`, `current`     | Node.js CURRENT (v11.x)                            |
+|                           | `14`, `lts`                   | Node.js LTS (v10.x)                                |
+|                           | `13`, `12`, `11`, `10`        | Node.js previous versions                          |
 
 ## Quick usage guide
 
@@ -71,7 +76,7 @@ npm -g install @ambientum/cli
 Option 2: Using pre-built binaries at https://github.com/ambientum/cli/releases/tag/0.1.1:
 
 ```
-curl -L https://github.com/ambientum/cli/releases/download/v0.1.1/amb-`uname -s` -o /usr/local/bin/amb
+curl -L https://github.com/ambientum/cli/releases/download/0.1.1/amb-`uname -s` -o /usr/local/bin/amb
 chmod +x /usr/local/bin/amb
 ```
 
