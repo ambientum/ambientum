@@ -133,7 +133,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     sed -i "/;access.log = .*/c\access.log = /proc/self/fd/2" /etc/php7/php-fpm.d/www.conf && \
     sed -i "/;clear_env = .*/c\clear_env = no" /etc/php7/php-fpm.d/www.conf && \
     sed -i "/;catch_workers_output = .*/c\catch_workers_output = yes" /etc/php7/php-fpm.d/www.conf && \
-    sed -i "/pid = .*/c\;pid = /run/php/php7.1-fpm.pid" /etc/php7/php-fpm.conf && \
+    sed -i "/pid = .*/c\;pid = /run/php/php7.4-fpm.pid" /etc/php7/php-fpm.conf && \
     sed -i "/;daemonize = .*/c\daemonize = yes" /etc/php7/php-fpm.conf && \
     sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php7/php-fpm.conf && \
     sed -i "/;rlimit_files = .*/c\rlimit_files = 8192" /etc/php7/php-fpm.conf && \
