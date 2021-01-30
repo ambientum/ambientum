@@ -53,6 +53,7 @@ RUN echo "---> Installing base dependencies" && \
     mkdir -p /var/www/app && \
     chown -R ambientum:ambientum /var/www && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
+    echo "set disable_coredump false" >> /etc/sudo.conf && \
     wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
     chmod +x /tini && \
     chown -R ambientum:ambientum /home/ambientum && \
