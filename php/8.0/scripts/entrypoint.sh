@@ -49,8 +49,10 @@ if [[ $XDEBUG_ENABLED == true ]]; then
     echo "xdebug.cli_color=1" | sudo tee -a /etc/php8/conf.d/00_xdebug.ini > /dev/null
     echo "xdebug.show_local_vars=1" | sudo tee -a /etc/php8/conf.d/00_xdebug.ini > /dev/null
     echo 'xdebug.idekey = "ambientum"' | sudo tee -a /etc/php8/conf.d/00_xdebug.ini > /dev/null
-
 fi
+
+# update ca certificates, without failing.
+sudo update-ca-certificates 2>/dev/null || true
 
 # run the original command
 exec "$@"

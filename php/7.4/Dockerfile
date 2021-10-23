@@ -44,10 +44,12 @@ COPY --from=ambientum/mkcert:1.4 /bin/mkcert /bin/mkcert
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update \
+    ca-certificates \
     wget \
     curl \
     openssh \
     bash \
+    ffmpeg \
     fontconfig \
     libxrender \
     libxext \
@@ -58,7 +60,8 @@ RUN echo "---> Enabling PHP-Alpine" && \
     unzip \
     wget \
     make \
-    sudo && \
+    sudo \
+    s6 && \
     echo "---> Preparing and Installing PHP" && \
     apk add --update \
     php7@php \
@@ -125,6 +128,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     chmod +x /tini && \
     echo "---> Configuring PHP" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
+    sed -i "/;error_log = .*/c\error_log = /proc/self/fd/2" /etc/php7/php.ini && \
     sed -i "/memory_limit = .*/c\memory_limit = $PHP_MEMORY_LIMIT" /etc/php7/php.ini && \
     sed -i "/user = .*/c\user = ambientum" /etc/php7/php-fpm.d/www.conf && \
     sed -i "/^group = .*/c\group = ambientum" /etc/php7/php-fpm.d/www.conf && \
