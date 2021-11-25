@@ -13,7 +13,7 @@ FROM mhart/alpine-node:14
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Avoid cache use when PHP version changes
-ENV CURRENT_PHP_VERSION=7.4.13
+ENV CURRENT_PHP_VERSION=7.4.26
 
 # Variables for enabling NewRelic
 ENV ENV="/etc/profile" \
@@ -45,6 +45,8 @@ COPY --from=ambientum/mkcert:1.4 /bin/mkcert /bin/mkcert
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update \
     ca-certificates \
+    tar \
+    jq \
     wget \
     curl \
     openssh \

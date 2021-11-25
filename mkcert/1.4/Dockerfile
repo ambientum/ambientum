@@ -14,7 +14,7 @@ FROM golang:1.14-alpine AS build-mkcert
 ENV GO111MODULE=off
 
 # explicit version (for cache-friendly upgrades).
-ENV MKCERT_VERSION='1.4.1'
+ENV MKCERT_VERSION='1.4.3'
 
 # build it.
 RUN apk add --update git bash && \
@@ -32,7 +32,7 @@ FROM alpine:3.10
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # explicit version (for cache-friendly upgrades).
-ENV MKCERT_VERSION='v1.4.1'
+ENV MKCERT_VERSION='v1.4.3'
 
 # make sure terminal is properly configured.
 ENV TERM=xterm-256color \

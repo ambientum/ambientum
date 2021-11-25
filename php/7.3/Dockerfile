@@ -13,7 +13,7 @@ FROM alpine:3.11
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Avoid cache use when PHP version changes
-ENV CURRENT_PHP_VERSION=7.3.25
+ENV CURRENT_PHP_VERSION=7.3.33
 
 # Variables for enabling NewRelic
 ENV ENV="/etc/profile" \
@@ -41,6 +41,8 @@ COPY --from=ambientum/mkcert:1.4 /bin/mkcert /bin/mkcert
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update \
     ca-certificates \
+    tar \
+    jq \
     wget \
     curl \
     openssh \
