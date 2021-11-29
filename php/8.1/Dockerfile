@@ -3,17 +3,17 @@
 #
 # Repository:    PHP
 # Image:         CLI/Base
-# Version:       8.0.x
+# Version:       8.1.x
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://github.com/codecasts/php-alpine)
-# Base distro:   Alpine 3.12
+# Base distro:   Alpine 3.13
 #
-FROM mhart/alpine-node:15
+FROM mhart/alpine-node:16
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Avoid cache use when PHP version changes
-ENV CURRENT_PHP_VERSION=8.0.13
+ENV CURRENT_PHP_VERSION=8.1.0
 
 # Variables for enabling NewRelic
 ENV ENV="/etc/profile" \

@@ -60,7 +60,7 @@ RUN echo "---> Enabling alpine repositories" && \
     chown -R ambientum:ambientum /var/www && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
     echo "---> Configuring init system" && \
-    wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
+    wget -O /tini https://github.com/krallin/tini/releases/download/v0.19.0/tini-static && \
     chmod +x /tini && \
     echo "---> Fixing permissions" && \
     chown -R ambientum:ambientum /home/ambientum && \
