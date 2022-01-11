@@ -7,7 +7,7 @@
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://github.com/codecasts/php-alpine)
 # Base distro:   Alpine 3.12
 #
-FROM mhart/alpine-node:15
+FROM alpine:3.12
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
@@ -123,8 +123,6 @@ RUN echo "---> Enabling PHP-Alpine" && \
     mkdir -p /home/ssl && \
     chown -R ambientum:ambientum /var/www && \
     chown -R ambientum:ambientum /home/ssl && \
-    wget -O /tini https://github.com/krallin/tini/releases/download/v0.19.0/tini-static && \
-    chmod +x /tini && \
     echo "---> Configuring PHP" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
     sed -i "/;error_log = .*/c\error_log = /proc/self/fd/2" /etc/php8/php.ini && \

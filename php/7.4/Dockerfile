@@ -7,7 +7,7 @@
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://github.com/codecasts/php-alpine)
 # Base distro:   Alpine 3.11
 #
-FROM mhart/alpine-node:14
+FROM alpine:3.11
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
@@ -126,8 +126,6 @@ RUN echo "---> Enabling PHP-Alpine" && \
     mkdir -p /home/ssl && \
     chown -R ambientum:ambientum /var/www && \
     chown -R ambientum:ambientum /home/ssl && \
-    wget -O /tini https://github.com/krallin/tini/releases/download/v0.19.0/tini-static && \
-    chmod +x /tini && \
     echo "---> Configuring PHP" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
     sed -i "/;error_log = .*/c\error_log = /proc/self/fd/2" /etc/php7/php.ini && \
@@ -148,18 +146,6 @@ RUN echo "---> Enabling PHP-Alpine" && \
     sed -i "/post_max_size = .*/c\post_max_size = 1000M" /etc/php7/php.ini && \
     sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php7/php.ini && \
     sed -i "/zend_extension=xdebug/c\;zend_extension=xdebug" /etc/php7/conf.d/00_xdebug.ini && \
-    echo "---> Adding Support for NewRelic" && \
-    mkdir /tmp/newrelic && \
-    cd /tmp/newrelic && \
-    wget -r -l1 -nd -A"linux-musl.tar.gz" https://download.newrelic.com/php_agent/release/ && \
-    gzip -dc newrelic*.tar.gz | tar xf - && \
-    cd newrelic-php5* && \
-    rm -f /usr/lib/php7/modules/newrelic.so && \
-    cp ./agent/x64/newrelic-20190902.so /usr/lib/php7/modules/newrelic.so && \
-    cp ./daemon/newrelic-daemon.x64 /usr/bin/newrelic-daemon && \
-    cp ./scripts/newrelic.ini.template /scripts/newrelic.ini && \
-    mkdir /var/log/newrelic && \
-    chown -R ambientum:ambientum /var/log/newrelic && \
     chown -R ambientum:ambientum /home/ambientum && \
     chown -R ambientum:ambientum /scripts && \
     chmod +x /scripts/*.sh && \

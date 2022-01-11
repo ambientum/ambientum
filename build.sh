@@ -39,17 +39,13 @@ function build_repository {
 
       if [ $USE_CACHE == true ]; then
         # build using cache
-        docker build -t $NAMESPACE/$REPOSITORY:$TAG .
+        docker buildx build --platform linux/amd64,linux/arm64 --push -t $NAMESPACE/$REPOSITORY:$TAG .
       fi
 
       if [ $USE_CACHE == false ]; then
-        docker build --no-cache -t $NAMESPACE/$REPOSITORY:$TAG .
+        docker buildx build --platform linux/amd64,linux/arm64 --push --no-cache -t $NAMESPACE/$REPOSITORY:$TAG .
       fi
     done
-
-    # create the latest tag
-    echo $'\n\n'"--> Aliasing $LATEST as 'latest'"$'\n'
-    docker tag $NAMESPACE/$REPOSITORY:$LATEST $NAMESPACE/$REPOSITORY:latest
 }
 
 # function for publishing images
@@ -64,10 +60,6 @@ function publish_repository {
       # publish
       docker push $NAMESPACE/$REPOSITORY:$TAG
     done
-
-    # create the latest tag
-    echo $'\n\n'"--> Publishing $NAMESPACE/$REPOSITORY:latest (from $LATEST)"$'\n'
-    docker push $NAMESPACE/$REPOSITORY:latest
 }
 
 # for each enabled repository

@@ -7,7 +7,7 @@
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://github.com/codecasts/php-alpine)
 # Base distro:   Alpine 3.13
 #
-FROM mhart/alpine-node:16
+FROM alpine:3.13
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
@@ -66,49 +66,49 @@ RUN echo "---> Enabling PHP-Alpine" && \
     s6 && \
     echo "---> Preparing and Installing PHP" && \
     apk add --update \
-    php8 \
-    php8-apcu \
-    php8-bcmath \
-    php8-bz2 \
-    php8-calendar \
-    php8-curl \
-    php8-ctype \
-    php8-exif \
-    php8-fpm \
-    php8-gd \
-    php8-gmp \
-    php8-iconv \
-    php8-imagick \
-    php8-imap \
-    php8-intl \
-    php8-mbstring \
-    php8-mysqli \
-    php8-mysqlnd \
-    php8-pdo_mysql \
-    php8-memcached \
-    php8-mongodb \
-    php8-opcache \
-    php8-pdo_pgsql \
-    php8-pgsql \
-    php8-posix \
-    php8-redis \
-    php8-soap \
-    php8-sodium \
-    php8-sqlite3 \
-    php8-pdo_sqlite \
-    php8-xdebug \
-    php8-xml \
-    php8-xmlreader \
-    php8-openssl \
-    php8-phar \
-    php8-xsl \
-    php8-zip \
-    php8-zlib \
-    php8-pcntl \
-    php8-gettext \
-    php8-cgi \
-    php8-sockets \
-    php8-phpdbg && \
+    php8@php \
+    php8-apcu@php \
+    php8-bcmath@php \
+    php8-bz2@php \
+    php8-calendar@php \
+    php8-curl@php \
+    php8-ctype@php \
+    php8-exif@php \
+    php8-fpm@php \
+    php8-gd@php \
+    php8-gmp@php \
+    php8-iconv@php \
+    php8-imagick@php \
+    php8-imap@php \
+    php8-intl@php \
+    php8-mbstring@php \
+    php8-mysqli@php \
+    php8-mysqlnd@php \
+    php8-pdo_mysql@php \
+    php8-memcached@php \
+    php8-mongodb@php \
+    php8-opcache@php \
+    php8-pdo_pgsql@php \
+    php8-pgsql@php \
+    php8-posix@php \
+    php8-redis@php \
+    php8-soap@php \
+    php8-sodium@php \
+    php8-sqlite3@php \
+    php8-pdo_sqlite@php \
+    php8-xdebug@php \
+    php8-xml@php \
+    php8-xmlreader@php \
+    php8-openssl@php \
+    php8-phar@php \
+    php8-xsl@php \
+    php8-zip@php \
+    php8-zlib@php \
+    php8-pcntl@php \
+    php8-gettext@php \
+    php8-cgi@php \
+    php8-sockets@php \
+    php8-phpdbg@php && \
     echo "Set disable_coredump false" >> /etc/sudo.conf && \
     sudo ln -s /usr/bin/php8 /usr/bin/php && \
     sudo ln -s /usr/bin/php-cgi8 /usr/bin/php-cgi && \
@@ -123,8 +123,6 @@ RUN echo "---> Enabling PHP-Alpine" && \
     mkdir -p /home/ssl && \
     chown -R ambientum:ambientum /var/www && \
     chown -R ambientum:ambientum /home/ssl && \
-    wget -O /tini https://github.com/krallin/tini/releases/download/v0.19.0/tini-static && \
-    chmod +x /tini && \
     echo "---> Configuring PHP" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
     sed -i "/;error_log = .*/c\error_log = /proc/self/fd/2" /etc/php8/php.ini && \
