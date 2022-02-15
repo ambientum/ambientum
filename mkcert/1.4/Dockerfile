@@ -14,7 +14,9 @@ FROM golang:1.14-alpine AS build-mkcert
 ENV GO111MODULE=off
 
 # explicit version (for cache-friendly upgrades).
-ENV MKCERT_VERSION='1.4.1'
+ENV MKCERT_VERSION='1.4.3'
+
+RUN arch
 
 # build it.
 RUN apk add --update git bash && \
@@ -32,7 +34,7 @@ FROM alpine:3.10
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # explicit version (for cache-friendly upgrades).
-ENV MKCERT_VERSION='v1.4.1'
+ENV MKCERT_VERSION='v1.4.3'
 
 # make sure terminal is properly configured.
 ENV TERM=xterm-256color \
@@ -59,9 +61,6 @@ RUN echo "---> Enabling alpine repositories" && \
     mkdir -p /var/www/app && \
     chown -R ambientum:ambientum /var/www && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
-    echo "---> Configuring init system" && \
-    wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
-    chmod +x /tini && \
     echo "---> Fixing permissions" && \
     chown -R ambientum:ambientum /home/ambientum && \
     chown -R ambientum:ambientum /scripts && \
@@ -80,7 +79,7 @@ WORKDIR "/var/www/app"
 ENV PATH=/home/ambientum/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Define the entry point that tries to enable newrelic
-ENTRYPOINT ["/tini", "--", "/scripts/start.sh"]
+ENTRYPOINT ["/scripts/start.sh"]
 
 # As non daemon and single base image, it may be used as cli container
 CMD ["/bin/mkcert"]

@@ -7,13 +7,13 @@
 # Strategy:      PHP From PHP-Alpine Repository (CODECASTS) (https://github.com/codecasts/php-alpine)
 # Base distro:   Alpine 3.12
 #
-FROM mhart/alpine-node:15
+FROM alpine:3.12
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Avoid cache use when PHP version changes
-ENV CURRENT_PHP_VERSION=8.0.0
+ENV CURRENT_PHP_VERSION=8.0.13
 
 # Variables for enabling NewRelic
 ENV ENV="/etc/profile" \
@@ -44,10 +44,14 @@ COPY --from=ambientum/mkcert:1.4 /bin/mkcert /bin/mkcert
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update \
+    ca-certificates \
+    tar \
+    jq \
     wget \
     curl \
     openssh \
     bash \
+    ffmpeg \
     fontconfig \
     libxrender \
     libxext \
@@ -58,7 +62,8 @@ RUN echo "---> Enabling PHP-Alpine" && \
     unzip \
     wget \
     make \
-    sudo && \
+    sudo \
+    s6 && \
     echo "---> Preparing and Installing PHP" && \
     apk add --update \
     php8 \
@@ -102,6 +107,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php8-pcntl \
     php8-gettext \
     php8-cgi \
+    php8-sockets \
     php8-phpdbg && \
     echo "Set disable_coredump false" >> /etc/sudo.conf && \
     sudo ln -s /usr/bin/php8 /usr/bin/php && \
@@ -117,10 +123,9 @@ RUN echo "---> Enabling PHP-Alpine" && \
     mkdir -p /home/ssl && \
     chown -R ambientum:ambientum /var/www && \
     chown -R ambientum:ambientum /home/ssl && \
-    wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
-    chmod +x /tini && \
     echo "---> Configuring PHP" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
+    sed -i "/;error_log = .*/c\error_log = /proc/self/fd/2" /etc/php8/php.ini && \
     sed -i "/memory_limit = .*/c\memory_limit = $PHP_MEMORY_LIMIT" /etc/php8/php.ini && \
     sed -i "/user = .*/c\user = ambientum" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/^group = .*/c\group = ambientum" /etc/php8/php-fpm.d/www.conf && \

@@ -13,7 +13,7 @@ FROM alpine:3.11
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Avoid cache use when PHP version changes
-ENV CURRENT_PHP_VERSION=7.3.25
+ENV CURRENT_PHP_VERSION=7.3.33
 
 # Variables for enabling NewRelic
 ENV ENV="/etc/profile" \
@@ -40,10 +40,14 @@ COPY --from=ambientum/mkcert:1.4 /bin/mkcert /bin/mkcert
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update \
+    ca-certificates \
+    tar \
+    jq \
     wget \
     curl \
     openssh \
     bash \
+    ffmpeg \
     fontconfig \
     libxrender \
     libxext \
@@ -54,7 +58,8 @@ RUN echo "---> Enabling PHP-Alpine" && \
     unzip \
     wget \
     make \
-    sudo && \
+    sudo \
+    s6 && \
     echo "---> Preparing and Installing PHP" && \
     apk add --update \
     php7@php \
@@ -102,6 +107,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-cgi@php \
     php7-zlib@php \
     php7-pcov@php \
+    php7-sockets@php \
     php7-phpdbg@php && \
     echo "Set disable_coredump false" >> /etc/sudo.conf && \
     sudo ln -s /usr/bin/php7 /usr/bin/php && \
@@ -117,10 +123,9 @@ RUN echo "---> Enabling PHP-Alpine" && \
     mkdir -p /home/ssl && \
     chown -R ambientum:ambientum /var/www && \
     chown -R ambientum:ambientum /home/ssl && \
-    wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
-    chmod +x /tini && \
     echo "---> Configuring PHP" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
+    sed -i "/;error_log = .*/c\error_log = /proc/self/fd/2" /etc/php7/php.ini && \
     sed -i "/memory_limit = .*/c\memory_limit = $PHP_MEMORY_LIMIT" /etc/php7/php.ini && \
     sed -i "/user = .*/c\user = ambientum" /etc/php7/php-fpm.d/www.conf && \
     sed -i "/^group = .*/c\group = ambientum" /etc/php7/php-fpm.d/www.conf && \
@@ -138,18 +143,6 @@ RUN echo "---> Enabling PHP-Alpine" && \
     sed -i "/post_max_size = .*/c\post_max_size = 1000M" /etc/php7/php.ini && \
     sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php7/php.ini && \
     sed -i "/zend_extension=xdebug/c\;zend_extension=xdebug" /etc/php7/conf.d/00_xdebug.ini && \
-    echo "---> Adding Support for NewRelic" && \
-    mkdir /tmp/newrelic && \
-    cd /tmp/newrelic && \
-    wget -r -l1 -nd -A"linux-musl.tar.gz" https://download.newrelic.com/php_agent/release/ && \
-    gzip -dc newrelic*.tar.gz | tar xf - && \
-    cd newrelic-php5* && \
-    rm -f /usr/lib/php7/modules/newrelic.so && \
-    cp ./agent/x64/newrelic-20180731.so /usr/lib/php7/modules/newrelic.so && \
-    cp ./daemon/newrelic-daemon.x64 /usr/bin/newrelic-daemon && \
-    cp ./scripts/newrelic.ini.template /scripts/newrelic.ini && \
-    mkdir /var/log/newrelic && \
-    chown -R ambientum:ambientum /var/log/newrelic && \
     chown -R ambientum:ambientum /home/ambientum && \
     chown -R ambientum:ambientum /scripts && \
     chmod +x /scripts/*.sh && \
