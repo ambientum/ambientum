@@ -11,8 +11,8 @@ jobs:
       image: ubuntu-2004:202111-02 
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.11
+      #- setup_remote_docker:
+      #    version: 20.10.11
       - run: 
           name: "buildx-version"
           command: "docker buildx version"
