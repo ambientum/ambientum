@@ -146,7 +146,6 @@ RUN echo "---> Enabling PHP-Alpine" && \
     chown -R ambientum:ambientum /home/ambientum && \
     chown -R ambientum:ambientum /scripts && \
     chmod +x /scripts/*.sh && \
-    /scripts/update-cert.sh && \
     rm -rf /tmp/*
 
 # Define the running user

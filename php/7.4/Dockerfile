@@ -149,7 +149,6 @@ RUN echo "---> Enabling PHP-Alpine" && \
     chown -R ambientum:ambientum /home/ambientum && \
     chown -R ambientum:ambientum /scripts && \
     chmod +x /scripts/*.sh && \
-    /scripts/update-cert.sh && \
     rm -rf /tmp/*
 
 # Define the running user
@@ -161,7 +160,7 @@ WORKDIR "/var/www/app"
 # Environment variables
 ENV PATH=/scripts:/home/ambientum/.local/bin:/home/ambientum/.cache/npm-packages/bin:/home/ambientum/.yarn/bin:/home/ambientum/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-# Define the entry point that tries to enable newrelic
+# Define the entry point.
 ENTRYPOINT ["/scripts/entrypoint.sh"]
 
 # As non daemon and single base image, it may be used as cli container

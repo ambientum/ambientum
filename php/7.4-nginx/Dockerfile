@@ -11,14 +11,16 @@
 #
 FROM ambientum/php:7.4
 
-# Repository/Image Maintainer
-LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
+# Variables for enabling NewRelic
+ENV NGINX_HTTP_PORT="8080" \
+    NGINX_HTTPS_PORT="8083"
 
 # Reset user to root to allow software install
 USER root
 
 # copy config and start CMD.
 COPY etc /etc
+COPY scripts /scripts
 COPY start.sh  /home/start.sh
 
 # Install nginx from dotdeb (already enabled on base image)
@@ -43,7 +45,8 @@ USER ambientum
 WORKDIR "/var/www/app"
 
 # Expose webserver port
-EXPOSE 8080
+EXPOSE ${NGINX_HTTP_PORT}
+EXPOSE ${NGINX_HTTPS_PORT}
 
 # Starts a single shell script that puts php-fpm as a daemon and nginx on foreground
 CMD ["/home/start.sh"]

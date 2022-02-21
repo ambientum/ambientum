@@ -26,3 +26,6 @@ if [[ "${SSL_DOMAIN}" != "${SSL_LAST_DOMAIN}" ]]; then
   # save the issued domain into last-domain file (persisted).
   echo "${SSL_DOMAIN}" > "${CAROOT}/last-domain"
 fi
+
+# update ca certificates, without failing.
+sudo update-ca-certificates 2>/dev/null || true
