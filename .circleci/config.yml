@@ -17,9 +17,6 @@ jobs:
           name: "buildx-version"
           command: "docker buildx version"
       - run:
-          name: "docker-buildx-inspect"
-          command: "docker buildx inspect"
-      - run:
           name: "docker-buildx-ls"
           command: "docker buildx ls"
       - run:
@@ -28,6 +25,9 @@ jobs:
       - run:
           name: "use context"
           command: "docker buildx create foobar --use --bootstrap"
+      - run:
+          name: "docker-buildx-inspect"
+          command: "docker buildx inspect"
       - run:
           name: "bash"
           command: "apk add --update bash"
