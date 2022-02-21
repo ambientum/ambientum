@@ -50,6 +50,7 @@ RUN echo "---> Installing base dependencies" && \
     mkdir -p /var/www/app && \
     chown -R ambientum:ambientum /var/www && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
+    echo "set disable_coredump false" >> /etc/sudo.conf && \
     chown -R ambientum:ambientum /home/ambientum && \
     chown -R ambientum:ambientum /scripts/start.sh && \
     chmod +x /scripts/start.sh && \
