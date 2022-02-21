@@ -27,7 +27,7 @@ jobs:
           command: "docker context create foobar"
       - run:
           name: "use context"
-          command: "docker buildx create --use --bootstrap"
+          command: "docker buildx create foobar --use --bootstrap"
       - run:
           name: "bash"
           command: "apk add --update bash"
