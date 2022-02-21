@@ -2,11 +2,9 @@
 
 # Comment out HTTP/HTTPS listener
 
-if [ "${NGINX_HTTP_TOGGLE}" = "OFF" ]
-then
+if [[ "${NGINX_MODE}" = "https" ]]; then
 	sudo sed -i 's/^\(listen[][ :]*8080.*\)/#\1/g' /etc/nginx/sites/common.conf
-elif [ "${NGINX_HTTPS_TOGGLE}" = "OFF" ]
-then
+elif [[ "${NGINX_MODE}" = "http" ]]; then
 	sudo sed -i 's/^\(listen[][ :]*8083.*\)/#\1/g' /etc/nginx/sites/common.conf
 fi
 
