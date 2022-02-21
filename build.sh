@@ -51,9 +51,9 @@ function build_repository {
 
       if [ $USE_CACHE == true ]; then
         # build using cache
-        docker buildx build --platform $PLATFORM $MODE -t $NAMESPACE/$REPOSITORY:$TAG .
+        docker buildx build --progress=plain --platform $PLATFORM $MODE -t $NAMESPACE/$REPOSITORY:$TAG .
       else
-        docker buildx build --platform $PLATFORM $MODE --no-cache -t $NAMESPACE/$REPOSITORY:$TAG .
+        docker buildx build --progress=plain --platform $PLATFORM $MODE --no-cache -t $NAMESPACE/$REPOSITORY:$TAG .
       fi
     done
 }
