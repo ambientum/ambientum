@@ -4,10 +4,10 @@
 
 if [ "${NGINX_HTTP_TOGGLE}" = "OFF" ]
 then
-	sudo sed -i 's/^(listen[ \[\]:]s+8080)/#$1//g' /etc/nginx/sites/common.conf
+	sudo sed -i 's/^\(listen[][ :]*8080.*\)/#\1/g' /etc/nginx/sites/common.conf
 elif [ "${NGINX_HTTPS_TOGGLE}" = "OFF" ]
 then
-	sudo sed -i 's/^(listen[ \[\]:]s+8083)/#$1//g' /etc/nginx/sites/common.conf
+	sudo sed -i 's/^\(listen[][ :]*8083.*\)/#\1/g' /etc/nginx/sites/common.conf
 fi
 
 # replace HTTP port.
