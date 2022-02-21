@@ -8,7 +8,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: jdrouet/docker-with-buildx:stable
+      - image: jdrouet/docker-with-buildx:20.10.11
     steps:
       - checkout
       - setup_remote_docker:
@@ -18,10 +18,16 @@ jobs:
           command: "docker buildx version"
       - run:
           name: "docker-buildx-inspect"
-          command: "docker buildx create --use --bootstrap"
-      - run:
-          name: "docker-buildx-inspect"
           command: "docker buildx inspect"
+      - run:
+          name: "docker-buildx-ls"
+          command: "docker buildx ls"
+      - run:
+          name: "docker-buildx-create-context"
+          command: "docker context create foobar
+      - run:
+          name: "use context"
+          command: "docker buildx create --use --bootstrap"
       - run:
           name: "bash"
           command: "apk add --update bash"
