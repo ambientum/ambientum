@@ -1,3 +1,5 @@
+#!/usr/bin/env ash
+
 if [[ $XDEBUG_ENABLED == true ]]; then
     # enable xdebug extension
     sudo sed -i "/;zend_extension=xdebug/c\zend_extension=xdebug" /etc/php8/conf.d/00_xdebug.ini

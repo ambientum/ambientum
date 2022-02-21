@@ -1,3 +1,5 @@
+#!/usr/bin/env ash
+
 # replace HTTP port.
 sudo sed -i "s/8080/${NGINX_HTTP_PORT}/g" /etc/nginx/sites/common.conf
 # replace HTTPS pot.

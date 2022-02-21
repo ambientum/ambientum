@@ -1,3 +1,5 @@
+#!/usr/bin/env ash
+
 # OPCache extreme mode.
 if [[ $OPCACHE_MODE == "extreme" ]]; then
     # enable extreme caching for OPCache.
