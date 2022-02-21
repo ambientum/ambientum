@@ -27,9 +27,13 @@ jobs:
               curl -sSL -o ~/.docker/cli-plugins/docker-buildx $url
               chmod a+x ~/.docker/cli-plugins/docker-buildx
       - run:
+          command: echo 'export DOCKER_CLI_EXPERIMENTAL="enabled"' >> $BASH_ENV
+          name: Enable experimental Docker features
+              
+      - run:
           name: Start multiarch/qemu-user-static container
           command: |
-              docker run --rm --privileged multiarch/qemu-user-static:<< parameters.qemu-user-static-version >> --reset -p yes
+              docker run --rm --privileged multiarch/qemu-user-static:5.2.0-2 --reset -p yes
           
       - run:
           name: Remove buildx multiarch container in case it exists
@@ -45,9 +49,6 @@ jobs:
       - run:
           command: docker buildx use docker-multiarch
           name: Set docker-multiarch as default builder
-      - run:
-          command: echo 'export DOCKER_CLI_EXPERIMENTAL="enabled"' >> $BASH_ENV
-          name: Enable experimental Docker features
       - run:
           command: docker buildx install
           name: Initialize Docker buildx
