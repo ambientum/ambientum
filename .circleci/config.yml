@@ -24,7 +24,7 @@ jobs:
           command: "docker context create foobar"
       - run:
           name: "use context"
-          command: "docker buildx create foobar --use --bootstrap"
+          command: "docker buildx create foobar --use --bootstrap --platform=linux/amd64,linux/arm64"
       - run:
           name: "docker-buildx-inspect"
           command: "docker buildx inspect"
