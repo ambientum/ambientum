@@ -31,5 +31,5 @@ jobs:
 workflows:
   build-workflow:
     jobs:
-      - install
+      # - install
       - build
