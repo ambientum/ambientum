@@ -15,7 +15,7 @@ jobs:
       #    version: 20.10.11
       - run:
           name: "deps"
-          command: "apt-get install qemu qemu-user-static binfmt-support debootstrap -y"
+          command: "sudo apt-get install qemu qemu-user-static binfmt-support debootstrap -y"
       - run: 
           name: "buildx-version"
           command: "docker buildx version"
