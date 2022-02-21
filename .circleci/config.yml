@@ -21,6 +21,9 @@ jobs:
           command: "docker buildx version"
       - run:
           name: "docker-buildx-inspect"
+          command: "docker buildx create --use --bootstrap"
+      - run:
+          name: "docker-buildx-inspect"
           command: "docker buildx inspect"
       - run:
           name: "bash"
