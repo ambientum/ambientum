@@ -10,49 +10,18 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build:
-    machine: true
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    #docker:
-    #  - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    docker:
+      - image: jdrouet/docker-with-buildx:stable
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 18.09.3
       - run: 
-          name: "buildx"  
-          command: |
-              mkdir -p ~/.docker/cli-plugins
-              url="https://github.com/docker/buildx/releases/download/v0.7.0/buildx-v0.7.0.linux-amd64"
-              curl -sSL -o ~/.docker/cli-plugins/docker-buildx $url
-              chmod a+x ~/.docker/cli-plugins/docker-buildx
+          name: "buildx-version"
+          command: "docker buildx version"
       - run:
-          command: echo 'export DOCKER_CLI_EXPERIMENTAL="enabled"' >> $BASH_ENV
-          name: Enable experimental Docker features
-              
-      - run:
-          name: Start multiarch/qemu-user-static container
-          command: docker buildx install
-#          command: |
-#              docker run --rm --privileged multiarch/qemu-user-static:5.2.0-2 --reset -p yes
-          
-#      - run:
-#          name: Remove buildx multiarch container in case it exists
-#          command: docker rm -f buildx_buildkit_docker-multiarch0
-          
-      - run:
-          command: |
-              docker buildx create --name docker-multiarch --platform linux/386,linux/amd64,linux/arm/v5,linux/arm/v6,linux/arm/v7,linux/arm64,linux/mips64le,linux/ppc64le,linux/riscv64,linux/s390x
-          name: Create docker-multiarch builder
-      - run:
-          command: docker buildx inspect --builder docker-multiarch --bootstrap
-          name: Inspect & bootstrap docker-multiarch builder
-      - run:
-          command: docker buildx use docker-multiarch
-          name: Set docker-multiarch as default builder
-      - run:
-          command: docker buildx install
-          name: Initialize Docker buildx
+          name: "docker-buildx-inspect"
+          command: "docker buildx inspect"
       - run:
           name: "copy env"
           command: "cp .env.example .env"
