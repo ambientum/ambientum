@@ -12,6 +12,7 @@
 FROM ambientum/php:7.4
 
 # Variables for enabling NewRelic
+# set NGINX_MODE to 'http' or 'https' to disable the other one 
 ENV NGINX_HTTP_PORT="8080" \
     NGINX_HTTPS_PORT="8083" \
     NGINX_MODE="dual"
