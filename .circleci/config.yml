@@ -18,7 +18,7 @@ jobs:
           command: "sudo apt update -y && sudo apt-get install qemu qemu-user-static binfmt-support debootstrap -y"
       - run:
           name: "docker-login"
-          command: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+          command: docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD"
       - run: 
           name: "buildx-version"
           command: "docker buildx version"
