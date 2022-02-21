@@ -28,7 +28,19 @@ ROOT_DIRECTORY=`pwd`
 
 # function for building images
 function build_repository {
+    # repository is the first argument.
+    REPOSITORY=$1;
+    # build mode is the second arg (--push|--load)
+    MODE=${2:-"--load"};
+    # target platform is the third arg (comma delimited).
+    PLATFORM=${3:-linux/amd64,linux/arm64};
+
+    # show building platforms.
+    echo "Build mode: ${MODE}";
+    echo "Building for platforms: ${PLATFORM}";
+
     # read repository configuration
+    # shellcheck disable=SC1090
     source $ROOT_DIRECTORY/$REPOSITORY/buildvars
 
     # build all enabled versions
@@ -39,11 +51,9 @@ function build_repository {
 
       if [ $USE_CACHE == true ]; then
         # build using cache
-        docker buildx build --platform linux/amd64,linux/arm64 --push -t $NAMESPACE/$REPOSITORY:$TAG .
-      fi
-
-      if [ $USE_CACHE == false ]; then
-        docker buildx build --platform linux/amd64,linux/arm64 --push --no-cache -t $NAMESPACE/$REPOSITORY:$TAG .
+        docker buildx build --platform $PLATFORM $MODE -t $NAMESPACE/$REPOSITORY:$TAG .
+      else
+        docker buildx build --platform $PLATFORM $MODE --no-cache -t $NAMESPACE/$REPOSITORY:$TAG .
       fi
     done
 }
@@ -64,12 +74,12 @@ function publish_repository {
 
 # for each enabled repository
 for REPOSITORY in $REPOSITORIES; do
-  # build the repository
-  build_repository $REPOSITORY
-
   # If publishing is enabled
   if [ $PUBLISH == true ]; then
-    # Push the built image
-    publish_repository $REPOSITORY
+    # build the repository
+    build_repository $REPOSITORY "--push" $DOCKER_PLATFORM
+  else
+    # build the repository
+    build_repository $REPOSITORY "--load" $DOCKER_PLATFORM
   fi
 done
