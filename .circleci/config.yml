@@ -8,7 +8,7 @@ version: 2.1
 jobs:
   build:
     machine:
-      - image: ubuntu-2004:202111-02 
+      image: ubuntu-2004:202111-02 
     steps:
       - checkout
       - setup_remote_docker:
