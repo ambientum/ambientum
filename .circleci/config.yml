@@ -16,6 +16,9 @@ jobs:
       - run:
           name: "deps"
           command: "sudo apt update -y && sudo apt-get install qemu qemu-user-static binfmt-support debootstrap -y"
+      - run:
+          name: "docker-login"
+          command: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
       - run: 
           name: "buildx-version"
           command: "docker buildx version"
@@ -25,12 +28,12 @@ jobs:
       #- run:
           #name: "docker-buildx-create-context"
           #command: "docker context create foobar"
-      - run:
-          name: "use context"
-          command: "docker buildx create --help"
-      - run:
-          name: "use context"
-          command: "docker buildx create --use --platform=linux/amd64,linux/arm64"
+      #- run:
+      #    name: "use context"
+      #    command: "docker buildx create --help"
+      #- run:
+      #    name: "use context"
+      #    command: "docker buildx create --use --platform=linux/amd64,linux/arm64"
       - run:
           name: "docker-buildx-inspect"
           command: "docker buildx inspect"
