@@ -30,4 +30,5 @@ jobs:
 workflows:
   build-workflow:
     jobs:
+      - docker-buildx
       - build
