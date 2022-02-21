@@ -2,9 +2,6 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-# define orbs
-orbs: 
-  docker-buildx: sensu/docker-buildx@1.1.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -15,7 +12,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          version: 18.09.3
+          version: 20.10.12
       - run: 
           name: "buildx-version"
           command: "docker buildx version"
