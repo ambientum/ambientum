@@ -19,12 +19,12 @@ jobs:
       - run:
           name: "docker-buildx-ls"
           command: "docker buildx ls"
-      - run:
-          name: "docker-buildx-create-context"
-          command: "docker context create foobar"
+      #- run:
+          #name: "docker-buildx-create-context"
+          #command: "docker context create foobar"
       - run:
           name: "use context"
-          command: "docker buildx create foobar --use --bootstrap --platform=linux/amd64,linux/arm64"
+          command: "docker buildx create --use --platform=linux/amd64,linux/arm64"
       - run:
           name: "docker-buildx-inspect"
           command: "docker buildx inspect"
