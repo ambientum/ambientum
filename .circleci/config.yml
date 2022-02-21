@@ -32,9 +32,6 @@ jobs:
           name: "docker-buildx-inspect"
           command: "docker buildx inspect"
       - run:
-          name: "bash"
-          command: "apk add --update bash"
-      - run:
           name: "copy env"
           command: "cp .env.example .env"
       - run:
