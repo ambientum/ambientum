@@ -16,7 +16,8 @@ LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
 # Variables for enabling NewRelic
 ENV NGINX_HTTP_PORT="8080" \
-    NGINX_HTTPS_PORT="8083"
+    NGINX_HTTPS_PORT="8083" \
+    NGINX_MODE="dual"
 
 # Reset user to root to allow software install
 USER root
