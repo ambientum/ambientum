@@ -7,8 +7,8 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build:
-    docker:
-      - image: jdrouet/docker-with-buildx:20.10.11
+    machine:
+      - image: ubuntu-2004:202111-02 
     steps:
       - checkout
       - setup_remote_docker:
