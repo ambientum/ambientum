@@ -24,7 +24,7 @@ jobs:
           command: "docker buildx ls"
       - run:
           name: "docker-buildx-create-context"
-          command: "docker context create foobar
+          command: "docker context create foobar"
       - run:
           name: "use context"
           command: "docker buildx create --use --bootstrap"
