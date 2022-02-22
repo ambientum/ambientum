@@ -23,6 +23,7 @@ ENV ENV="/etc/profile" \
     OPCACHE_MODE="normal" \
     PHP_MEMORY_LIMIT=256M \
     XDEBUG_ENABLED=false \
+    XDEBUG_IDE_KEY="ambientum" \
     NR_ENABLED=false \
     NR_APP_NAME="" \
     NR_LICENSE_KEY="" \
