@@ -45,10 +45,7 @@ jobs:
           command: "./build.sh mkcert"
       - run:
           name: "build php"
-          command: "./build.sh php"
-      - run:
-          name: "build node"
-          command: "./build.sh node"          
+          command: "./build.sh php"          
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
