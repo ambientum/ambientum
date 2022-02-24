@@ -7,7 +7,7 @@
 # Strategy:      Based on mhart/alpine-node:11
 # Base distro:   Alpine 3.8
 #
-FROM mhart/alpine-node:11
+FROM node:11-alpine
 
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
@@ -53,8 +53,7 @@ RUN echo "---> Installing base dependencies" && \
     mkdir -p /var/www/app && \
     chown -R ambientum:ambientum /var/www && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
-    wget -O /tini https://github.com/krallin/tini/releases/download/v0.19.0/tini-static && \
-    chmod +x /tini && \
+    echo "set disable_coredump false" >> /etc/sudo.conf && \
     chown -R ambientum:ambientum /home/ambientum && \
     chown -R ambientum:ambientum /scripts/start.sh && \
     chmod +x /scripts/start.sh && \
@@ -67,7 +66,7 @@ USER ambientum
 WORKDIR "/var/www/app"
 
 # Define the custom entry point.
-ENTRYPOINT ["/tini", "--", "/scripts/start.sh"]
+ENTRYPOINT ["/scripts/start.sh"]
 
 # As non daemon and single base image, it may be used as cli container
 CMD ["/bin/bash"]
