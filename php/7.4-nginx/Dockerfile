@@ -18,7 +18,7 @@ ENV NGINX_HTTP_PORT="8080" \
     NGINX_MODE="dual" \
     NGINX_LISTEN_MODE="dual" \
     NGINX_FPM_BACKEND_HOST="127.0.0.1" \
-    NGINX_FPM_BACKEND_POST="9000"
+    NGINX_FPM_BACKEND_PORT="9000"
 
 # Reset user to root to allow software install
 USER root
