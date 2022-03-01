@@ -126,19 +126,19 @@ RUN echo "---> Enabling PHP-Alpine" && \
     chown -R ambientum:ambientum /home/ssl && \
     echo "---> Configuring PHP" && \
     echo "ambientum  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
-    sed -i "/;error_log = .*/c\error_log = /proc/self/fd/2" /etc/php8/php.ini && \
+    sed -i "/;error_log = .*/c\error_log = /dev/stderr" /etc/php8/php.ini && \
     sed -i "/memory_limit = .*/c\memory_limit = $PHP_MEMORY_LIMIT" /etc/php8/php.ini && \
     sed -i "/user = .*/c\user = ambientum" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/^group = .*/c\group = ambientum" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/listen.owner = .*/c\listen.owner = ambientum" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/listen.group = .*/c\listen.group = ambientum" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/listen = .*/c\listen = [::]:9000" /etc/php8/php-fpm.d/www.conf && \
-    sed -i "/;access.log = .*/c\access.log = /proc/self/fd/2" /etc/php8/php-fpm.d/www.conf && \
+    sed -i "/;access.log = .*/c\access.log = /dev/stdout" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/;clear_env = .*/c\clear_env = no" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/;catch_workers_output = .*/c\catch_workers_output = yes" /etc/php8/php-fpm.d/www.conf && \
-    sed -i "/pid = .*/c\;pid = /run/php/php8.0-fpm.pid" /etc/php8/php-fpm.conf && \
+    sed -i "/pid = .*/c\;pid = /run/php/php8-fpm.pid" /etc/php8/php-fpm.conf && \
     sed -i "/;daemonize = .*/c\daemonize = yes" /etc/php8/php-fpm.conf && \
-    sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php8/php-fpm.conf && \
+    sed -i "/error_log = .*/c\error_log = /dev/stderr" /etc/php8/php-fpm.conf && \
     sed -i "/;rlimit_files = .*/c\rlimit_files = 8192" /etc/php8/php-fpm.conf && \
     sed -i "/;rlimit_core = .*/c\rlimit_core = unlimited" /etc/php8/php-fpm.conf && \
     sed -i "/post_max_size = .*/c\post_max_size = 1000M" /etc/php8/php.ini && \
