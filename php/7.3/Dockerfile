@@ -41,6 +41,7 @@ COPY --from=ambientum/mkcert:1.4 /bin/mkcert /bin/mkcert
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update \
+    gettext \
     ca-certificates \
     tar \
     jq \

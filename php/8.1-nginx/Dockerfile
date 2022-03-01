@@ -18,7 +18,9 @@ LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 # set NGINX_MODE to 'http' or 'https' to disable the other one 
 ENV NGINX_HTTP_PORT="8080" \
     NGINX_HTTPS_PORT="8083" \
-    NGINX_MODE="dual"
+    NGINX_MODE="dual" \
+    NGINX_FPM_BACKEND_HOST="127.0.0.1" \
+    NGINX_FPM_BACKEND_POST="9000"
 
 # Reset user to root to allow software install
 USER root
