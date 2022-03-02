@@ -135,6 +135,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     sed -i "/listen.group = .*/c\listen.group = ambientum" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/listen = .*/c\listen = [::]:9000" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/;access.log = .*/c\access.log = /dev/stderr" /etc/php8/php-fpm.d/www.conf && \
+    sed -i "/;decorate_workers_output = .*/c\decorate_workers_output = no" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/;clear_env = .*/c\clear_env = no" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/;catch_workers_output = .*/c\catch_workers_output = yes" /etc/php8/php-fpm.d/www.conf && \
     sed -i "/;log_level = .*/c\log_level = notice" /etc/php8/php-fpm.conf && \
