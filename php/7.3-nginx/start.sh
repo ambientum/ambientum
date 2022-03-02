@@ -8,10 +8,10 @@ if [[ "${NGINX_LISTEN_MODE}" = "nginx" ]]; then
   nginx
 elif [[ "${NGINX_LISTEN_MODE}" = "fpm" ]]; then
 	# starts FPM
-  /usr/sbin/php-fpm7 -y /etc/php7/php-fpm.conf -F -O
+  /usr/sbin/php-fpm7 -y /etc/php7/php-fpm.conf -F -O 2>&1
 else
   # starts FPM
-  nohup /usr/sbin/php-fpm7 -y /etc/php7/php-fpm.conf -F -O > /dev/null 2>&1 &
+  nohup /usr/sbin/php-fpm7 -y /etc/php7/php-fpm.conf -F -O > /dev/stdout 2>&1 &
   # starts NGINX!
   nginx
 fi

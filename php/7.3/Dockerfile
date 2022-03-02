@@ -136,7 +136,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     sed -i "/listen = .*/c\listen = [::]:9000" /etc/php7/php-fpm.d/www.conf && \
     sed -i "/;access.log = .*/c\access.log = /dev/stderr" /etc/php7/php-fpm.d/www.conf && \
     sed -i "/;clear_env = .*/c\clear_env = no" /etc/php7/php-fpm.d/www.conf && \
-    sed -i "/;catch_workers_output = .*/c\catch_workers_output = no" /etc/php7/php-fpm.d/www.conf && \
+    sed -i "/;catch_workers_output = .*/c\catch_workers_output = yes" /etc/php7/php-fpm.d/www.conf && \
     sed -i "/;log_level = .*/c\log_level = notice" /etc/php7/php-fpm.conf && \
     sed -i "/pid = .*/c\;pid = /run/php/php7-fpm.pid" /etc/php7/php-fpm.conf && \
     sed -i "/;daemonize = .*/c\daemonize = yes" /etc/php7/php-fpm.conf && \
