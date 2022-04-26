@@ -68,7 +68,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     echo "---> Installing static FFMpeg binaries" && \
     export FFMPEG_PLATFORM=$(echo $TARGETPLATFORM | sed 's/linux\///g') && \
     wget -O /tmp/ffmpeg.tar.xz "https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-4.4-${FFMPEG_PLATFORM}-static.tar.xz" && \
-    tar --directory=/tmp -xf /tmp/ffmpeg.tar.xz && \
+    tar --directory=/tmp xf /tmp/ffmpeg.tar.xz && \
     mv /tmp/ffmpeg-*-static/ffmpeg /bin/ffmpeg && \
     mv /tmp/ffmpeg-*-static/ffmpeg /bin/ffprobe && \
     mv /tmp/ffmpeg-*-static/ffmpeg /bin/qt-faststart && \
