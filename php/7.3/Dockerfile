@@ -48,6 +48,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     gettext \
     ca-certificates \
     tar \
+    xz \
     jq \
     wget \
     curl \
