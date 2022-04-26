@@ -12,6 +12,10 @@ FROM alpine:3.11
 # Repository/Image Maintainer
 LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
 
+# Platform args.
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+
 # Avoid cache use when PHP version changes
 ENV CURRENT_PHP_VERSION=7.3.33
 
@@ -49,7 +53,6 @@ RUN echo "---> Enabling PHP-Alpine" && \
     curl \
     openssh \
     bash \
-    ffmpeg \
     fontconfig \
     libxrender \
     libxext \
@@ -62,6 +65,14 @@ RUN echo "---> Enabling PHP-Alpine" && \
     make \
     sudo \
     s6 && \
+    echo "---> Installing static FFMpeg binaries" && \
+    export FFMPEG_PLATFORM=$(echo $TARGETPLATFORM | sed 's/linux\///g') && \
+    wget -O /tmp/ffmpeg.tar.xz "https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-4.4-${FFMPEG_PLATFORM}-static.tar.xz" && \
+    tar --directory=/tmp -xf /tmp/ffmpeg.tar.xz && \
+    mv /tmp/ffmpeg-*-static/ffmpeg /bin/ffmpeg && \
+    mv /tmp/ffmpeg-*-static/ffmpeg /bin/ffprobe && \
+    mv /tmp/ffmpeg-*-static/ffmpeg /bin/qt-faststart && \
+    rm -rf /tmp/ffmpeg* && \
     echo "---> Preparing and Installing PHP" && \
     apk add --update \
     php7@php \
