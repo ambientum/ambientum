@@ -122,6 +122,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php8-gettext@php \
     php8-cgi@php \
     php8-sockets@php \
+    php8-pcov@php \
     php8-phpdbg@php && \
     echo "Set disable_coredump false" >> /etc/sudo.conf && \
     sudo ln -s /usr/bin/php8 /usr/bin/php && \
