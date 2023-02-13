@@ -46,6 +46,7 @@ COPY --from=ambientum/mkcert:1.4 /bin/mkcert /bin/mkcert
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update \
     gettext \
+    less \
     ca-certificates \
     tar \
     xz \
